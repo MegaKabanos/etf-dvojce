@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Band from '../components/Band.astro';
 import RateTable from '../components/RateTable.tsx';
+import FeeCalculator from '../components/FeeCalculator.tsx';
 import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 ---
 
@@ -34,6 +35,15 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 			</div>
 			<RateTable client:load />
 			<p class="rt-micro">Zdarma, bez registrace. Data k {AS_OF_CZ}.</p>
+		</section>
+
+		<section id="kalkulacka" aria-labelledby="h2-kalkulacka">
+			<h2 id="h2-kalkulacka">Kolik vám ukrojí poplatky</h2>
+			<p class="section-sub">Stejná investice, stejný trh. Rozdíl je jen v tom, kolik si každý rok vezme správce.</p>
+			<FeeCalculator client:load />
+			<p class="only-poplatky calc-back">
+				<a href="#lístek">Nebo najděte dvojče svého fondu ↓</a>
+			</p>
 		</section>
 	</main>
 </Base>

@@ -303,7 +303,7 @@ html[data-variant='poplatky'] .only-poplatky {
 .rt-head,
 .rt-row {
 	display: grid;
-	grid-template-columns: 38px 62px 52px 50px minmax(0, 1fr);
+	grid-template-columns: 36px 72px 52px 58px minmax(0, 1fr);
 	column-gap: 6px;
 	align-items: center;
 }
@@ -529,6 +529,175 @@ html[data-variant='poplatky'] .only-poplatky {
 .teaser li svg {
 	flex: 0 0 auto;
 	margin-top: 1px;
+}
+
+/* ---------- Fee calculator ---------- */
+
+.section-sub {
+	margin-top: 10px;
+	color: var(--sub);
+	font-size: 17px;
+	line-height: 1.45;
+	max-width: 34em;
+}
+
+.calc {
+	margin-top: 22px;
+}
+
+.calc-slider + .calc-slider {
+	margin-top: 20px;
+}
+
+.calc-label {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 12px;
+	font-size: 17px;
+	font-weight: 700;
+}
+
+.calc-label output {
+	font-size: 17px;
+	font-weight: 500;
+}
+
+input[type='range'] {
+	-webkit-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	height: 48px;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+	accent-color: var(--red);
+	cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	height: 2px;
+	background: var(--ink);
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 24px;
+	height: 24px;
+	margin-top: -11px;
+	border: 0;
+	border-radius: 0;
+	background: var(--red);
+}
+
+input[type='range']::-moz-range-track {
+	height: 2px;
+	background: var(--ink);
+}
+
+input[type='range']::-moz-range-thumb {
+	width: 24px;
+	height: 24px;
+	border: 0;
+	border-radius: 0;
+	background: var(--red);
+}
+
+.bulletin {
+	width: 100%;
+	margin-top: 26px;
+	border-collapse: collapse;
+	border-top: 2px solid var(--ink);
+}
+
+.bulletin th,
+.bulletin td {
+	padding: 12px 0;
+	border-bottom: 1px solid var(--minor);
+	text-align: left;
+	vertical-align: top;
+	font-weight: 500;
+}
+
+.bulletin th {
+	font-size: 17px;
+	font-weight: 700;
+	padding-right: 12px;
+}
+
+.bulletin th .sub {
+	display: block;
+	margin-top: 2px;
+	font-family: var(--f-mono);
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--sub);
+}
+
+.bulletin td {
+	width: 40%;
+	font-size: 18px;
+}
+
+.bulletin .r {
+	text-align: right;
+}
+
+.calc-diff {
+	margin-top: 4px;
+	padding-top: 16px;
+	border-top: 3px double var(--ink);
+}
+
+.calc-diff-label {
+	font-size: 17px;
+	font-weight: 700;
+}
+
+.calc-diff-value {
+	margin-top: 4px;
+	color: var(--red);
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: -0.01em;
+	overflow-wrap: anywhere;
+}
+
+.assumption {
+	margin-top: 18px;
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--sub);
+}
+
+.assumption a {
+	color: var(--sub);
+}
+
+.calc-cta {
+	margin-top: 18px;
+}
+
+.btn-outline {
+	display: block;
+	width: 100%;
+	min-height: 52px;
+	padding: 0 16px;
+	border: 2px solid var(--ink);
+	border-radius: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font: 700 17px/1.2 var(--f-display);
+	text-align: left;
+	cursor: pointer;
+}
+
+.calc-back {
+	margin-top: 18px;
+	font-weight: 700;
 }
 
 /* ---------- Lead form ---------- */
