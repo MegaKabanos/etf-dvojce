@@ -11,6 +11,8 @@ Každá verze má vlastní `utm_content`, podle kterého landing page přepne pr
 
 **URL:** `https://etf-dvojce.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_zakaz`
 
+**Obrázky:** [4:5 (1080×1350)](ad-a-zakaz-4x5.png) · [9:16 (1080×1920)](ad-a-zakaz-9x16.png)
+
 **Vizuál (text v obrázku):**
 - Velký ticker `VOO` přeškrtnutý razítkem **NELZE KOUPIT**
 - šipka → `SXR8` s fajfkou
@@ -34,6 +36,8 @@ Každá verze má vlastní `utm_content`, podle kterého landing page přepne pr
 
 **URL:** `https://etf-dvojce.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_poplatky`
 
+**Obrázky:** [4:5 (1080×1350)](ad-b-poplatky-4x5.png) · [9:16 (1080×1920)](ad-b-poplatky-9x16.png)
+
 **Vizuál (text v obrázku):**
 - Obří číslo: **687 000 Kč**
 - Pod ním: **Tolik může za 20 let stát rozdíl v poplatcích.**
@@ -50,7 +54,7 @@ Každá verze má vlastní `utm_content`, podle kterého landing page přepne pr
 
 **Výpočet (ověřitelný):** 5 000 Kč/měs., 20 let, hrubé zhodnocení 7 % p. a. (předpoklad).
 - Bez poplatků: 2 552 030 Kč
-- Bankovní fond AMUNDI CR IM AKCIOVÝ (vstup max. 5,00 %, průběžné 2,33 % + transakční 0,01 % dle KID z 30. 9. 2022): 1 830 700 Kč → poplatky 721 331 Kč
+- Bankovní fond AMUNDI CR IM AKCIOVÝ (vstup max. 5,00 %, průběžné 2,33 % + transakční 0,01 % dle KID z 30. 9. 2022): 1 830 700 Kč → poplatky 721 330 Kč
 - ETF (TER 0,07 % + konverze měny 0,5 % u každého nákupu, XTB): 2 517 634 Kč → poplatky 34 396 Kč
 - Rozdíl: **686 934 Kč** (zaokrouhleno na 687 000 Kč)
 
