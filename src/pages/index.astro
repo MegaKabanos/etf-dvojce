@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Band from '../components/Band.astro';
+import RateTable from '../components/RateTable.tsx';
+import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 ---
 
 <Base
@@ -23,6 +25,15 @@ import Band from '../components/Band.astro';
 			<p class="hero-sub">
 				Porovnejte bankovní podílový fond s ETF, které koupíte u běžného brokera. Dva posuvníky, žádná registrace.
 			</p>
+		</section>
+
+		<section id="lístek" aria-labelledby="lístek-prompt">
+			<div class="label-row">
+				<b id="lístek-prompt">Který fond jste chtěli koupit?</b>
+				<span>{FUND_TICKERS.length} položek</span>
+			</div>
+			<RateTable client:load />
+			<p class="rt-micro">Zdarma, bez registrace. Data k {AS_OF_CZ}.</p>
 		</section>
 	</main>
 </Base>
