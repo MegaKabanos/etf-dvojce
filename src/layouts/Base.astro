@@ -1,0 +1,73 @@
+---
+import '@fontsource/barlow-semi-condensed/latin-ext-500.css';
+import '@fontsource/barlow-semi-condensed/latin-500.css';
+import '@fontsource/barlow-semi-condensed/latin-ext-600.css';
+import '@fontsource/barlow-semi-condensed/latin-600.css';
+import '@fontsource/barlow-semi-condensed/latin-ext-700.css';
+import '@fontsource/barlow-semi-condensed/latin-700.css';
+import '@fontsource/barlow-semi-condensed/latin-ext-800.css';
+import '@fontsource/barlow-semi-condensed/latin-800.css';
+import '@fontsource/roboto-mono/latin-ext-400.css';
+import '@fontsource/roboto-mono/latin-400.css';
+import '@fontsource/roboto-mono/latin-ext-500.css';
+import '@fontsource/roboto-mono/latin-500.css';
+import '@fontsource/roboto-mono/latin-ext-700.css';
+import '@fontsource/roboto-mono/latin-700.css';
+import '../styles/global.css';
+
+export interface Props {
+	title: string;
+	description: string;
+	path?: string;
+	noindex?: boolean;
+}
+
+const { title, description, path = '/', noindex = false } = Astro.props;
+const canonical = new URL(path, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="cs" data-variant="zakaz">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex" />}
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<meta name="theme-color" content="#C8102E" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:locale" content="cs_CZ" />
+		<script is:inline>
+			(function () {
+				var root = document.documentElement;
+				try {
+					var p = new URLSearchParams(location.search);
+					var variant = p.get('utm_content') === 'ad_poplatky' ? 'poplatky' : 'zakaz';
+					root.dataset.variant = variant;
+					window.__dvojce = {
+						variant: variant,
+						utm: {
+							source: p.get('utm_source'),
+							medium: p.get('utm_medium'),
+							campaign: p.get('utm_campaign'),
+							content: p.get('utm_content'),
+						},
+					};
+				} catch (e) {
+					root.dataset.variant = 'zakaz';
+					window.__dvojce = { variant: 'zakaz', utm: {} };
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

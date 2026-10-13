@@ -12,6 +12,15 @@ export function formatCzk(amount: number): string {
 	return `${normaliseSpaces(integerFormatter.format(Math.round(amount)))}${NBSP}Kč`;
 }
 
+/** Czech decimal with the given fraction-digit range, e.g. (0.0945, 2, 4) -> "0,0945". */
+export function formatDecimal(value: number, minDigits: number, maxDigits: number): string {
+	const formatter = new Intl.NumberFormat('cs-CZ', {
+		minimumFractionDigits: minDigits,
+		maximumFractionDigits: maxDigits,
+	});
+	return normaliseSpaces(formatter.format(value));
+}
+
 /** 0.07 -> "0,07 %" (value is already in percent units). */
 export function formatPct(value: number, fractionDigits = 2): string {
 	const formatter = new Intl.NumberFormat('cs-CZ', {

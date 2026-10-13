@@ -1,0 +1,13 @@
+---
+import etfs from '../data/etfs.json' with { type: 'json' };
+import { formatDateCz } from '../lib/format';
+
+const dateCz = formatDateCz(etfs.as_of);
+---
+
+<header class="band">
+	<div class="band-in">
+		<span class="brand">Dvojče</span>
+		<span class="band-meta">Kurzovní lístek dvojčat · č. 197 · {dateCz}</span>
+	</div>
+</header>

@@ -1,16 +1,28 @@
 ---
+import Base from '../layouts/Base.astro';
+import Band from '../components/Band.astro';
 ---
 
-<!doctype html>
-<html lang="cs">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Dvojče</title>
-	</head>
-	<body>
-		<main>
-			<h1>Dvojče — připravujeme</h1>
-		</main>
-	</body>
-</html>
+<Base
+	title="Dvojče — evropská dvojčata amerických ETF"
+	description="Americké ETF z Česka nekoupíte. Najděte evropské dvojče VOO, SPY nebo VTI a spočítejte poplatky v korunách. Zdarma, bez registrace, se zdroji."
+	path="/"
+>
+	<Band />
+	<main class="page">
+		<section data-hero="zakaz" aria-labelledby="h1-zakaz">
+			<h1 id="h1-zakaz">VOO z Česka nekoupíte.<br />Jeho dvojče ano.</h1>
+			<p class="hero-sub">
+				Americké ETF jsou pro drobné investory v EU od roku 2018 nedostupné. Ťukněte na fond, který znáte, a hned
+				uvidíte evropskou alternativu se stejným indexem.
+			</p>
+		</section>
+
+		<section data-hero="poplatky" aria-labelledby="h1-poplatky">
+			<h1 id="h1-poplatky">Kolik vás stojí poplatky?<br />V korunách. Za 20 let.</h1>
+			<p class="hero-sub">
+				Porovnejte bankovní podílový fond s ETF, které koupíte u běžného brokera. Dva posuvníky, žádná registrace.
+			</p>
+		</section>
+	</main>
+</Base>

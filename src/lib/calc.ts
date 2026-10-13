@@ -65,23 +65,32 @@ export interface FeeImpact {
 
 const pctToDecimal = (pct: number) => pct / 100;
 
-export function feeImpact({ monthly, years }: { monthly: number; years: number }): FeeImpact {
+/** The three scenarios shared by feeImpact and feeSeries (same parameters, no behaviour change). */
+function scenarios({ monthly, years }: { monthly: number; years: number }) {
 	const grossReturn = pctToDecimal(costs.calc_assumptions.gross_return_pct);
-
 	const base = { monthly, years, grossReturn };
-	const noFeesRaw = simulate({ ...base, entryPct: 0, annualCostPct: 0, fxPct: 0 }).final;
-	const bankRaw = simulate({
-		...base,
-		entryPct: pctToDecimal(costs.bank_fund.entry_max_pct),
-		annualCostPct: pctToDecimal(costs.bank_fund.ongoing_pct + costs.bank_fund.transaction_pct),
-		fxPct: 0,
-	}).final;
-	const etfRaw = simulate({
-		...base,
-		entryPct: 0,
-		annualCostPct: pctToDecimal(costs.calc_assumptions.etf_ter_pct),
-		fxPct: pctToDecimal(costs.calc_assumptions.etf_fx_pct),
-	}).final;
+	return {
+		noFees: { ...base, entryPct: 0, annualCostPct: 0, fxPct: 0 },
+		bank: {
+			...base,
+			entryPct: pctToDecimal(costs.bank_fund.entry_max_pct),
+			annualCostPct: pctToDecimal(costs.bank_fund.ongoing_pct + costs.bank_fund.transaction_pct),
+			fxPct: 0,
+		},
+		etf: {
+			...base,
+			entryPct: 0,
+			annualCostPct: pctToDecimal(costs.calc_assumptions.etf_ter_pct),
+			fxPct: pctToDecimal(costs.calc_assumptions.etf_fx_pct),
+		},
+	};
+}
+
+export function feeImpact({ monthly, years }: { monthly: number; years: number }): FeeImpact {
+	const s = scenarios({ monthly, years });
+	const noFeesRaw = simulate(s.noFees).final;
+	const bankRaw = simulate(s.bank).final;
+	const etfRaw = simulate(s.etf).final;
 
 	const noFees = Math.round(noFeesRaw);
 	const bank = Math.round(bankRaw);
@@ -95,4 +104,29 @@ export function feeImpact({ monthly, years }: { monthly: number; years: number }
 		difference: etf - bank,
 		invested: Math.round(monthly * 12 * years),
 	};
+}
+
+export interface FeeYear {
+	/** 1-based year index. */
+	year: number;
+	/** Money lost to bank fund costs up to this year, CZK (same rounding as feeImpact). */
+	lostBank: number;
+	/** Money lost to ETF costs up to this year, CZK (same rounding as feeImpact). */
+	lostEtf: number;
+}
+
+/** Year-by-year fee losses, consistent with feeImpact (the last entry equals its lostBank / lostEtf). */
+export function feeSeries({ monthly, years }: { monthly: number; years: number }): FeeYear[] {
+	const s = scenarios({ monthly, years });
+	const noFees = simulate(s.noFees).yearly;
+	const bank = simulate(s.bank).yearly;
+	const etf = simulate(s.etf).yearly;
+	return noFees.map((n, i) => {
+		const noFeesY = Math.round(n);
+		return {
+			year: i + 1,
+			lostBank: noFeesY - Math.round(bank[i]),
+			lostEtf: noFeesY - Math.round(etf[i]),
+		};
+	});
 }
