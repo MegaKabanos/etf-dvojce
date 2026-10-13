@@ -1087,14 +1087,6 @@ html[data-variant='poplatky'] input[type='range'] {
 	font-weight: 800;
 }
 
-.facts .sub {
-	display: block;
-	margin-top: 6px;
-	font-family: var(--f-mono);
-	font-size: 11px;
-	color: var(--sub);
-}
-
 .cmp-wrap {
 	margin-top: 18px;
 }

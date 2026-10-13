@@ -91,18 +91,18 @@ components:
 
 Dvojče is a ČNB-style daily bulletin (kurzovní lístek). Each NYSE-listed ETF is quoted the way a currency is: a ticker row on a white sheet, a black ink figure, and a European twin "rate" printed beside it. The surface reads as printed matter rather than product UI. White paper, black ink doing every job, one red band across the top, hairline rules as the only ornament, and figures in a monospace face so they align like columns in a published table.
 
-The density is deliberate. Rows are the vertical axis of the page. A 48px row is both the reading unit and the tap target. Numbers are the heroes, and each one carries a footnote back to its source, the way a bulletin footnote does. Nothing rounds, glows, or floats. The page does not use a fintech hero, pill buttons, or rounded cards.
+The density is deliberate. Rows are the vertical axis of the page. A 48px row is both the reading unit and the tap target. Numbers are the heroes. On the landing page they stand bare, and all sources sit once in a collapsed "Zdroje dat a metodika" section before the footer; the delivered plan keeps a footnote back to the source for each figure. Nothing rounds, glows, or floats. The page does not use a fintech hero, pill buttons, or rounded cards.
 
 Motion is almost absent. The only authored motion is a digit-step settle on a figure revealed by a tap, and it respects reduced motion.
 
-Where the build and the direction contract differ, the build is recorded here: the header band carries no bulletin number (the contract's "č. 197" is not built); the rate sheet lists its sources in a notes line under the table rather than a tag on every cell; and red also marks the key fee-difference figure, beyond the contract's list.
+Where the build and the direction contract differ, the build is recorded here: the header band carries no bulletin number (the contract's "č. 197" is not built); the landing page shows no inline citations and lists every source once in a collapsed section before the footer; and red also marks the key fee-difference figure, beyond the contract's list.
 
 **Key Characteristics:**
 - Flat white sheet: no shadows, no radius, no gradients.
 - One ink (#111111) for all printed matter; one red (#c8102e) with a closed job list.
 - Hairline rules in four weights form all structure.
 - Figures and tickers in Roboto Mono, tabular and right-aligned.
-- Each figure carries a footnote tag linking to its source.
+- Landing page: no inline citations; all sources live in the collapsed "Zdroje dat a metodika" section. Each figure in the delivered plan carries a footnote tag linking to its source.
 - Digits step into place on reveal; nothing glides.
 
 ## Colors
@@ -207,10 +207,10 @@ Every element has a 0 border radius: buttons, inputs, the range thumb, rate rows
 - Bulletin Red stamp, Paper White text, uppercase Barlow 700 20px with 0.04em tracking, 2px ink top and bottom rules, 8px 12px 7px padding.
 
 ### Twin Card
-- 1px ink border, 16px and 14px padding. A key-value table: labels at 42% width in Ledger Grey, values in ink, 1px Rule Grey row separators. Rows: index, match, TER, distribution, fund size, seat. Figures carry footnote tags.
+- 1px ink border, 16px and 14px padding. A key-value table: labels at 42% width in Ledger Grey, values in ink, 1px Rule Grey row separators. Rows: index, match, TER, distribution, fund size, seat. Figures carry footnote tags only in the plan; the landing page has none.
 
 ### Source Tag
-- A superscript footnote number in Roboto Mono 11px, Ledger Grey, with a 1px underline. Each table or panel closes with a notes line that lists the full source label and its date in 11px mono.
+- A superscript footnote number in Roboto Mono 11px, Ledger Grey, with a 1px underline. In the plan, each table or panel closes with a notes line that lists the full source label and its date in 11px mono. The landing page uses neither; its sources are in the collapsed section.
 
 ### Inputs / Fields
 - **Style:** 52px tall, 1px ink border, Paper White, 0 radius, Barlow 500 18px. Placeholder in mid-grey (#767676).
@@ -242,7 +242,7 @@ Every element has a 0 border radius: buttons, inputs, the range thumb, rate rows
 - **Do** keep all printed text in Bulletin Ink (#111111). Use Ledger Grey (#4a4a4a) only for metadata, column heads, and notes.
 - **Do** draw structure with the four-rung rule ladder.
 - **Do** keep rate rows at least 48px tall, buttons at least 52px, and sliders at least 44px.
-- **Do** attach a source to every figure in the result, the calculator, the plan, and the comparison: a footnote tag or a notes line.
+- **Do** attach a source to every figure in the delivered plan: a footnote tag or a notes line. On the landing page, list the sources once in the collapsed "Zdroje dat a metodika" section instead.
 - **Do** reveal changed figures by digit steps (40 ms per step, ten steps), and skip the motion under prefers-reduced-motion.
 
 ### Don't:

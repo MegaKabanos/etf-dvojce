@@ -43,7 +43,7 @@ export default function StickyCta() {
 	function onClick() {
 		track('sticky_cta_clicked');
 		const target =
-			document.querySelector<HTMLElement>('#vysledek form[data-lead-form]') ??
+			document.querySelector<HTMLElement>('[id^="vysledek-"] form[data-lead-form]') ??
 			document.querySelector<HTMLElement>('#plan form[data-lead-form]') ??
 			document.querySelector<HTMLElement>('#kalkulacka');
 		if (!target) return;
