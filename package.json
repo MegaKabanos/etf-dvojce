@@ -9,12 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node --experimental-strip-types scripts/test-lib.ts",
+    "check": "astro check && tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.6",
     "@astrojs/vercel": "^11.0.14",
     "astro": "^7.3.8",
     "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^24.19.2",
+    "typescript": "^6.0.3"
   }
 }
