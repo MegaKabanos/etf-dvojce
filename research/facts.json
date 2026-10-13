@@ -1,0 +1,175 @@
+{
+  "fetch_date": "2026-10-13",
+  "legend": {
+    "fetched": "value taken from a page that was actually fetched in this session",
+    "search_only": "value appears only in a WebSearch summary; page not fetched, do not publish without checking",
+    "null": "could not be verified from a fetched source"
+  },
+  "1_priips_kid": {
+    "regulation": {
+      "citation": "Regulation (EU) No 1286/2014 (PRIIPs KID)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2014/1286/oj/eng",
+      "status": "null",
+      "note": "EUR-Lex fetches (EN and CS) returned empty content. Citation is the one given in the task; title and Article 5(1) wording were not verified."
+    },
+    "broker_help_pages": {
+      "ibkr": {
+        "source_url": "https://ibkb.interactivebrokers.com/node/2993 (redirects to https://www.ibkr.info/node/2993)",
+        "status": "null",
+        "note": "Fetch returned 403. Search summary says IBKR states that PRIIPs trading is blocked for EEA/UK retail clients when no KID exists, and that clients categorised as Professional are not subject to the KID requirement. Not verified from the page."
+      },
+      "xtb": { "status": "null", "note": "Help-centre fetch returned 404. No fetched help page." },
+      "trading212": { "status": "null", "note": "Fetch returned 403. Search found no Trading 212 page on US ETFs." },
+      "degiro": { "status": "null", "note": "Fetch of degiro.com/pricing returned 404; degiro.cz/poplatky did not mention US ETFs. No fetched help page on KID." }
+    },
+    "secondary_explainer": {
+      "source_url": "https://www.justetf.com/en/news/etf/us-domiciled-etfs.html",
+      "as_of": "Article dated 28 March 2018 (old, pre-dates current broker practice)",
+      "status": "fetched",
+      "quotes": [
+        "The culprit is PRIIPs – a set of EU investment regulations designed to protect consumers",
+        "PRIIPs require fund providers (including ETFs) to produce a Key Information Document (KID)",
+        "However US-domiciled ETFs did not comply and, as they mostly serve the US market,",
+        "many brokers have pulled US-domiciled ETFs from their platforms",
+        "you can hold or sell it but you won’t be able to buy more until a PRIIPs compatible KID becomes available"
+      ]
+    },
+    "exception": {
+      "source_url": "https://www.justetf.com/en/news/etf/us-domiciled-etfs.html",
+      "status": "fetched",
+      "quotes": [
+        "A potential exception exists if your platform allows so-called sophisticated investors to buy US-domiciled ETFs.",
+        "Qualification under this exception depends on your broker deciding",
+        "many popular brokers don't allow this workaround"
+      ],
+      "note": "Exception is professional/sophisticated-investor status and is decided by the broker. Options (CFD, direct stocks, EU-domiciled UCITS equivalents) come from search summaries only."
+    }
+  },
+  "2_broker_fees": {
+    "xtb": {
+      "source_url": "https://www.xtb.com/cz/etf",
+      "as_of": "not shown on page (footer says Copyright 2026)",
+      "status": "fetched",
+      "etf_commission": "0 % up to 100 000 EUR monthly turnover",
+      "above_threshold": "0,2 % per transaction, minimum 10 EUR",
+      "currency_conversion_fee": "0,5 % (page says it 'may be charged')",
+      "inactivity_fee": null,
+      "czk_account": null,
+      "fractional_shares": null,
+      "recurring_investment": "page advertises 'Investiční plány' without detail",
+      "xetra_lse_listings": null,
+      "quote": "využijte 0% poplatky při měsíčním obratu do 100 000 EUR"
+    },
+    "degiro": {
+      "source_url": "https://www.degiro.cz/poplatky",
+      "as_of": "Page shows 'Date: 01-10-2025' (read as 1 Oct 2025)",
+      "status": "fetched",
+      "etf_commission": "Core Selection: 0 EUR commission + 1 EUR handling fee per transaction; Global: 2 EUR commission + 1 EUR handling fee per transaction",
+      "xetra_lse_breakdown": null,
+      "currency_conversion_fee": "0,25 % (Auto FX default); manual conversion 10 EUR + 0,25 %",
+      "inactivity_fee": "0 EUR",
+      "custody_connection_fee": "up to 0,25 % of account value per year, capped at 2,50 EUR per exchange (except Prague); page does not confirm which holdings",
+      "czk_account": null,
+      "fractional_shares": null,
+      "recurring_investment": null,
+      "note": "Page did not split Xetra vs LSE pricing."
+    },
+    "trading212": {
+      "source_url": "https://www.trading212.com/cs-cz/poplatky",
+      "status": "null",
+      "note": "Fetch returned 403. Search summary (BrokerChooser, data to Oct 2025) claims no inactivity fee and about 2,800 ETFs, but that page was not fetched. All other fields null."
+    },
+    "interactive_brokers": {
+      "source_url": "https://www.interactivebrokers.com/en/pricing/commissions-etfs.php",
+      "status": "null",
+      "note": "Fetch returned 403. Search snippets conflict on FX (0,20 % vs 0,03 % in Freenance articles, neither verified) and on inactivity fees. Treat all IBKR values as null."
+    },
+    "fio_ebroker": {
+      "source_url": "https://www.fio.cz/ (homepage fetched; price list link not fetched)",
+      "status": "null",
+      "note": "Homepage has no fee schedule. Price list (ceník) is linked from the homepage at /o-nas/dokumenty-ceniky/ceniky-sazebniky, which was not fetched."
+    },
+    "portu": { "status": "null", "note": "Not researched; not in fetch list." }
+  },
+  "3_czech_tax": {
+    "time_test": {
+      "source_url": "https://www.zakonyprolidi.cz/cs/1992-586#p4",
+      "status": "fetched",
+      "paragraph": "§ 4 odst. 1 písm. u) zákona č. 586/1992 Sb.",
+      "quote": "příjem z úplatného převodu cenného papíru, přesáhne-li doba mezi nabytím a úplatným převodem tohoto cenného papíru ... dobu 3 let",
+      "note": "The fetch summary read this as exempt when the holding period does not exceed 3 years, and said the period is 5 years for kmenový list. That is the reverse of the natural reading of the quoted words ('přesáhne' = exceeds), so the direction must be verified against the official text before publishing. Verify with the official text and financnisprava.cz."
+    },
+    "annual_100k_limit": {
+      "source_url": "https://www.zakonyprolidi.cz/cs/1992-586#p4",
+      "status": "fetched",
+      "paragraph": "§ 4 odst. 1 písm. t)",
+      "quote": "příjmy z úplatného převodu cenných papírů, pokud jejich úhrn u poplatníka nepřesáhne ve zdaňovacím období částku 100000 Kč",
+      "note": "Exemption applies to total securities sale income in the tax year not exceeding 100 000 Kč."
+    },
+    "cap_40m_czk": {
+      "source_url": "https://www.zakonyprolidi.cz/cs/1992-586#p4",
+      "status": "fetched",
+      "paragraph": "§ 4 odst. 3",
+      "quote": "Pokud úhrn všech příjmů z úplatného převodu kryptoaktiva osvobozených podle odstavce 1 písm. zk) ... přesahuje 40000000 Kč ve zdaňovacím období",
+      "conclusion": "The 40 mil. Kč cap applies to crypto assets (písm. zk), NOT to securities or ETFs. The user's belief is not supported for ETFs. Remove the 40 mil. Kč claim from the landing page."
+    },
+    "foreign_etf_dividends_czech_treatment": {
+      "source_url": null,
+      "status": "null",
+      "note": "Not verified. Search summaries (e15, ARROWS, rulecalc) say foreign dividends are taxed at 15 % under § 16a and withholding is credited under § 38f, but these are commercial sources and one claims the US–CZ treaty no longer applies. The § 36 fetch was cut off before the paragraph."
+    },
+    "us_withholding_w8ben": {
+      "source_url": "https://www.xtb.com/en/help-center/tax-statement-5/w-8ben (search result, not fetched)",
+      "status": "search_only",
+      "note": "Search summary says W-8BEN usually lowers US withholding from 30 % to 15 % under the treaty and the form is valid 3 years. Not fetched; the 15 % CZ-US treaty rate was not confirmed from a primary source."
+    },
+    "irish_ucits_withholding": {
+      "source_url": null,
+      "status": "search_only",
+      "note": "Blogs say Irish-domiciled UCITS pay 15 % US withholding at fund level with no further Irish withholding. Not confirmed from a primary source."
+    }
+  },
+  "4_cnb_rates": {
+    "endpoint": "https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt",
+    "status": "fetched",
+    "as_of": "13.10.2026 #197 (rate date 13.10.2026)",
+    "usd": { "quantity": 1, "code": "USD", "rate_czk": 21.788, "raw": "USA|dolar|1|USD|21,788" },
+    "eur": { "quantity": 1, "code": "EUR", "rate_czk": 24.375, "raw": "EMU|euro|1|EUR|24,375" },
+    "format": {
+      "encoding": "UTF-8",
+      "line_1": "date and sequence number, e.g. '13.10.2026 #197'",
+      "line_2": "header: země|měna|množství|kód|kurz",
+      "rows": "country|currency name|quantity|ISO code|rate, pipe-separated, decimal comma, rate is CZK for the stated quantity",
+      "note": "Some quantities are 100 or 1000 (e.g. PHP, THB, JPY); divide rate by quantity."
+    },
+    "cors": {
+      "command": "curl -sI <endpoint>",
+      "header": "Access-Control-Allow-Origin: apl.cnb.cz",
+      "status": "fetched",
+      "conclusion": "Header is not '*' and names only apl.cnb.cz, so browsers on a landing page elsewhere will be blocked. Fetch via a server-side proxy or a build-time script."
+    },
+    "update_cadence": "Response headers show Last-Modified 14:45 and Cache-Control max-age=86400; rates are published on working days (inference from date/sequence number, not from a documented schedule)."
+  },
+  "5_market_context": {
+    "investor_count_etf": { "status": "null", "note": "No ETF investor count found. AKAT and Prague Exchange pages were not fetched." },
+    "fund_assets": {
+      "status": "search_only",
+      "value": "1.29 trillion CZK invested in domestic and foreign funds at 30 June 2025",
+      "source_url": "https://www.e15.cz/domaci/majetek-v-podilovych-fondech-stoupl-na-276-miliard-korun-1085469 (search snippet, not fetched)",
+      "note": "Not fetched; do not publish without checking AKAT's own release."
+    }
+  },
+  "nulls_summary": [
+    "EUR-Lex regulation title and Article 5(1) wording (fetch empty)",
+    "Broker help pages on US ETF restriction for IBKR, XTB, Trading 212, DEGIRO (403/404 or not found)",
+    "XTB CZK account, inactivity fee, fractional shares, Xetra/LSE listings",
+    "Trading 212 all fee fields (403)",
+    "DEGIRO CZK account, fractional shares, recurring plans, Xetra/LSE split",
+    "IBKR all fee fields (403)",
+    "Fio e-Broker all fee fields",
+    "Portu (not researched)",
+    "Czech tax on foreign ETF dividends (§ 36 / § 16a / § 38f) and CZ-US treaty rate",
+    "Irish UCITS withholding (no primary source)",
+    "ETF investor count and AKAT statistics"
+  ]
+}

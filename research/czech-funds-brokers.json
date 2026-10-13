@@ -1,0 +1,134 @@
+{
+  "retrieved_on": "2026-10-13",
+  "part1_funds": [
+    {
+      "bank": "Komerční banka / Amundi",
+      "fund_name": "AMUNDI CR IM AKCIOVÝ (C)",
+      "isin": "CZ0008475811",
+      "share_class_currency": "CZK",
+      "kid_document_date": "30.09.2022 (vypracován dne 30.09.2022; 'ke dni 30. 9. 2022')",
+      "kid_source_url": "https://www.amundi-kb.cz/storage/app/media/KIID/KIID_CZ0008475811.pdf",
+      "entry_fee_max_pct": 5.00,
+      "exit_fee_pct": 0.0,
+      "management_admin_operating_costs_pct": 2.33,
+      "transaction_costs_pct": 0.01,
+      "total_ongoing_pct_derived": 2.34,
+      "total_ongoing_note": "KID does not print a total; 2.34 = 2.33 (poplatky za vedení a jiné správní nebo provozní náklady) + 0.01 (transakční náklady). KID quotes 'Celkové náklady' only in CZK per 10,000 CZK.",
+      "quotes": {
+        "entry": "Náklady na vstup ... 5,00 % částky, kterou jste zaplatili při vstupu",
+        "ongoing": "Průběžné náklady ... 2,33 % hodnoty vaší investice za rok",
+        "transaction": "0,01 % hodnoty vaší investice za rok"
+      },
+      "caveat": "KID is from 2022 (Oct 2022), not current; a newer KID may exist. Not verified against a 2026 document."
+    },
+    {
+      "bank": "Česká spořitelna / Erste Asset Management",
+      "fund_name": "ERSTE STOCK GLOBAL (formerly ESPA STOCK GLOBAL)",
+      "isin": "AT0000639497 (VT, CZK) - NOT VERIFIED in a 2026 document; taken from a 2013 Hungarian KIID and third-party listings",
+      "share_class_currency": "CZK (unconfirmed for this ISIN)",
+      "kid_document_date": null,
+      "kid_source_url": null,
+      "entry_fee_max_pct": null,
+      "exit_fee_pct": null,
+      "management_admin_operating_costs_pct": null,
+      "transaction_costs_pct": null,
+      "total_ongoing_pct_derived": null,
+      "fund_level_reference": {
+        "source_url": "https://data.erste-am.com/gem/erste-am/getDocumentContent/fa750cbd-c9ba-4d23-a17c-5690935b8cf1",
+        "document": "ERSTE STOCK GLOBAL factsheet, Data k: 27.02.2026, Retailtranche: EUR R01 (EUR tranche, not CZK)",
+        "entry_fee_max_pct": 4.00,
+        "exit_fee_pct": 0.00,
+        "management_fee_pct_pa": 1.80,
+        "isins_listed_in_factsheet": ["AT0000989645 (A, dividend)", "AT0000812870 (T)", "AT0000673314 (VT)"]
+      },
+      "caveat": "No CZK-tranche KID retrieved. Factsheet is for EUR tranche and is not a KID; it gives no ongoing-charges figure, so ongoing charges are null. Factsheet fee fields are fund-level and not KID cost figures."
+    },
+    {
+      "bank": "ČSOB / KBC",
+      "fund_name": "ČSOB Akciový - NOT FOUND",
+      "isin": null,
+      "share_class_currency": null,
+      "kid_document_date": null,
+      "kid_source_url": null,
+      "entry_fee_max_pct": null,
+      "exit_fee_pct": null,
+      "management_admin_operating_costs_pct": null,
+      "transaction_costs_pct": null,
+      "total_ongoing_pct_derived": null,
+      "closest_found_not_matching": {
+        "fund_name": "ČSOB Akciový Mix",
+        "isin": "770000001170",
+        "source_url": "https://csobpoj.cz/documents/10332/44703/KII-770000001170-CZ_akciov%C3%BD.pdf/2d6ee7ff-284c-43ea-9bc1-e50628e197cd",
+        "document_date": "klíčové informace platné ke dni 30. 6. 2014 (KII, pre-PRIIPs format)",
+        "entry_fee_max_pct": 3.0,
+        "exit_fee_pct": 0.0,
+        "total_expense_ratio_pct": 2.19,
+        "caveat": "Different fund (Mix) and 2014 document; does not satisfy the request."
+      },
+      "caveat": "No KID for ČSOB Akciový (CZ ISIN) found. finex.cz lists TER 2.22% p.a. for ČSOB Akciový but that is a third-party aggregator, no ISIN, not a KID; not used as a sourced value."
+    }
+  ],
+  "part2_brokers": [
+    {
+      "broker": "Trading 212",
+      "fx_conversion_fee": "0.15%",
+      "fx_fee_quote": "\"we are introducing an FX conversion fee of 0.15%\"; \"This fee will be applied when you are trading with stocks or ETFs\"",
+      "fx_source_url": "https://community.trading212.com/t/introduction-of-fx-conversion-fee/46787",
+      "fx_document_date": "2021-03-02 (post date; fee scheduled to start early April 2021; later edit says dividend part 'No longer applicable')",
+      "etf_commission": null,
+      "etf_commission_note": "Not verified. trading212.com fee pages returned HTTP 403 to fetch; no sourced 'commission-free' sentence retrieved.",
+      "official_fee_page_status": "trading212.com/fees, /trading-fees, /en/fees returned 403",
+      "caveat": "Fee is from a 2021 community announcement; current official fee table not retrieved."
+    },
+    {
+      "broker": "Interactive Brokers",
+      "etf_commission_xetra": {
+        "value": "Germany (Xetra), tiered: 0.05% of trade value, min EUR 1.25, max EUR 29.00 per order",
+        "quote": "Tiered | 0.05% of Trade Value | Minimum per order (shares) EUR 1.25 | Maximum per order (shares) EUR 29.00 (table under 'Tiered Examples - Germany', monthly trade value <= 50,000,000 EUR)",
+        "source_url": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php",
+        "document_date": "no date shown on page (as fetched 2026-10-13)",
+        "caveat": "Page text extracted via curl; the table is the Germany section. Exchange, clearing and third-party fees are listed separately on the same page and not summed here. Applicability to ETFs specifically not confirmed by a sentence."
+      },
+      "fx_conversion_fee": null,
+      "fx_note": "Official IBKR page text contained no FX conversion rate for EUR/CZK; third-party reviews claim 0.002% (0.20 bp) but that was not confirmed on an IBKR page (IBKR fr/ca product pages returned 403). Not used.",
+      "lse_etf_commission": null
+    },
+    {
+      "broker": "Fio e-Broker",
+      "etf_commission_xetra": {
+        "value": "0.15% of volume, min 9.95 (EUR, Xetra/Frankfurt). Additional 10.00 surcharge applies only to trades on Frankfurt (XFRA) market.",
+        "quote": "(E) Deutsche Börse AG - XETRA (XETR) a Frankfurt (XFRA) ... Poplatek za obchod 0,15 % z objemu, min. 9,95 ... Příplatek za obchod na trhu Frankfurt (XFRA) 10,00",
+        "source_url": "https://www.fio.cz/docs/cz/C_zaklad_200728.pdf",
+        "document_date": "Ceník základních služeb: vyhlášen 26. 6. 2020, nabývá účinnosti 28. 7. 2020",
+        "caveat": "This is the newest general price list retrieved; it is 2020. Official 2026 annex C_trh_260921.pdf (effective 17.08.2026 / 21.09.2026) does not contain Xetra commission lines (checked). Whether ETFs follow the same line was not stated explicitly in the document."
+      },
+      "fx_conversion_fee": null,
+      "fx_note": "No FX conversion spread published in the price list. Text says: if the client lacks funds in the fee currency, Fio may charge in another currency held on the account, converted at Czech National Bank rates on the day of charging (no spread stated).",
+      "fx_source_url": "https://www.fio.cz/docs/cz/C_zaklad_200728.pdf"
+    },
+    {
+      "broker": "XTB",
+      "etf_commission": {
+        "value": "0% on monthly turnover up to EUR 100,000; above that 0.2% (min EUR 10)",
+        "quote": "\"Nakupujte své oblíbené ETF a využijte 0% poplatky při měsíčním obratu do 100 000 EUR.\" Footnote: \"Všechny transakce nad tento limit jsou zpoplatněny drobným poplatkem 0,2 % (min. 10 EUR).\"",
+        "source_url": "https://www.xtb.com/cz/etf",
+        "document_date": "no date shown; only 'Copyright 2026' on the page"
+      },
+      "fx_conversion_fee": {
+        "value": "0.5%",
+        "quote": "\"Může být účtován poplatek 0,5 % za konverzi měn.\"",
+        "source_url": "https://www.xtb.com/cz/etf",
+        "document_date": "no date shown"
+      }
+    }
+  ],
+  "nulls": [
+    "Part 1: ERSTE STOCK GLOBAL CZK share-class ISIN confirmation, KID, entry fee (KID), ongoing charges, transaction costs",
+    "Part 1: ČSOB Akciový - no fund/ISIN/KID found",
+    "Part 2: Trading 212 ETF commission (official page 403)",
+    "Part 2: Interactive Brokers FX conversion fee (not on fetched official page)",
+    "Part 2: Interactive Brokers LSE/UK ETF commission (not extracted)",
+    "Part 2: Fio e-Broker FX spread (not published in price list)",
+    "Part 2: Fio e-Broker 2026 Xetra commission (only 2020 price list retrieved)"
+  ]
+}

@@ -1,0 +1,561 @@
+{
+  "fetched": "2026-10-13",
+  "us_etfs": [
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.03,
+      "aum_usd": "1.06T (approx., as shown)",
+      "inception_date": "2010-09-07",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 1.04,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis); no SEC 30-day yield obtained",
+      "return_nav_1y_pct": 20.40,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y is total return incl. dividends (stockanalysis), not NAV-specific",
+      "index": "S&P 500",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/voo/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/voo/",
+        "aum_usd": "https://stockanalysis.com/etf/voo/",
+        "inception_date": "https://stockanalysis.com/etf/voo/",
+        "distribution": "https://stockanalysis.com/etf/voo/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/voo/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/voo/",
+        "index": "https://stockanalysis.com/etf/voo/"
+      },
+      "as_of": {
+        "primary_exchange": "undated; page last checked 2026-10-13",
+        "expense_ratio_pct": "undated; page last checked 2026-10-13",
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "dividend_yield_pct": "undated",
+        "return_nav_1y_pct": "undated; page date 2026-10-13"
+      }
+    },
+    {
+      "ticker": "SPY",
+      "name": "State Street SPDR S&P 500 ETF Trust",
+      "issuer": "State Street Global Advisors",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.0945,
+      "expense_ratio_basis": "gross expense ratio (SSGA page)",
+      "aum_usd": 821107580000,
+      "inception_date": "1993-01-22",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 0.94,
+      "dividend_yield_basis": "30-day SEC yield",
+      "dividend_yield_pct_alt": 0.97,
+      "dividend_yield_alt_basis": "fund distribution yield",
+      "return_nav_1y_pct": 15.60,
+      "return_nav_5y_pct": 13.65,
+      "return_nav_10y_pct": 15.18,
+      "return_basis": "NAV average annual total return; columns mapped by position in a table, verify",
+      "index": "S&P 500 Index",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "expense_ratio_pct": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "aum_usd": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "inception_date": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "distribution": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "dividend_yield_pct": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "return_nav_1y_pct": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "index": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy"
+      },
+      "as_of": {
+        "primary_exchange": "2026-10-13",
+        "expense_ratio_pct": "2026-10-13",
+        "aum_usd": "2026-10-12",
+        "dividend_yield_pct": "2026-10-09",
+        "return_nav_1y_pct": "2026-09-30",
+        "return_nav_5y_pct": "2026-09-30",
+        "return_nav_10y_pct": "2026-09-30"
+      }
+    },
+    {
+      "ticker": "IVV",
+      "name": "iShares Core S&P 500 ETF",
+      "issuer": "BlackRock iShares",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.03,
+      "aum_usd": 896336176555,
+      "inception_date": "2000-05-15",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 0.95,
+      "dividend_yield_basis": "30-day SEC yield",
+      "dividend_yield_pct_alt": 1.10,
+      "dividend_yield_alt_basis": "12-month trailing yield",
+      "return_nav_1y_pct": 15.71,
+      "return_nav_5y_pct": 13.76,
+      "return_nav_10y_pct": 15.30,
+      "return_basis": "labelled 'Total Return (%)' in iShares JSON performance feed, not explicitly NAV; as-of date not confirmed",
+      "index": "S&P 500 Index",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "expense_ratio_pct": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "aum_usd": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "inception_date": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "distribution": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "dividend_yield_pct": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "return_nav_1y_pct": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf/1467271812596.ajax?tab=performance&fileType=json",
+        "index": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf"
+      },
+      "as_of": {
+        "aum_usd": "2026-10-12",
+        "dividend_yield_pct": "2026-09-30",
+        "return_nav_1y_pct": "unknown (feed undated)",
+        "expense_ratio_pct": "no as-of date shown"
+      }
+    },
+    {
+      "ticker": "VTI",
+      "name": "Vanguard Total Stock Market ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.03,
+      "aum_usd": 700570000000,
+      "inception_date": "2001-05-24",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 1.04,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis)",
+      "return_nav_1y_pct": 19.91,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y total return incl. dividends (stockanalysis)",
+      "index": "Morningstar US Total Market Index",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/vti/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/vti/",
+        "aum_usd": "https://stockanalysis.com/etf/vti/",
+        "inception_date": "https://stockanalysis.com/etf/vti/",
+        "distribution": "https://stockanalysis.com/etf/vti/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/vti/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/vti/",
+        "index": "https://stockanalysis.com/etf/vti/"
+      },
+      "as_of": {
+        "primary_exchange": "undated; page last checked 2026-10-13",
+        "aum_usd": "undated",
+        "return_nav_1y_pct": "undated"
+      }
+    },
+    {
+      "ticker": "VT",
+      "name": "Vanguard Total World Stock ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.06,
+      "aum_usd": 82180000000,
+      "inception_date": "2008-06-24",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 1.52,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis)",
+      "return_nav_1y_pct": 19.82,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y total return incl. dividends (stockanalysis)",
+      "index": "FTSE Global All Cap Index (Net Tax, US RIC)",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/vt/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/vt/",
+        "aum_usd": "https://stockanalysis.com/etf/vt/",
+        "inception_date": "https://stockanalysis.com/etf/vt/",
+        "distribution": "https://stockanalysis.com/etf/vt/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/vt/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/vt/",
+        "index": "https://stockanalysis.com/etf/vt/"
+      },
+      "as_of": {
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "return_nav_1y_pct": "undated"
+      }
+    },
+    {
+      "ticker": "SCHD",
+      "name": "Schwab U.S. Dividend Equity ETF",
+      "issuer": "Charles Schwab Investment Management",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.06,
+      "aum_usd": 110710000000,
+      "inception_date": "2011-10-20",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 3.17,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis)",
+      "return_nav_1y_pct": 29.56,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y total return incl. dividends (stockanalysis); schwabassetmanagement.com returned HTTP 403",
+      "index": "Dow Jones U.S. Dividend 100 Index",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/schd/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/schd/",
+        "aum_usd": "https://stockanalysis.com/etf/schd/",
+        "inception_date": "https://stockanalysis.com/etf/schd/",
+        "distribution": "https://stockanalysis.com/etf/schd/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/schd/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/schd/",
+        "index": "https://stockanalysis.com/etf/schd/"
+      },
+      "as_of": {
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "return_nav_1y_pct": "undated"
+      }
+    },
+    {
+      "ticker": "VEA",
+      "name": "Vanguard FTSE Developed Markets ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.03,
+      "aum_usd": 228350000000,
+      "inception_date": "2007-07-20",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 2.44,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis)",
+      "return_nav_1y_pct": 21.40,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y total return incl. dividends (stockanalysis)",
+      "index": "FTSE Developed ex US All Cap Index (Net Tax, US RIC)",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/vea/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/vea/",
+        "aum_usd": "https://stockanalysis.com/etf/vea/",
+        "inception_date": "https://stockanalysis.com/etf/vea/",
+        "distribution": "https://stockanalysis.com/etf/vea/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/vea/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/vea/",
+        "index": "https://stockanalysis.com/etf/vea/"
+      },
+      "as_of": {
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "return_nav_1y_pct": "undated"
+      }
+    },
+    {
+      "ticker": "VWO",
+      "name": "Vanguard FTSE Emerging Markets ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": "NYSE Arca",
+      "expense_ratio_pct": 0.06,
+      "aum_usd": 125050000000,
+      "inception_date": "2005-03-04",
+      "distribution": "Quarterly",
+      "dividend_yield_pct": 2.04,
+      "dividend_yield_basis": "trailing 12-month yield (stockanalysis)",
+      "return_nav_1y_pct": 16.22,
+      "return_nav_5y_pct": null,
+      "return_nav_10y_pct": null,
+      "return_basis": "1y total return incl. dividends (stockanalysis)",
+      "index": "FTSE Emerging Markets All Cap China A Inclusion Index (Net Tax, US RIC)",
+      "domicile": null,
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/vwo/",
+        "expense_ratio_pct": "https://stockanalysis.com/etf/vwo/",
+        "aum_usd": "https://stockanalysis.com/etf/vwo/",
+        "inception_date": "https://stockanalysis.com/etf/vwo/",
+        "distribution": "https://stockanalysis.com/etf/vwo/",
+        "dividend_yield_pct": "https://stockanalysis.com/etf/vwo/",
+        "return_nav_1y_pct": "https://stockanalysis.com/etf/vwo/",
+        "index": "https://stockanalysis.com/etf/vwo/"
+      },
+      "as_of": {
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "return_nav_1y_pct": "undated"
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "ticker": "QQQ",
+      "name": "Invesco QQQ Trust Series I",
+      "issuer": "Invesco",
+      "primary_exchange": "Nasdaq",
+      "reason": "Primary listing is Nasdaq, not NYSE/NYSE Arca",
+      "sources": {
+        "primary_exchange": "https://stockanalysis.com/etf/qqq/ (header: 'Stock Exchange Nasdaq')",
+        "expense_ratio_pct": "https://www.invesco.com/us/financial-products/etfs/product-detail?audienceType=Investor&ticker=QQQ"
+      },
+      "expense_ratio_pct": 0.18,
+      "aum_usd": 503490000000,
+      "index": "Nasdaq-100 Index",
+      "dividend_yield_pct": 0.42,
+      "return_nav_1y_pct": 26.68,
+      "as_of": {
+        "aum_usd": "undated; page last checked 2026-10-13",
+        "return_nav_1y_pct": "undated"
+      }
+    }
+  ],
+  "ucits": [
+    {
+      "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+      "isin": "IE00B5BMR087",
+      "issuer": "iShares (BlackRock)",
+      "maps_to": ["VOO", "IVV", "SPY"],
+      "match_quality": "same index",
+      "match_reason": "Both track the S&P 500 Index.",
+      "ter_pct": 0.07,
+      "fund_size_eur": 141214000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (full replication)",
+      "index": "S&P 500",
+      "tickers": {
+        "xetra": "SXR8 (EUR)",
+        "lse_usd": "CSPX (USD)",
+        "lse_gbp": "CSP1 (GBP)",
+        "borsa_italiana": "CSSPX (EUR)",
+        "euronext_amsterdam": "CSPX (EUR)"
+      },
+      "inception_date": "2010-05-19",
+      "return_1y_pct": 24.58,
+      "return_5y_pct": 96.75,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "nav_ytd_check": "https://www.ishares.com/uk/individual/en/products/253743/ishares-core-sp-500-ucits-etf-usd-acc-fund"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown",
+        "return_5y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "Vanguard S&P 500 UCITS ETF (USD) Accumulating",
+      "isin": "IE00BFMXXD54",
+      "issuer": "Vanguard",
+      "maps_to": ["VOO", "IVV", "SPY"],
+      "match_quality": "same index",
+      "match_reason": "Both track the S&P 500 Index.",
+      "ter_pct": 0.07,
+      "fund_size_eur": 33446000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (full replication)",
+      "index": "S&P 500",
+      "tickers": {
+        "xetra": "VUAA (EUR)",
+        "lse_usd": "VUAA (USD)",
+        "lse_gbp": "VUAG (GBP)",
+        "borsa_italiana": "VUAA (EUR)",
+        "gettex": "VUAA (EUR)"
+      },
+      "inception_date": "2019-05-14",
+      "return_1y_pct": 24.52,
+      "return_5y_pct": 96.66,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+      "isin": "IE00BK5BQT80",
+      "issuer": "Vanguard",
+      "maps_to": ["VT"],
+      "match_quality": "similar",
+      "match_reason": "Global equity, but the index is FTSE All-World (large and mid cap) vs VT's FTSE Global All Cap (includes small caps).",
+      "ter_pct": 0.14,
+      "fund_size_eur": 55367000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (optimized sampling)",
+      "index": "FTSE All-World",
+      "tickers": {
+        "xetra": "VWCE (EUR)",
+        "lse_usd": "VWRA (USD)",
+        "lse_gbp": "VWRP (GBP)",
+        "borsa_italiana": "VWCE (EUR)",
+        "gettex": "VWCE (EUR)",
+        "euronext_amsterdam": "VWCE (EUR)"
+      },
+      "inception_date": "2019-07-23",
+      "return_1y_pct": 23.61,
+      "return_5y_pct": 79.66,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
+      "isin": "IE00BKM4GZ66",
+      "issuer": "iShares (BlackRock)",
+      "maps_to": ["VWO"],
+      "match_quality": "similar",
+      "match_reason": "Both broad emerging-market equity; EIMI tracks MSCI EM IMI (incl. small caps), VWO tracks FTSE EM All Cap China A Inclusion.",
+      "ter_pct": 0.18,
+      "fund_size_eur": 40259000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (full replication)",
+      "index": "MSCI Emerging Markets IMI",
+      "tickers": {
+        "xetra": "IS3N (EUR)",
+        "lse_usd": "EIMI (USD)",
+        "lse_gbp": "EMIM (GBX)",
+        "borsa_italiana": "EIMI (EUR)",
+        "euronext_amsterdam": "EMIM (EUR)"
+      },
+      "inception_date": "2014-05-30",
+      "return_1y_pct": 28.96,
+      "return_5y_pct": 73.65,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "iShares MSCI USA UCITS ETF (Acc)",
+      "isin": "IE00B52SFT06",
+      "issuer": "iShares (BlackRock)",
+      "maps_to": ["VTI"],
+      "match_quality": "approximate",
+      "match_reason": "MSCI USA is large and mid cap only; VTI tracks the Morningstar US Total Market (incl. small caps).",
+      "ter_pct": 0.03,
+      "fund_size_eur": 4697000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (full replication)",
+      "index": "MSCI USA",
+      "tickers": {
+        "xetra": "SXR4 (EUR)",
+        "lse_usd": "CSUS (USD)",
+        "lse_gbp": "not listed",
+        "borsa_italiana": "CSUS (EUR)",
+        "euronext_amsterdam": "CSUS (EUR)"
+      },
+      "inception_date": "2010-01-12",
+      "return_1y_pct": 24.29,
+      "return_5y_pct": 92.58,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "Vanguard FTSE All-World High Dividend Yield UCITS ETF (Distributing)",
+      "isin": "IE00B8GKDB10",
+      "issuer": "Vanguard",
+      "maps_to": ["SCHD"],
+      "match_quality": "approximate",
+      "match_reason": "Dividend-focused, but global (FTSE All-World High Dividend Yield) rather than US-only Dow Jones U.S. Dividend 100. No verified UCITS tracking the Dow Jones U.S. Dividend 100 was found.",
+      "ter_pct": 0.29,
+      "fund_size_eur": 9996000000,
+      "distribution_policy": "Dist (quarterly)",
+      "domicile": "Ireland",
+      "replication": "Physical (optimized sampling)",
+      "index": "FTSE All-World High Dividend Yield",
+      "tickers": {
+        "euronext_paris": "VHYL (EUR)",
+        "xetra": "VGWD (EUR)",
+        "lse_usd": "VHYD (USD)",
+        "lse_gbp": "VHYL (GBP)",
+        "borsa_italiana": "VHYL (EUR)"
+      },
+      "inception_date": "2013-05-21",
+      "return_1y_pct": 25.29,
+      "return_5y_pct": 79.37,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": "Vanguard FTSE All-World High Dividend Yield UCITS ETF Acc",
+      "isin": "IE00BK5BR626",
+      "issuer": "Vanguard",
+      "maps_to": ["SCHD"],
+      "match_quality": "approximate",
+      "match_reason": "Accumulating alternative to VHYL; same global high-dividend index, not US-only.",
+      "ter_pct": 0.29,
+      "fund_size_eur": 3100000000,
+      "distribution_policy": "Acc",
+      "domicile": "Ireland",
+      "replication": "Physical (optimized sampling)",
+      "index": "FTSE All-World High Dividend Yield",
+      "tickers": {
+        "xetra": "VGWE (EUR)",
+        "borsa_italiana": "VHYA (EUR)",
+        "lse_usd": "VHYA (USD)",
+        "lse_gbp": "VHYG (GBP)"
+      },
+      "inception_date": "2019-09-24",
+      "return_1y_pct": 25.24,
+      "return_5y_pct": 79.27,
+      "sources": {
+        "ter_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
+        "fund_size_eur": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
+        "tickers": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
+        "return_1y_pct": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626"
+      },
+      "as_of": {
+        "fund_size_eur": "no date shown",
+        "return_1y_pct": "no date shown"
+      }
+    },
+    {
+      "name": null,
+      "isin": null,
+      "issuer": null,
+      "maps_to": ["VEA"],
+      "match_quality": null,
+      "match_reason": "No verified UCITS fund tracking developed ex-US markets was found. iShares Core MSCI EAFE UCITS and Vanguard FTSE Developed ex-US UCITS ISINs could not be verified; IE00B4L5YX21 checked and rejected (it is MSCI Japan IMI), IE00B4L5YC18 checked and rejected (it is MSCI Emerging Markets).",
+      "ter_pct": null,
+      "fund_size_eur": null,
+      "distribution_policy": null,
+      "domicile": null,
+      "replication": null,
+      "index": null,
+      "tickers": {},
+      "inception_date": null,
+      "return_1y_pct": null,
+      "return_5y_pct": null,
+      "sources": {},
+      "as_of": {}
+    }
+  ]
+}
