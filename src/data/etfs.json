@@ -1,0 +1,409 @@
+{
+  "as_of": "2026-10-13",
+  "fx": {
+    "USD": 21.788,
+    "EUR": 24.375,
+    "source": "https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt",
+    "as_of": "2026-10-13"
+  },
+  "us": [
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://stockanalysis.com/etf/voo/",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.03,
+        "source": "https://stockanalysis.com/etf/voo/",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "S&P 500",
+        "source": "https://stockanalysis.com/etf/voo/",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 1060,
+        "approx": true,
+        "display": "1.06T (approx., as shown)",
+        "source": "https://stockanalysis.com/etf/voo/",
+        "as_of": "2026-10-13"
+      },
+      "twin": {
+        "primary_isin": "IE00B5BMR087",
+        "alt_isin": "IE00BFMXXD54",
+        "match": "same",
+        "note_cs": "Stejný index (S&P 500)."
+      }
+    },
+    {
+      "ticker": "SPY",
+      "name": "State Street SPDR S&P 500 ETF Trust",
+      "issuer": "State Street Global Advisors",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.0945,
+        "source": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "S&P 500 Index",
+        "source": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 821.1,
+        "source": "https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy",
+        "as_of": "2026-10-12"
+      },
+      "twin": {
+        "primary_isin": "IE00B5BMR087",
+        "alt_isin": "IE00BFMXXD54",
+        "match": "same",
+        "note_cs": "Stejný index (S&P 500)."
+      }
+    },
+    {
+      "ticker": "IVV",
+      "name": "iShares Core S&P 500 ETF",
+      "issuer": "BlackRock iShares",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.03,
+        "source": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "S&P 500 Index",
+        "source": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 896.3,
+        "source": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+        "as_of": "2026-10-12"
+      },
+      "twin": {
+        "primary_isin": "IE00B5BMR087",
+        "alt_isin": "IE00BFMXXD54",
+        "match": "same",
+        "note_cs": "Stejný index (S&P 500)."
+      }
+    },
+    {
+      "ticker": "VTI",
+      "name": "Vanguard Total Stock Market ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://stockanalysis.com/etf/vti/",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.03,
+        "source": "https://stockanalysis.com/etf/vti/",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "Morningstar US Total Market Index",
+        "source": "https://stockanalysis.com/etf/vti/",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 700.6,
+        "source": "https://stockanalysis.com/etf/vti/",
+        "as_of": "2026-10-13"
+      },
+      "twin": {
+        "primary_isin": "IE00B52SFT06",
+        "alt_isin": null,
+        "match": "approximate",
+        "note_cs": "MSCI USA pokrývá velké a střední firmy, VTI i malé."
+      }
+    },
+    {
+      "ticker": "VT",
+      "name": "Vanguard Total World Stock ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://stockanalysis.com/etf/vt/",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.06,
+        "source": "https://stockanalysis.com/etf/vt/",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "FTSE Global All Cap Index (Net Tax, US RIC)",
+        "source": "https://stockanalysis.com/etf/vt/",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 82.2,
+        "source": "https://stockanalysis.com/etf/vt/",
+        "as_of": "2026-10-13"
+      },
+      "twin": {
+        "primary_isin": "IE00BK5BQT80",
+        "alt_isin": null,
+        "match": "similar",
+        "note_cs": "FTSE All-World vs. FTSE Global All Cap – bez malých firem."
+      }
+    },
+    {
+      "ticker": "SCHD",
+      "name": "Schwab U.S. Dividend Equity ETF",
+      "issuer": "Charles Schwab Investment Management",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://stockanalysis.com/etf/schd/",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.06,
+        "source": "https://stockanalysis.com/etf/schd/",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "Dow Jones U.S. Dividend 100 Index",
+        "source": "https://stockanalysis.com/etf/schd/",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 110.7,
+        "source": "https://stockanalysis.com/etf/schd/",
+        "as_of": "2026-10-13"
+      },
+      "twin": {
+        "primary_isin": "IE00B8GKDB10",
+        "alt_isin": null,
+        "match": "approximate",
+        "note_cs": "Globální dividendový index, ne jen USA."
+      }
+    },
+    {
+      "ticker": "VWO",
+      "name": "Vanguard FTSE Emerging Markets ETF",
+      "issuer": "Vanguard",
+      "primary_exchange": {
+        "value": "NYSE Arca",
+        "source": "https://stockanalysis.com/etf/vwo/",
+        "as_of": "2026-10-13"
+      },
+      "expense_ratio_pct": {
+        "value": 0.06,
+        "source": "https://stockanalysis.com/etf/vwo/",
+        "as_of": "2026-10-13"
+      },
+      "index": {
+        "value": "FTSE Emerging Markets All Cap China A Inclusion Index (Net Tax, US RIC)",
+        "source": "https://stockanalysis.com/etf/vwo/",
+        "as_of": "2026-10-13"
+      },
+      "aum_usd_bn": {
+        "value": 125.1,
+        "source": "https://stockanalysis.com/etf/vwo/",
+        "as_of": "2026-10-13"
+      },
+      "twin": {
+        "primary_isin": "IE00BKM4GZ66",
+        "alt_isin": null,
+        "match": "similar",
+        "note_cs": "MSCI EM IMI vs. FTSE Emerging."
+      }
+    }
+  ],
+  "excluded": [
+    {
+      "ticker": "QQQ",
+      "name": "Invesco QQQ Trust Series I",
+      "primary_exchange": "Nasdaq",
+      "reason": "Nasdaq, ne NYSE",
+      "source": "https://stockanalysis.com/etf/qqq/ (header: 'Stock Exchange Nasdaq')"
+    }
+  ],
+  "ucits": [
+    {
+      "isin": "IE00B5BMR087",
+      "name": "iShares Core S&P 500 UCITS ETF USD (Acc)",
+      "issuer": "iShares (BlackRock)",
+      "domicile": "Ireland",
+      "distribution": "Acc",
+      "index": {
+        "value": "S&P 500",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.07,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 141.2,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "SXR8",
+        "lse": "CSPX"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087",
+      "as_of": "2026-10-13"
+    },
+    {
+      "isin": "IE00BFMXXD54",
+      "name": "Vanguard S&P 500 UCITS ETF (USD) Accumulating",
+      "issuer": "Vanguard",
+      "domicile": "Ireland",
+      "distribution": "Acc",
+      "index": {
+        "value": "S&P 500",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.07,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 33.4,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "VUAA",
+        "lse": "VUAA"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BFMXXD54",
+      "as_of": "2026-10-13"
+    },
+    {
+      "isin": "IE00BK5BQT80",
+      "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+      "issuer": "Vanguard",
+      "domicile": "Ireland",
+      "distribution": "Acc",
+      "index": {
+        "value": "FTSE All-World",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.14,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 55.4,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "VWCE",
+        "lse": "VWRA"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
+      "as_of": "2026-10-13"
+    },
+    {
+      "isin": "IE00BKM4GZ66",
+      "name": "iShares Core MSCI EM IMI UCITS ETF USD (Acc)",
+      "issuer": "iShares (BlackRock)",
+      "domicile": "Ireland",
+      "distribution": "Acc",
+      "index": {
+        "value": "MSCI Emerging Markets IMI",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.18,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 40.3,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "IS3N",
+        "lse": "EIMI"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00BKM4GZ66",
+      "as_of": "2026-10-13"
+    },
+    {
+      "isin": "IE00B52SFT06",
+      "name": "iShares MSCI USA UCITS ETF (Acc)",
+      "issuer": "iShares (BlackRock)",
+      "domicile": "Ireland",
+      "distribution": "Acc",
+      "index": {
+        "value": "MSCI USA",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.03,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 4.7,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "SXR4",
+        "lse": "CSUS"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B52SFT06",
+      "as_of": "2026-10-13"
+    },
+    {
+      "isin": "IE00B8GKDB10",
+      "name": "Vanguard FTSE All-World High Dividend Yield UCITS ETF (Distributing)",
+      "issuer": "Vanguard",
+      "domicile": "Ireland",
+      "distribution": "Dist",
+      "index": {
+        "value": "FTSE All-World High Dividend Yield",
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "as_of": "2026-10-13"
+      },
+      "ter_pct": {
+        "value": 0.29,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "as_of": "2026-10-13"
+      },
+      "fund_size_eur_bn": {
+        "value": 10,
+        "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+        "as_of": "2026-10-13"
+      },
+      "tickers": {
+        "xetra": "VGWD",
+        "lse": "VHYD"
+      },
+      "source": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
+      "as_of": "2026-10-13"
+    }
+  ]
+}

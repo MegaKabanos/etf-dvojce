@@ -1,0 +1,74 @@
+{
+  "as_of": "2026-10-13",
+  "bank_fund": {
+    "name": "AMUNDI CR IM AKCIOVÝ (C)",
+    "isin": "CZ0008475811",
+    "distributor": "Komerční banka",
+    "entry_max_pct": 5.0,
+    "ongoing_pct": 2.33,
+    "transaction_pct": 0.01,
+    "total_ongoing_pct_derived": 2.34,
+    "kid_date": "2022-09-30",
+    "fetched": "2026-10-13",
+    "source": "https://www.amundi-kb.cz/storage/app/media/KIID/KIID_CZ0008475811.pdf"
+  },
+  "brokers": {
+    "xtb": {
+      "name": "XTB",
+      "commission": "0 % do obratu 100 000 EUR/měsíc",
+      "fx_pct": 0.5,
+      "source": "https://www.xtb.com/cz/etf"
+    },
+    "degiro": {
+      "name": "DEGIRO",
+      "commission": "0 EUR + 1 EUR manipulační poplatek (Core Selection)",
+      "fx_pct": 0.25,
+      "source": "https://www.degiro.cz/poplatky",
+      "as_of": "2025-10-01"
+    },
+    "trading212": {
+      "name": "Trading 212",
+      "commission": "0 %",
+      "fx_pct": 0.15,
+      "source": "https://community.trading212.com/t/introduction-of-fx-conversion-fee/46787",
+      "as_of": "2021-03-02"
+    },
+    "ibkr": {
+      "name": "Interactive Brokers",
+      "commission": "0,05 % (min. 1,25 EUR) – Xetra, tiered",
+      "fx_pct": null,
+      "source": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
+    },
+    "fio": {
+      "name": "Fio e-Broker",
+      "commission": "0,15 % (min. 9,95 EUR) – Xetra",
+      "fx_pct": null,
+      "source": "https://www.fio.cz/docs/cz/C_zaklad_200728.pdf",
+      "as_of": "2020-07-28"
+    }
+  },
+  "calc_assumptions": {
+    "gross_return_pct": 7,
+    "etf_fx_pct": 0.5,
+    "etf_ter_pct": 0.07
+  },
+  "tax": {
+    "time_test": {
+      "text": "Osvobozený příjem z prodeje po více než 3 letech držení",
+      "law": "§ 4 odst. 1 písm. u) zákona č. 586/1992 Sb.",
+      "source": "https://www.zakonyprolidi.cz/cs/1992-586#p4"
+    },
+    "limit_100k": {
+      "text": "Osvobozený prodej do 100 000 Kč za rok",
+      "law": "§ 4 odst. 1 písm. t) zákona č. 586/1992 Sb.",
+      "source": "https://www.zakonyprolidi.cz/cs/1992-586#p4"
+    }
+  },
+  "priips": {
+    "text": "US ETF nemají KID dle nařízení (EU) č. 1286/2014 (PRIIPs)",
+    "sources": [
+      "https://www.justetf.com/en/news/etf/us-domiciled-etfs.html",
+      "https://www.finhacker.cz/jak-obejit-znemozneni-obchodovani-americkych-etfek-1-cast"
+    ]
+  }
+}
