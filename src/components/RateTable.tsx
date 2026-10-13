@@ -1,25 +1,40 @@
+import { Fragment } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { Icon } from './Icon';
-import { Notes } from './Notes';
 import { ResultPanel } from './ResultPanel';
-import { Src } from './Src';
 import { track } from '../lib/track';
 import { setState } from '../lib/store';
 import { formatDateCz } from '../lib/format';
-import { Footnotes, fundRows, formatTer, isFundTicker, type FundRow } from '../lib/view';
+import { formatTer, fundRows, hostOf, isFundTicker, peekLine, type FundRow } from '../lib/view';
 
 const ROWS: FundRow[] = fundRows();
+const PEEK = peekLine('VOO');
 
-/** Footnotes for the US TER column, one number per row (each US fund has its own source page). */
-const TABLE_NOTES = new Footnotes();
-const TER_NUMBERS = new Map<string, number>(
-	ROWS.map((row) => {
-		const url = row.twin.us.expense_ratio_pct.source;
-		const host = new URL(url).hostname.replace(/^www\./, '');
-		const n = TABLE_NOTES.ref({ url, label: `${host}, ${formatDateCz(row.twin.us.expense_ratio_pct.as_of)}` });
-		return [row.ticker, n];
-	}),
-);
+/**
+ * Sources are listed by ticker under the table (no per-cell markers). Each twin is listed once,
+ * even when several US funds share it.
+ */
+function sourceEntries(): Array<{ key: string; label: string; url: string }> {
+	const seen = new Set<string>();
+	const out: Array<{ key: string; label: string; url: string }> = [];
+	for (const row of ROWS) {
+		const us = row.twin.us.expense_ratio_pct;
+		out.push({ key: row.ticker, label: `${row.ticker}: ${hostOf(us.source)} · ${formatDateCz(us.as_of)}`, url: us.source });
+		const twin = row.twin.primary;
+		const xetra = twin.tickers.xetra;
+		if (!seen.has(xetra)) {
+			seen.add(xetra);
+			out.push({
+				key: xetra,
+				label: `${xetra}: ${hostOf(twin.ter_pct.source)} · ${formatDateCz(twin.ter_pct.as_of)}`,
+				url: twin.ter_pct.source,
+			});
+		}
+	}
+	return out;
+}
+
+const SOURCES = sourceEntries();
 
 /**
  * The rate sheet: one row per NYSE fund. The whole row is a button; tapping it opens the result
@@ -61,6 +76,8 @@ export default function RateTable() {
 		track('result_shown', { ticker: row.ticker, source: 'tap' });
 	}
 
+	const peekRow = ROWS.find((r) => r.ticker === 'VOO');
+
 	return (
 		<div class="rt">
 			<div class="rt-head" aria-hidden="true">
@@ -68,39 +85,33 @@ export default function RateTable() {
 				<span>Burza</span>
 				<span>Kód</span>
 				<span class="r">TER %</span>
-				<span>Dvojče</span>
+				<span>Dvojče / TER</span>
 			</div>
 			<ul class="rt-list">
 				{ROWS.map((row, index) => {
 					const isOpen = openTicker === row.ticker;
-					const n = TER_NUMBERS.get(row.ticker) ?? 0;
+					const twin = row.twin.primary;
 					return (
 						<li key={row.ticker} class={isOpen ? 'rt-open' : undefined}>
 							<div class="rt-row" data-open={isOpen ? 'true' : undefined}>
-								{/* The whole row is the button. Cells sit beneath it and pass clicks through; only the source marker is clickable. */}
+								{/* The whole row is the button. Cells sit beneath it and pass clicks through. */}
 								<button
 									type="button"
 									id={`row-${row.ticker}`}
 									class="rt-hit"
 									aria-expanded={isOpen}
 									aria-controls={isOpen ? `vysledek-${row.ticker}` : undefined}
-									aria-label={`${row.ticker}, ${row.twin.us.name}, TER ${formatTer(row.terPct)} %, evropské dvojče ${row.twin.primary.tickers.xetra}`}
+									aria-label={`${row.ticker}, ${row.twin.us.name}, TER ${formatTer(row.terPct)} %, evropské dvojče ${twin.tickers.xetra}, TER ${formatTer(twin.ter_pct.value)} %`}
 									onClick={() => onRowClick(row, index + 1)}
 								/>
 								<span class="c">USA</span>
 								<span class="c">{row.exchange}</span>
 								<span class="k">{row.ticker}</span>
-								<span class="r">
-									{formatTer(row.terPct)}
-									<Src
-										n={n}
-										url={row.twin.us.expense_ratio_pct.source}
-										label={`${row.ticker}, ${formatDateCz(row.twin.us.expense_ratio_pct.as_of)}`}
-									/>
-								</span>
+								<span class="r ter">{formatTer(row.terPct)}</span>
 								<span class="tw">
 									<Icon name="arrow" size={10} className="arr" />
-									{row.twin.primary.tickers.xetra}
+									{twin.tickers.xetra}
+									<span class="tw-ter">{'  '}{formatTer(twin.ter_pct.value)}</span>
 								</span>
 							</div>
 							{isOpen && (
@@ -112,7 +123,32 @@ export default function RateTable() {
 					);
 				})}
 			</ul>
-			<Notes items={TABLE_NOTES.list()} />
+			{peekRow && PEEK && (
+				<button
+					type="button"
+					class="peek"
+					aria-controls={`vysledek-${peekRow.ticker}`}
+					aria-expanded={openTicker === peekRow.ticker}
+					onClick={() => {
+						const index = ROWS.indexOf(peekRow);
+						if (openTicker !== peekRow.ticker) onRowClick(peekRow, index + 1);
+						document.getElementById(`row-${peekRow.ticker}`)?.scrollIntoView({ block: 'start' });
+					}}
+				>
+					{PEEK}
+				</button>
+			)}
+			<p class="notes">
+				<span>Zdroje: </span>
+				{SOURCES.map((s, i) => (
+					<Fragment key={s.key}>
+						{i > 0 ? '; ' : ''}
+						<a href={s.url} target="_blank" rel="noopener">
+							{s.label}
+						</a>
+					</Fragment>
+				))}
+			</p>
 		</div>
 	);
 }

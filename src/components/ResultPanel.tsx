@@ -43,9 +43,9 @@ export function ResultPanel({ row, animate }: Props) {
 
 	return (
 		<div class="panel">
-			<p class="verdict">{ticker} z Česka jako drobný investor nekoupíte.</p>
+			<p class="verdict">Nelze koupit</p>
 			<p class="why">
-				Fondy z USA nemají sdělení klíčových informací (KID), které evropská regulace PRIIPs vyžaduje. Brokeři jako XTB
+				{ticker} z Česka jako drobný investor nekoupíte. Fondy z USA nemají sdělení klíčových informací (KID), které evropská regulace PRIIPs vyžaduje. Brokeři jako XTB
 				nebo DEGIRO vám je proto neprodají.
 				<Src n={kid} url={PRIIPS_SOURCES[0]} label={dated('justETF, PRIIPs', primary.as_of)} />
 			</p>

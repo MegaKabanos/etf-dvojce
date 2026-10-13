@@ -115,3 +115,21 @@ export class Footnotes {
 		return this.refs;
 	}
 }
+
+/** "iShares Core S&P 500 UCITS ETF USD (Acc)" -> "iShares Core S&P 500 UCITS". */
+export function shortUcitsName(name: string): string {
+	return name.replace(/\s+ETF\b.*$/, '');
+}
+
+/** "https://www.justetf.com/en/..." -> "justetf.com". */
+export function hostOf(url: string): string {
+	return new URL(url).hostname.replace(/^www\./, '');
+}
+
+/** Peek line under the rate table: the first row's twin, built from data. */
+export function peekLine(ticker: string): string | null {
+	const row = fundRows().find((r) => r.ticker === ticker);
+	if (!row) return null;
+	const { primary } = row.twin;
+	return `${row.ticker} → ${primary.tickers.xetra} · ${shortUcitsName(primary.name)} ·\u00A0TER\u00A0${formatTer(primary.ter_pct.value)}\u00A0%`;
+}

@@ -75,7 +75,7 @@ a {
 }
 
 input {
-	caret-color: var(--red);
+	caret-color: var(--ink);
 }
 
 :focus-visible {
@@ -186,18 +186,22 @@ button {
 
 [data-hero] {
 	order: 1;
-	padding: 28px 16px 8px;
+	padding: 24px 16px 8px;
 }
 
 #lístek {
 	order: 2;
-	padding: 28px 16px 8px;
+	padding: 20px 16px 8px;
 }
 
 #kalkulacka {
 	order: 3;
 	padding: 36px 16px 40px;
 	border-top: 1px solid var(--ink);
+}
+
+html[data-variant='poplatky'] .calc-h2 {
+	display: none;
 }
 
 html[data-variant='poplatky'] #kalkulacka {
@@ -226,7 +230,7 @@ html[data-variant='poplatky'] .only-poplatky {
 }
 
 .hero-sub {
-	margin-top: 14px;
+	margin-top: 12px;
 	font-size: 17px;
 	line-height: 1.45;
 	color: var(--ink);
@@ -297,14 +301,14 @@ html[data-variant='poplatky'] .only-poplatky {
 /* ---------- Rate table (ticker rows are buttons) ---------- */
 
 .rt {
-	margin-top: 10px;
+	margin-top: 8px;
 }
 
 .rt-head,
 .rt-row {
 	display: grid;
-	grid-template-columns: 36px 72px 52px 58px minmax(0, 1fr);
-	column-gap: 6px;
+	grid-template-columns: 36px 72px 52px 56px minmax(0, 1fr);
+	column-gap: 10px;
 	align-items: center;
 }
 
@@ -323,6 +327,12 @@ html[data-variant='poplatky'] .only-poplatky {
 	text-align: right;
 }
 
+.rt-row .ter {
+	width: 56px;
+	font-variant-numeric: tabular-nums;
+	text-align: right;
+}
+
 .rt-list {
 	list-style: none;
 	margin: 0;
@@ -332,7 +342,7 @@ html[data-variant='poplatky'] .only-poplatky {
 .rt-row {
 	position: relative;
 	width: 100%;
-	min-height: 56px;
+	min-height: 48px;
 	padding: 6px 0;
 	border-bottom: 1px solid var(--minor);
 	font-family: var(--f-mono);
@@ -396,6 +406,13 @@ html[data-variant='poplatky'] .only-poplatky {
 	text-overflow: ellipsis;
 }
 
+.rt-row .tw-ter {
+	margin-left: 10px;
+	font-weight: 500;
+	color: var(--sub);
+	font-variant-numeric: tabular-nums;
+}
+
 .rt-row .tw .arr {
 	display: inline-block;
 	width: 8px;
@@ -411,6 +428,28 @@ html[data-variant='poplatky'] .only-poplatky {
 
 .rt-open {
 	border-bottom: 1px solid var(--ink);
+}
+
+.peek {
+	display: block;
+	width: 100%;
+	min-height: 48px;
+	margin-top: 12px;
+	padding: 12px 0 0;
+	border: 0;
+	border-top: 1px solid var(--ink);
+	background: none;
+	text-align: left;
+	font-family: var(--f-mono);
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--ink);
+	cursor: pointer;
+}
+
+.peek:hover {
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
 .rt-micro {
@@ -429,10 +468,16 @@ html[data-variant='poplatky'] .only-poplatky {
 }
 
 .verdict {
-	color: var(--red);
-	font-size: 22px;
-	font-weight: 800;
-	line-height: 1.12;
+	display: inline-block;
+	margin: 0;
+	padding: 8px 12px 7px;
+	background: var(--red);
+	color: #fff;
+	border-top: 2px solid var(--ink);
+	border-bottom: 2px solid var(--ink);
+	font: 700 20px/1 var(--f-display);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
 }
 
 .why {
@@ -572,7 +617,7 @@ input[type='range'] {
 	margin: 0;
 	padding: 0;
 	background: transparent;
-	accent-color: var(--red);
+	accent-color: var(--ink);
 	cursor: pointer;
 }
 
@@ -589,7 +634,7 @@ input[type='range']::-webkit-slider-thumb {
 	margin-top: -11px;
 	border: 0;
 	border-radius: 0;
-	background: var(--red);
+	background: var(--ink);
 }
 
 input[type='range']::-moz-range-track {
@@ -602,7 +647,7 @@ input[type='range']::-moz-range-thumb {
 	height: 24px;
 	border: 0;
 	border-radius: 0;
-	background: var(--red);
+	background: var(--ink);
 }
 
 .bulletin {
@@ -735,7 +780,9 @@ input[type='range']::-moz-range-thumb {
 
 .lead-error {
 	margin-top: 8px;
-	color: var(--red);
+	color: var(--ink);
+	border-left: 3px solid var(--ink);
+	padding-left: 8px;
 	font-size: 15px;
 	font-weight: 600;
 }
@@ -1203,6 +1250,23 @@ input[type='range']::-moz-range-thumb {
 	background: none;
 	font: 700 17px/1 var(--f-display);
 	cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+	.page {
+		max-width: 960px;
+	}
+
+	.page > * {
+		width: 100%;
+		max-width: var(--wrap);
+		margin-inline: auto;
+	}
+
+	#lístek,
+	#srovnani {
+		max-width: 960px;
+	}
 }
 
 @media (min-width: 720px) {
