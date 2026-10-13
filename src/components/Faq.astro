@@ -1,0 +1,34 @@
+---
+const items = [
+	{
+		q: 'Je to zdarma?',
+		a: 'Ano. Plán dostanete hned po zadání e-mailu.',
+	},
+	{
+		q: 'Kdo za tím stojí?',
+		a: 'Dvojče je nezávislý projekt. Nejsme broker ani banka a nedostáváme provize od fondů.',
+	},
+	{
+		q: 'Je to investiční doporučení?',
+		a: 'Ne. Ukazujeme veřejná data a srovnání. Rozhodnutí je na vás.',
+	},
+	{
+		q: 'Co uděláte s mým e-mailem?',
+		a: 'Pošleme vám plán. Občas se můžeme ozvat s aktualizací dat nebo tipem k ETF — odhlásit se můžete kdykoli jedním klikem. E-mail nikomu neprodáváme.',
+	},
+];
+---
+
+<section class="section" aria-labelledby="h2-faq">
+	<h2 id="h2-faq">Otázky</h2>
+	<div class="faq">
+		{
+			items.map((item, i) => (
+				<details data-faq={i}>
+					<summary>{item.q}</summary>
+					<p>{item.a}</p>
+				</details>
+			))
+		}
+	</div>
+</section>

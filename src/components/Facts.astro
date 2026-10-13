@@ -1,0 +1,57 @@
+---
+import { Src } from './Src.tsx';
+import { Notes } from './Notes.tsx';
+import { getTwin } from '../lib/twins';
+import { Footnotes, PRIIPS_SOURCES, TAX_LIMIT_100K, TAX_TIME_TEST } from '../lib/view';
+import { formatDateCz } from '../lib/format';
+
+const twin = getTwin('VOO');
+if (!twin) throw new Error('facts: VOO twin missing');
+
+const fn = new Footnotes();
+const priipsN = fn.ref({ url: PRIIPS_SOURCES[0], label: 'justETF, PRIIPs' });
+const finhackerN = fn.ref({ url: PRIIPS_SOURCES[1], label: 'finhacker.cz, PRIIPs' });
+const twinN = fn.ref({ url: twin.primary.source, label: `justETF, ${formatDateCz(twin.primary.as_of)}` });
+const taxN = fn.ref({ url: TAX_TIME_TEST.source, label: 'zakonyprolidi.cz, § 4 ZDP' });
+---
+
+<section class="section" aria-labelledby="h2-fakta">
+	<h2 id="h2-fakta">Tři věci, které vám YouTube neřekne</h2>
+	<ol class="facts">
+		<li>
+			<span class="fact-n mono">1</span>
+			<div>
+				<p>
+					<strong>Americké ETF tu nekoupíte.</strong> Od roku 2018 musí mít každý fond pro drobné investory v EU
+					dokument KID. Američtí správci ho nevydávají, takže VOO, SPY ani SCHD vám evropský broker neprodá.
+					<Src n={priipsN} url={PRIIPS_SOURCES[0]} label="justETF, PRIIPs" />
+					<Src n={finhackerN} url={PRIIPS_SOURCES[1]} label="finhacker.cz, PRIIPs" />
+				</p>
+			</div>
+		</li>
+		<li>
+			<span class="fact-n mono">2</span>
+			<div>
+				<p>
+					<strong>Evropská dvojčata jsou plnohodnotná.</strong> Fondy s irským sídlem sledují stejné indexy, mají
+					srovnatelně nízké poplatky a většinou dividendy rovnou reinvestují (akumulují).
+					<Src n={twinN} url={twin.primary.source} label={`justETF, ${formatDateCz(twin.primary.as_of)}`} />
+				</p>
+			</div>
+		</li>
+		<li>
+			<span class="fact-n mono">3</span>
+			<div>
+				<p>
+					<strong>Po 3 letech neplatíte daň.</strong> Prodáte-li ETF po více než 3 letech držení, je zisk osvobozený od
+					daně (časový test). Osvobozený je i prodej do 100 000 Kč za rok.
+					<Src n={taxN} url={TAX_TIME_TEST.source} label="zakonyprolidi.cz, § 4 ZDP" />
+					<span class="sub">
+						{TAX_TIME_TEST.law}; {TAX_LIMIT_100K.law}
+					</span>
+				</p>
+			</div>
+		</li>
+	</ol>
+	<Notes items={fn.list()} />
+</section>

@@ -1,0 +1,79 @@
+---
+import { Src } from './Src.tsx';
+import { AS_OF_CZ, Footnotes, formatTer, fundRows, shortMatchLabel } from '../lib/view';
+import { formatDateCz } from '../lib/format';
+
+const rows = fundRows();
+const fn = new Footnotes();
+const cells = rows.map((row) => {
+	const usUrl = row.twin.us.expense_ratio_pct.source;
+	const twinUrl = row.twin.primary.source;
+	const twinLabel = `justETF, ${formatDateCz(row.twin.primary.as_of)}`;
+	const usHost = new URL(usUrl).hostname.replace(/^www\./, '');
+	const usLabel = `${usHost}, ${formatDateCz(row.twin.us.expense_ratio_pct.as_of)}`;
+	return {
+		ticker: row.ticker,
+		usTer: formatTer(row.terPct),
+		usN: fn.ref({ url: usUrl, label: usLabel }),
+		usLabel,
+		usUrl,
+		xetra: row.twin.primary.tickers.xetra,
+		twinTer: formatTer(row.twin.primary.ter_pct.value),
+		twinN: fn.ref({ url: twinUrl, label: twinLabel }),
+		twinLabel,
+		twinUrl,
+		match: shortMatchLabel(row.twin.match),
+	};
+});
+const notes = fn.list();
+---
+
+<section class="section" aria-labelledby="h2-srovnani">
+	<h2 id="h2-srovnani">Všechna dvojčata na jednom místě</h2>
+	<div class="cmp-wrap">
+		<table class="cmp">
+			<thead>
+				<tr>
+					<th scope="col">Fond</th>
+					<th scope="col" class="r">TER %</th>
+					<th scope="col">Dvojče</th>
+					<th scope="col" class="r">TER %</th>
+					<th scope="col">Shoda</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					cells.map((c) => (
+						<tr>
+							<td class="mono k">{c.ticker}</td>
+							<td class="r mono">
+								{c.usTer}
+								<Src n={c.usN} url={c.usUrl} label={c.usLabel} />
+							</td>
+							<td class="mono">{c.xetra}</td>
+							<td class="r mono">
+								{c.twinTer}
+								<Src n={c.twinN} url={c.twinUrl} label={c.twinLabel} />
+							</td>
+							<td>{c.match}</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+	</div>
+	<p class="notes">
+		<span>Zdroje: </span>
+		{
+			notes.map((item, i) => (
+				<span>
+					{i > 0 ? ' · ' : ''}[{item.n}]{' '}
+					<a href={item.url} target="_blank" rel="noopener">
+						{item.label}
+					</a>
+				</span>
+			))
+		}
+	</p>
+	<p class="notes">Pod tabulkou: stránky správců a justETF, stav k {AS_OF_CZ}. Každé číslo je proklik na zdroj.</p>
+</section>

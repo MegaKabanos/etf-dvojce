@@ -1,0 +1,50 @@
+---
+import { Icon } from './Icon.tsx';
+import PlanLeadForm from './PlanLeadForm.tsx';
+import { feeImpact } from '../lib/calc';
+import { formatCzk } from '../lib/format';
+import { getTwin } from '../lib/twins';
+
+const twin = getTwin('VOO');
+if (!twin) throw new Error('plan preview: VOO twin missing');
+const example = feeImpact({ monthly: 5000, years: 20 });
+---
+
+<section id="plan" class="section" aria-labelledby="h2-plan">
+	<h2 id="h2-plan">Váš ETF plán. Na jedné stránce.</h2>
+	<div class="sheet" role="group" aria-label="Ukázka plánu, zamčené části jsou šedé">
+		<p class="sheet-head">
+			<span>Lístek · ukázka</span>
+			<span class="mono">{twin.us.ticker} → {twin.primary.tickers.xetra}</span>
+		</p>
+		<ol class="sheet-list">
+			<li>
+				<span class="sheet-n mono">1</span>
+				<span class="sheet-t">Vaše dvojčata a jejich tickery na Xetře a v Londýně</span>
+				<span class="sheet-v mono">{twin.primary.tickers.xetra} · {twin.primary.tickers.lse}</span>
+			</li>
+			<li class="locked">
+				<span class="sheet-n mono">2</span>
+				<span class="sheet-t">Srovnání brokerů: poplatek za nákup, převod korun, investiční plány</span>
+				<span class="sheet-lock"><Icon name="lock" size={16} /></span>
+				<span class="bars" aria-hidden="true"><i></i><i></i></span>
+			</li>
+			<li>
+				<span class="sheet-n mono">3</span>
+				<span class="sheet-t">Poplatky v korunách po jednotlivých letech (ukázka: 5 000 Kč měsíčně, 20 let)</span>
+				<span class="sheet-v mono">{formatCzk(example.lostEtf)} / {formatCzk(example.lostBank)}</span>
+			</li>
+			<li>
+				<span class="sheet-n mono">4</span>
+				<span class="sheet-t">Daňový checklist: časový test, limit 100 000 Kč</span>
+			</li>
+			<li class="locked">
+				<span class="sheet-n mono">5</span>
+				<span class="sheet-t">5 kroků k prvnímu nákupu</span>
+				<span class="sheet-lock"><Icon name="lock" size={16} /></span>
+				<span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+			</li>
+		</ol>
+	</div>
+	<PlanLeadForm client:visible />
+</section>

@@ -11,8 +11,8 @@ export function Icon({ name, size = 16, className }: { name: IconName; size?: nu
 		strokeWidth: 1.5,
 		strokeLinejoin: 'round' as const,
 		strokeLinecap: 'round' as const,
-		'aria-hidden': 'true',
-		focusable: 'false',
+		'aria-hidden': true,
+
 		className,
 	};
 	switch (name) {

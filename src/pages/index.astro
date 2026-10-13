@@ -4,6 +4,11 @@ import Band from '../components/Band.astro';
 import RateTable from '../components/RateTable.tsx';
 import FeeCalculator from '../components/FeeCalculator.tsx';
 import StickyCta from '../components/StickyCta.tsx';
+import Facts from '../components/Facts.astro';
+import Comparison from '../components/Comparison.astro';
+import PlanPreview from '../components/PlanPreview.astro';
+import Faq from '../components/Faq.astro';
+import Footer from '../components/Footer.astro';
 import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 ---
 
@@ -46,7 +51,12 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 				<a href="#lístek">Nebo najděte dvojče svého fondu ↓</a>
 			</p>
 		</section>
+		<Facts />
+		<Comparison />
+		<PlanPreview />
+		<Faq />
 	</main>
+	<Footer />
 	<StickyCta client:load />
 </Base>
 

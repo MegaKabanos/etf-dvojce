@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Band from '../components/Band.astro';
+import { AS_OF_CZ } from '../lib/view';
+
+const controller = '{{CONTROLLER_NAME}}, kontakt: {{CONTROLLER_EMAIL}}';
+---
+
+<Base
+	title="Zásady zpracování osobních údajů — Dvojče"
+	description="Jak Dvojče zachází s e-mailem a údaji z formuláře: účel, právní základ, zpracovatelé, doba uložení a vaše práva. Bez cookies."
+	path="/soukromi"
+	noindex
+>
+	<Band />
+	<main class="page">
+		<section class="section">
+			<h1 class="plan-h1">Zásady zpracování osobních údajů</h1>
+			<div class="legal">
+				<h2>Správce</h2>
+				<p>{controller}</p>
+
+				<h2>Účel zpracování</h2>
+				<p>Zaslání ETF plánu na e-mail, který jste zadali, a případně občasné aktualizace dat nebo tipy k ETF.</p>
+
+				<h2>Právní základ</h2>
+				<p>
+					Zaslání plánu: čl. 6 odst. 1 písm. b) GDPR (plnění na vaši žádost). Občasné aktualizace: oprávněný zájem
+					správce; proti zasílání můžete kdykoli vznést námitku a odhlásit se jedním kliknutím.
+				</p>
+
+				<h2>Rozsah údajů</h2>
+				<ul>
+					<li>e-mailová adresa,</li>
+					<li>zvolený fond a parametry výpočtu (měsíční částka, počet let),</li>
+					<li>údaje UTM z odkazu, ze kterého jste přišli, a technický údaj o prohlížeči.</li>
+				</ul>
+
+				<h2>Zpracovatelé</h2>
+				<ul>
+					<li>Supabase — databáze, EU (Frankfurt),</li>
+					<li>Brevo — odesílání e-mailů, EU,</li>
+					<li>Vercel — hosting stránky a API,</li>
+					<li>PostHog EU — anonymní statistika návštěvnosti bez cookies.</li>
+				</ul>
+
+				<h2>Doba uložení</h2>
+				<p>30 dnů od zadání e-mailu (projekt je v demo režimu). Odhlášení smaže vaše záznamy okamžitě.</p>
+
+				<h2>Vaše práva</h2>
+				<p>
+					Máte právo na přístup ke svým údajům, na jejich výmaz, na omezení zpracování a vznést námitku. Máte také
+					právo podat stížnost u Úřadu pro ochranu osobních údajů (uoou.gov.cz).
+				</p>
+
+				<h2>Cookies</h2>
+				<p>Nepoužíváme žádné cookies ani localStorage. Analytika běží bez identifikátoru uloženého v prohlížeči.</p>
+
+				<p class="legal-date">Platné k {AS_OF_CZ}.</p>
+			</div>
+		</section>
+	</main>
+</Base>
