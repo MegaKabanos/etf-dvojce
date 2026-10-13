@@ -283,6 +283,29 @@ html[data-variant='poplatky'] .only-poplatky {
 	opacity: 0.85;
 }
 
+/* Action button with the arrow beside the label (hero and poplatky calculator CTAs) */
+.btn-cta {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.hero-cta {
+	margin-top: 18px;
+}
+
+.hero-micro {
+	margin-top: 10px;
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--sub);
+}
+
+.calc-hero-cta {
+	margin-top: 14px;
+}
+
 .btn-ghost {
 	display: inline-flex;
 	align-items: center;

@@ -4,6 +4,7 @@ import Band from '../components/Band.astro';
 import RateTable from '../components/RateTable.tsx';
 import FeeCalculator from '../components/FeeCalculator.tsx';
 import StickyCta from '../components/StickyCta.tsx';
+import HeroCta from '../components/HeroCta.tsx';
 import Facts from '../components/Facts.astro';
 import Comparison from '../components/Comparison.astro';
 import PlanPreview from '../components/PlanPreview.astro';
@@ -21,10 +22,8 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 	<main class="page">
 		<section data-hero="zakaz" aria-labelledby="h1-zakaz">
 			<h1 id="h1-zakaz">VOO z Česka nekoupíte.<br />Jeho dvojče ano.</h1>
-			<p class="hero-sub">
-				Americké ETF jsou pro drobné investory v EU od roku 2018 nedostupné. Ťukněte na fond, který znáte, a hned
-				uvidíte evropskou alternativu se stejným indexem.
-			</p>
+			<p class="hero-sub">Ťukněte na svůj fond a hned uvidíte evropskou alternativu.</p>
+			<HeroCta client:load />
 		</section>
 
 		<section data-hero="poplatky" aria-labelledby="h1-poplatky">

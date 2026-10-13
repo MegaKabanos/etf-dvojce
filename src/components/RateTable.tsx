@@ -1,10 +1,11 @@
 import { Fragment } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { Icon } from './Icon';
 import { ResultPanel } from './ResultPanel';
 import { track } from '../lib/track';
 import { setState } from '../lib/store';
 import { formatDateCz } from '../lib/format';
+import { focusLeadForm } from '../lib/focus-form';
 import { formatTer, fundRows, hostOf, isFundTicker, peekLine, type FundRow } from '../lib/view';
 
 const ROWS: FundRow[] = fundRows();
@@ -36,13 +37,21 @@ function sourceEntries(): Array<{ key: string; label: string; url: string }> {
 
 const SOURCES = sourceEntries();
 
+/** The open result's lead form: `#vysledek-{ticker}` wraps the ResultPanel. */
+const resultFormSelector = (ticker: string) => `#vysledek-${ticker} form[data-lead-form]`;
+
 /**
  * The rate sheet: one row per NYSE fund. The whole row is a button; tapping it opens the result
  * directly beneath (only one at a time). ?open=VOO opens a row on load (ad deep link).
+ * The window event `dvojce:open` (detail: { ticker }) is the hero button's entry point: it opens
+ * that row unless a row is already open, then focuses the result's lead form.
  */
 export default function RateTable() {
 	const [openTicker, setOpenTicker] = useState<string | null>(null);
 	const [animate, setAnimate] = useState(false);
+	const openRef = useRef<string | null>(null);
+	const pendingFocus = useRef<string | null>(null);
+	openRef.current = openTicker;
 
 	useEffect(() => {
 		const requested = new URLSearchParams(location.search).get('open');
@@ -55,7 +64,35 @@ export default function RateTable() {
 	}, []);
 
 	useEffect(() => {
+		const onOpen = (event: Event) => {
+			const requested = (event as CustomEvent<{ ticker?: unknown }>).detail?.ticker;
+			if (typeof requested !== 'string' || !isFundTicker(requested)) return;
+			const current = openRef.current;
+			if (current) {
+				focusLeadForm(resultFormSelector(current));
+				return;
+			}
+			const index = ROWS.findIndex((r) => r.ticker === requested.toUpperCase());
+			if (index < 0) return;
+			const row = ROWS[index];
+			pendingFocus.current = row.ticker;
+			setAnimate(true);
+			setOpenTicker(row.ticker);
+			setState({ fund: row.ticker });
+			track('fund_selected', { ticker: row.ticker, position: index + 1 });
+			track('result_shown', { ticker: row.ticker, source: 'hero_cta' });
+		};
+		window.addEventListener('dvojce:open', onOpen);
+		return () => window.removeEventListener('dvojce:open', onOpen);
+	}, []);
+
+	useEffect(() => {
 		if (!openTicker) return;
+		// The panel renders in the same commit as openTicker, so its form is in the DOM here.
+		if (pendingFocus.current === openTicker) {
+			pendingFocus.current = null;
+			focusLeadForm(resultFormSelector(openTicker));
+		}
 		const button = document.getElementById(`row-${openTicker}`);
 		if (!button) return;
 		const top = button.getBoundingClientRect().top;

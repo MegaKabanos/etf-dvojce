@@ -1,9 +1,11 @@
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import { feeImpact } from '../lib/calc';
 import { formatCzk, formatPct } from '../lib/format';
+import { focusLeadForm } from '../lib/focus-form';
 import { track } from '../lib/track';
 import { setState } from '../lib/store';
 import { useStore } from '../lib/use-store';
+import { Icon } from './Icon';
 import { LeadForm } from './LeadForm';
 import { Notes } from './Notes';
 import { Src } from './Src';
@@ -27,6 +29,25 @@ export default function FeeCalculator() {
 	const years = useStore((s) => s.years);
 	const [formOpen, setFormOpen] = useState(false);
 	const touched = useRef(false);
+	const focusOnOpen = useRef(false);
+	const calcFormSelector = 'form[data-lead-form][data-location="calculator"]';
+
+	useEffect(() => {
+		if (formOpen && focusOnOpen.current) {
+			focusOnOpen.current = false;
+			focusLeadForm(calcFormSelector);
+		}
+	}, [formOpen]);
+
+	/** Opens the calculator's inline lead form (or focuses it if already open). Poplatky top CTA only. */
+	function openCalcForm() {
+		if (formOpen) {
+			focusLeadForm(calcFormSelector);
+			return;
+		}
+		focusOnOpen.current = true;
+		setFormOpen(true);
+	}
 
 	const r = feeImpact({ monthly, years });
 
@@ -125,6 +146,19 @@ export default function FeeCalculator() {
 						</span>
 					</p>
 					<p class="calc-diff-value mono">{formatCzk(r.difference)}</p>
+					<div class="only-poplatky calc-hero-cta">
+						<button
+							type="button"
+							class="btn-primary btn-cta"
+							onClick={() => {
+								track('hero_cta_clicked', { variant: 'poplatky' });
+								openCalcForm();
+							}}
+						>
+							<span>Chci rozpis a nejlevnějšího brokera</span>
+							<Icon name="arrow" size={12} />
+						</button>
+					</div>
 				</div>
 			</div>
 
