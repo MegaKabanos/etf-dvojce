@@ -25,7 +25,7 @@ Kolik vás stojí poplatky?
 V korunách. Za 20 let.
 
 **Podnadpis:**
-Porovnejte bankovní podílový fond s ETF, které koupíte u běžného brokera. Dva posuvníky, žádná registrace.
+Bankovní fond vs. ETF. Bez registrace.
 
 (Pod heroem rovnou kalkulačka, viz sekce 3.)
 

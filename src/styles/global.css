@@ -745,6 +745,90 @@ input[type='range']::-moz-range-thumb {
 	font-weight: 700;
 }
 
+.diff-label-poplatky {
+	display: none;
+}
+
+/* Poplatky hero: result first (big red figure, then the two rows), compact sliders below. */
+html[data-variant='poplatky'] .section-sub {
+	display: none;
+}
+
+html[data-variant='poplatky'] .calc {
+	display: flex;
+	flex-direction: column;
+	margin-top: 18px;
+}
+
+html[data-variant='poplatky'] .calc > * {
+	order: 3;
+}
+
+html[data-variant='poplatky'] .calc > .calc-result {
+	order: 1;
+}
+
+html[data-variant='poplatky'] .calc > .calc-sliders {
+	order: 2;
+	margin-top: 22px;
+}
+
+html[data-variant='poplatky'] .calc-result {
+	display: flex;
+	flex-direction: column;
+}
+
+html[data-variant='poplatky'] .calc-diff {
+	order: 1;
+	margin-top: 0;
+	padding-top: 0;
+	padding-bottom: 14px;
+	border-top: 0;
+	border-bottom: 3px double var(--ink);
+}
+
+html[data-variant='poplatky'] .calc-result .bulletin {
+	order: 2;
+	margin-top: 14px;
+	border-top: 0;
+}
+
+html[data-variant='poplatky'] .calc-diff-value {
+	font-size: 52px;
+}
+
+html[data-variant='poplatky'] .calc-diff-label {
+	font-size: 16px;
+}
+
+html[data-variant='poplatky'] .diff-label-zakaz {
+	display: none;
+}
+
+html[data-variant='poplatky'] .diff-label-poplatky {
+	display: inline;
+}
+
+html[data-variant='poplatky'] .calc-sliders {
+	display: block;
+}
+
+html[data-variant='poplatky'] .calc-slider {
+	height: 56px;
+}
+
+html[data-variant='poplatky'] .calc-slider + .calc-slider {
+	margin-top: 0;
+}
+
+html[data-variant='poplatky'] .calc-label {
+	line-height: 22px;
+}
+
+html[data-variant='poplatky'] input[type='range'] {
+	height: 34px;
+}
+
 /* ---------- Lead form ---------- */
 
 .lead {

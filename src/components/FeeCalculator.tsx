@@ -31,7 +31,10 @@ export default function FeeCalculator() {
 	const r = feeImpact({ monthly, years });
 
 	const fn = new Footnotes();
-	const kidN = fn.ref({ url: KID_SOURCE, label: `KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}` });
+	const kidN = fn.ref({
+		url: KID_SOURCE,
+		label: `KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}`,
+	});
 	const xtbN = fn.ref({ url: XTB_SOURCE, label: `XTB, ${AS_OF_CZ}` });
 
 	const bankEntry = formatPct(costs.bank_fund.entry_max_pct, 0);
@@ -43,47 +46,52 @@ export default function FeeCalculator() {
 	function change(patch: { monthly?: number; years?: number }) {
 		if (!touched.current) {
 			touched.current = true;
-			track('calculator_used', { monthly: patch.monthly ?? monthly, years: patch.years ?? years });
+			track('calculator_used', {
+				monthly: patch.monthly ?? monthly,
+				years: patch.years ?? years,
+			});
 		}
 		setState(patch);
 	}
 
 	return (
 		<div class="calc">
-			<div class="calc-slider">
-				<label class="calc-label" for="calc-monthly">
-					<span>Měsíčně investuji</span>
-					<output for="calc-monthly" class="mono">
-						{formatCzk(monthly)}
-					</output>
-				</label>
-				<input
-					id="calc-monthly"
-					type="range"
-					min={MONTHLY_RANGE.min}
-					max={MONTHLY_RANGE.max}
-					step={MONTHLY_RANGE.step}
-					value={monthly}
-					onInput={(e) => change({ monthly: Number(e.currentTarget.value) })}
-				/>
-			</div>
+			<div class="calc-sliders">
+				<div class="calc-slider">
+					<label class="calc-label" for="calc-monthly">
+						<span>Měsíčně investuji</span>
+						<output for="calc-monthly" class="mono">
+							{formatCzk(monthly)}
+						</output>
+					</label>
+					<input
+						id="calc-monthly"
+						type="range"
+						min={MONTHLY_RANGE.min}
+						max={MONTHLY_RANGE.max}
+						step={MONTHLY_RANGE.step}
+						value={monthly}
+						onInput={(e) => change({ monthly: Number(e.currentTarget.value) })}
+					/>
+				</div>
 
-			<div class="calc-slider">
-				<label class="calc-label" for="calc-years">
-					<span>Po dobu</span>
-					<output for="calc-years" class="mono">
-						{yearsLabel(years)}
-					</output>
-				</label>
-				<input
-					id="calc-years"
-					type="range"
-					min={YEARS_RANGE.min}
-					max={YEARS_RANGE.max}
-					step={YEARS_RANGE.step}
-					value={years}
-					onInput={(e) => change({ years: Number(e.currentTarget.value) })}
-				/>
+				<div class="calc-slider">
+					<label class="calc-label" for="calc-years">
+						<span>Po dobu</span>
+						<output for="calc-years" class="mono">
+							{yearsLabel(years)}
+						</output>
+					</label>
+					<input
+						id="calc-years"
+						type="range"
+						min={YEARS_RANGE.min}
+						max={YEARS_RANGE.max}
+						step={YEARS_RANGE.step}
+						value={years}
+						onInput={(e) => change({ years: Number(e.currentTarget.value) })}
+					/>
+				</div>
 			</div>
 
 			<div class="calc-result" aria-live="polite">
@@ -110,7 +118,12 @@ export default function FeeCalculator() {
 					</tbody>
 				</table>
 				<div class="calc-diff">
-					<p class="calc-diff-label">Rozdíl — tolik vám zůstane navíc</p>
+					<p class="calc-diff-label">
+						<span class="diff-label-zakaz">Rozdíl — tolik vám zůstane navíc</span>
+						<span class="diff-label-poplatky">
+							Rozdíl za {yearsLabel(years)} při {formatCzk(monthly)} měsíčně
+						</span>
+					</p>
 					<p class="calc-diff-value mono">{formatCzk(r.difference)}</p>
 				</div>
 			</div>
@@ -118,7 +131,8 @@ export default function FeeCalculator() {
 			<p class="assumption">
 				Výpočet předpokládá zhodnocení {grossReturn} ročně před poplatky. Je to předpoklad, ne slib — minulé výnosy
 				nezaručují budoucí. Poplatky bankovního fondu podle KID fondu {BANK_FUND_NAME} ({KID_DATE_CZ})
-				<Src n={kidN} url={KID_SOURCE} label={`KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}`} />. Poplatky ETF podle XTB
+				<Src n={kidN} url={KID_SOURCE} label={`KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}`} />
+				. Poplatky ETF podle XTB
 				<Src n={xtbN} url={XTB_SOURCE} label={`XTB, ${AS_OF_CZ}`} />.
 			</p>
 			<Notes items={fn.list()} />
