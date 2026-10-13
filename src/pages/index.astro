@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Band from '../components/Band.astro';
 import RateTable from '../components/RateTable.tsx';
 import FeeCalculator from '../components/FeeCalculator.tsx';
+import StickyCta from '../components/StickyCta.tsx';
 import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 ---
 
@@ -46,4 +47,56 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 			</p>
 		</section>
 	</main>
+	<StickyCta client:load />
 </Base>
+
+<script>
+	import { track } from '../lib/track';
+
+	const referrerDomain = (() => {
+		try {
+			return document.referrer ? new URL(document.referrer).hostname : null;
+		} catch {
+			return null;
+		}
+	})();
+	track('landing_view', { viewport_width: window.innerWidth, referrer_domain: referrerDomain });
+
+	const marks = [25, 50, 75, 100];
+	const reached = new Set<number>();
+	let scrollFrame = 0;
+	const onScroll = () => {
+		scrollFrame = 0;
+		const max = document.documentElement.scrollHeight - window.innerHeight;
+		const pct = max <= 0 ? 100 : (window.scrollY / max) * 100;
+		for (const mark of marks) {
+			if (pct >= mark && !reached.has(mark)) {
+				reached.add(mark);
+				track('scroll_depth', { depth: mark });
+			}
+		}
+	};
+	window.addEventListener(
+		'scroll',
+		() => {
+			if (!scrollFrame) scrollFrame = requestAnimationFrame(onScroll);
+		},
+		{ passive: true },
+	);
+
+	document.addEventListener('click', (event) => {
+		const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[target="_blank"]');
+		if (!link) return;
+		try {
+			track('source_clicked', { domain: new URL(link.href).hostname });
+		} catch {
+			// ignore malformed hrefs
+		}
+	});
+
+	document.querySelectorAll<HTMLDetailsElement>('details[data-faq]').forEach((details) => {
+		details.addEventListener('toggle', () => {
+			if (details.open) track('faq_opened', { question_idx: Number(details.dataset.faq) });
+		});
+	});
+</script>
