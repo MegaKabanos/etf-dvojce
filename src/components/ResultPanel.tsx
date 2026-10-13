@@ -1,4 +1,5 @@
 import { Icon } from './Icon';
+import { LeadForm } from './LeadForm';
 import { Notes } from './Notes';
 import { Src } from './Src';
 import { Tick } from './Tick';
@@ -123,6 +124,7 @@ export function ResultPanel({ row, animate }: Props) {
 						</li>
 					))}
 				</ul>
+				<LeadForm location="result" />
 			</div>
 		</div>
 	);

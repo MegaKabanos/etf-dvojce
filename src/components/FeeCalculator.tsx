@@ -4,6 +4,7 @@ import { formatCzk, formatPct } from '../lib/format';
 import { track } from '../lib/track';
 import { setState } from '../lib/store';
 import { useStore } from '../lib/use-store';
+import { LeadForm } from './LeadForm';
 import { Notes } from './Notes';
 import { Src } from './Src';
 import {
@@ -135,6 +136,7 @@ export default function FeeCalculator() {
 						Chci rozpis po letech + nejlevnějšího brokera →
 					</button>
 				) : null}
+				{formOpen && <LeadForm location="calculator" />}
 			</div>
 		</div>
 	);

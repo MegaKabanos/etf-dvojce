@@ -776,6 +776,147 @@ input[type='range']::-moz-range-thumb {
 	font-size: 16px;
 }
 
+/* ---------- Plan (inline after submit, and /plan) ---------- */
+
+.plan-h1 {
+	font-size: 40px;
+}
+
+.plan {
+	margin-top: 6px;
+}
+
+.plan-part {
+	margin-top: 28px;
+	padding-top: 14px;
+	border-top: 1px solid var(--ink);
+}
+
+.plan h2 {
+	font-size: 24px;
+}
+
+.plan-tickers {
+	margin-top: 10px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.plan-note {
+	margin-top: 10px;
+	font-size: 15px;
+	line-height: 1.45;
+	color: var(--ink);
+}
+
+.plan-note .src {
+	font-size: 11px;
+}
+
+.plan-scroll {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.plan-table {
+	width: 100%;
+	margin-top: 12px;
+	border-collapse: collapse;
+	font-size: 15px;
+}
+
+.plan-table th,
+.plan-table td {
+	padding: 10px 6px 10px 0;
+	border-bottom: 1px solid var(--minor);
+	text-align: left;
+	vertical-align: top;
+	font-weight: 500;
+}
+
+.plan-table th {
+	font-family: var(--f-mono);
+	font-size: 11px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--sub);
+	border-bottom: 1px solid var(--ink);
+}
+
+.plan-table .r {
+	text-align: right;
+}
+
+.plan-table td.mono {
+	font-size: 14px;
+}
+
+.plan-table .sub {
+	font-family: var(--f-mono);
+	font-size: 11px;
+}
+
+.checklist,
+.steps {
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.checklist li {
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--minor);
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.checklist li svg {
+	flex: 0 0 auto;
+	margin-top: 3px;
+}
+
+.steps {
+	counter-reset: step;
+}
+
+.steps li {
+	counter-increment: step;
+	display: grid;
+	grid-template-columns: 28px 1fr;
+	gap: 8px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--minor);
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.steps li::before {
+	content: counter(step, decimal-leading-zero);
+	font-family: var(--f-mono);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.plan-disclaimer {
+	margin-top: 18px;
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--sub);
+}
+
+.plan .btn-outline {
+	margin-top: 16px;
+	width: auto;
+	padding: 0 18px;
+}
+
+.plan-loading {
+	color: var(--sub);
+}
+
 /* ---------- Sticky mobile CTA ---------- */
 
 .sticky {
