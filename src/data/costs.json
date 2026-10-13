@@ -4,7 +4,7 @@
     "name": "AMUNDI CR IM AKCIOVÝ (C)",
     "isin": "CZ0008475811",
     "distributor": "Komerční banka",
-    "entry_max_pct": 5.0,
+    "entry_max_pct": 5,
     "ongoing_pct": 2.33,
     "transaction_pct": 0.01,
     "total_ongoing_pct_derived": 2.34,
@@ -17,7 +17,8 @@
       "name": "XTB",
       "commission": "0 % do obratu 100 000 EUR/měsíc",
       "fx_pct": 0.5,
-      "source": "https://www.xtb.com/cz/etf"
+      "source": "https://www.xtb.com/cz/etf",
+      "as_of": "2026-10-13"
     },
     "degiro": {
       "name": "DEGIRO",
@@ -28,7 +29,7 @@
     },
     "trading212": {
       "name": "Trading 212",
-      "commission": "0 %",
+      "commission": null,
       "fx_pct": 0.15,
       "source": "https://community.trading212.com/t/introduction-of-fx-conversion-fee/46787",
       "as_of": "2021-03-02"
@@ -37,7 +38,8 @@
       "name": "Interactive Brokers",
       "commission": "0,05 % (min. 1,25 EUR) – Xetra, tiered",
       "fx_pct": null,
-      "source": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php"
+      "source": "https://www.interactivebrokers.com/en/pricing/commissions-stocks.php",
+      "as_of": "2026-10-13"
     },
     "fio": {
       "name": "Fio e-Broker",

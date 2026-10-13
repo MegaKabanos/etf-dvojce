@@ -29,7 +29,7 @@ export interface PlanViewProps {
 
 const BROKERS = Object.values(costs.brokers) as Array<{
 	name: string;
-	commission: string;
+	commission: string | null;
 	fx_pct: number | null;
 	source: string;
 	as_of?: string;
@@ -119,10 +119,10 @@ export function PlanView({ fund, monthly, years }: PlanViewProps) {
 										{b.name}
 										<br />
 										<a href={b.source} target="_blank" rel="noopener" class="sub">
-											zdroj{b.as_of ? ` · ${formatDateCz(b.as_of)}` : ''}
+											zdroj{b.as_of ? ` · ceník k ${formatDateCz(b.as_of)}` : ''}
 										</a>
 									</td>
-									<td>{b.commission}</td>
+									<td>{b.commission ?? <span class="sub">neověřeno</span>}</td>
 									<td class="r mono">{b.fx_pct === null ? 'neověřeno' : formatPct(b.fx_pct)}</td>
 								</tr>
 							))}
@@ -201,7 +201,7 @@ export function PlanView({ fund, monthly, years }: PlanViewProps) {
 				<Notes items={fn.list()} />
 				<p class="plan-disclaimer">
 					Informace na této stránce nejsou investičním doporučením ani nabídkou. Investování je spojeno s rizikem,
-					hodnota investice může klesat. Data k {AS_OF_CZ}, zdroje u každého údaje.
+					hodnota investice může klesat. Data fondů k {AS_OF_CZ}; ceníky brokerů dle data u každého řádku.
 				</p>
 				<button type="button" class="btn-outline no-print" onClick={() => window.print()}>
 					Uložit jako PDF

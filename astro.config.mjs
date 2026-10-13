@@ -10,4 +10,5 @@ export default defineConfig({
   output: 'static',
   integrations: [preact()],
   adapter: vercel(),
+  devToolbar: { enabled: false },
 });
