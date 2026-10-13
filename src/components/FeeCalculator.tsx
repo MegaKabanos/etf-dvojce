@@ -7,18 +7,7 @@ import { setState } from '../lib/store';
 import { useStore } from '../lib/use-store';
 import { Icon } from './Icon';
 import { LeadForm } from './LeadForm';
-import { Notes } from './Notes';
-import { Src } from './Src';
-import {
-	AS_OF_CZ,
-	BANK_FUND_NAME,
-	Footnotes,
-	KID_DATE_CZ,
-	KID_SOURCE,
-	MONTHLY_RANGE,
-	XTB_SOURCE,
-	YEARS_RANGE,
-} from '../lib/view';
+import { BANK_FUND_NAME, MONTHLY_RANGE, YEARS_RANGE } from '../lib/view';
 import costs from '../data/costs.json' with { type: 'json' };
 
 const yearsLabel = (n: number) => (n === 1 ? '1 rok' : n >= 2 && n <= 4 ? `${n} roky` : `${n} let`);
@@ -50,13 +39,6 @@ export default function FeeCalculator() {
 	}
 
 	const r = feeImpact({ monthly, years });
-
-	const fn = new Footnotes();
-	const kidN = fn.ref({
-		url: KID_SOURCE,
-		label: `KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}`,
-	});
-	const xtbN = fn.ref({ url: XTB_SOURCE, label: `XTB, ${AS_OF_CZ}` });
 
 	const bankEntry = formatPct(costs.bank_fund.entry_max_pct, 0);
 	const bankOngoing = formatPct(costs.bank_fund.ongoing_pct + costs.bank_fund.transaction_pct, 2);
@@ -162,14 +144,7 @@ export default function FeeCalculator() {
 				</div>
 			</div>
 
-			<p class="assumption">
-				Výpočet předpokládá zhodnocení {grossReturn} ročně před poplatky. Je to předpoklad, ne slib — minulé výnosy
-				nezaručují budoucí. Poplatky bankovního fondu podle KID fondu {BANK_FUND_NAME} ({KID_DATE_CZ})
-				<Src n={kidN} url={KID_SOURCE} label={`KID ${BANK_FUND_NAME}, ${KID_DATE_CZ}`} />
-				. Poplatky ETF podle XTB
-				<Src n={xtbN} url={XTB_SOURCE} label={`XTB, ${AS_OF_CZ}`} />.
-			</p>
-			<Notes items={fn.list()} />
+			<p class="assumption">Předpoklad: zhodnocení {grossReturn} ročně před poplatky. Není to slib výnosu.</p>
 
 			<div class="calc-cta">
 				{!formOpen ? (

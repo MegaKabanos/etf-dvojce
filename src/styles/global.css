@@ -306,21 +306,6 @@ html[data-variant='poplatky'] .only-poplatky {
 	margin-top: 14px;
 }
 
-.btn-ghost {
-	display: inline-flex;
-	align-items: center;
-	min-height: 48px;
-	padding: 0 4px;
-	border: 0;
-	background: none;
-	font: 700 17px/1.2 var(--f-display);
-	text-align: left;
-	cursor: pointer;
-	text-decoration: underline;
-	text-decoration-thickness: 1px;
-	text-underline-offset: 4px;
-}
-
 /* ---------- Rate table (ticker rows are buttons) ---------- */
 
 .rt {
@@ -339,7 +324,7 @@ html[data-variant='poplatky'] .only-poplatky {
 	padding: 8px 0 6px;
 	border-bottom: 1px solid var(--ink);
 	font-family: var(--f-mono);
-	font-size: 10px;
+	font-size: 11px;
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: var(--sub);
@@ -375,12 +360,6 @@ html[data-variant='poplatky'] .only-poplatky {
 
 .rt-row > span {
 	pointer-events: none;
-}
-
-.rt-row .src {
-	pointer-events: auto;
-	position: relative;
-	z-index: 2;
 }
 
 /* Full-row hit area; sits above the cells so the whole row is tappable. */
@@ -1139,7 +1118,7 @@ html[data-variant='poplatky'] input[type='range'] {
 .cmp thead th {
 	border-bottom: 1px solid var(--ink);
 	font-family: var(--f-mono);
-	font-size: 10px;
+	font-size: 11px;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	color: var(--sub);
@@ -1153,10 +1132,6 @@ html[data-variant='poplatky'] input[type='range'] {
 .cmp .k {
 	font-size: 15px;
 	font-weight: 500;
-}
-
-.cmp .src {
-	margin-left: 1px;
 }
 
 .sheet {
@@ -1331,6 +1306,68 @@ html[data-variant='poplatky'] input[type='range'] {
 	color: var(--sub);
 	font-family: var(--f-mono);
 	font-size: 13px !important;
+}
+
+/* ---------- Sources (one collapsed section above the footer) ---------- */
+
+.sources {
+	max-width: var(--wrap);
+	margin: 0 auto;
+	padding: 0 16px;
+}
+
+.sources details {
+	border-top: 1px solid var(--ink);
+}
+
+.sources summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	min-height: 44px;
+	padding: 12px 0;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	list-style: none;
+}
+
+.sources summary::-webkit-details-marker {
+	display: none;
+}
+
+.sources summary::after {
+	content: '+';
+	font-family: var(--f-mono);
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.sources details[open] summary::after {
+	content: '–';
+}
+
+.sources-body {
+	padding: 0 0 20px;
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--sub);
+}
+
+.sources-body ul {
+	margin: 10px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sources-body li {
+	padding: 6px 0;
+	border-bottom: 1px solid var(--minor);
+}
+
+.sources-body a {
+	color: var(--sub);
 }
 
 /* ---------- Sticky mobile CTA ---------- */

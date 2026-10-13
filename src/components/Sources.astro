@@ -1,0 +1,73 @@
+---
+import costs from '../data/costs.json' with { type: 'json' };
+import {
+	AS_OF_CZ,
+	BANK_FUND_NAME,
+	KID_DATE_CZ,
+	KID_SOURCE,
+	PRIIPS_SOURCES,
+	TAX_LIMIT_100K,
+	TAX_TIME_TEST,
+	XTB_SOURCE,
+	fundRows,
+	hostOf,
+} from '../lib/view';
+import { formatDateCz, formatPct } from '../lib/format';
+
+/** Every source the landing page used to cite inline, listed once per URL (first label wins). */
+interface Source {
+	url: string;
+	label: string;
+	asOf: string;
+}
+const sources: Source[] = [];
+const seen = new Set<string>();
+const add = (url: string, label: string, asOf: string) => {
+	if (seen.has(url)) return;
+	seen.add(url);
+	sources.push({ url, label, asOf });
+};
+
+for (const row of fundRows()) {
+	const { us, primary } = row.twin;
+	const xetra = primary.tickers.xetra;
+	add(us.expense_ratio_pct.source, `${row.ticker} · TER, ${hostOf(us.expense_ratio_pct.source)}`, us.expense_ratio_pct.as_of);
+	add(primary.source, `${xetra} · profil fondu, ${hostOf(primary.source)}`, primary.as_of);
+	add(primary.ter_pct.source, `${xetra} · TER, ${hostOf(primary.ter_pct.source)}`, primary.ter_pct.as_of);
+	add(primary.index.source, `${xetra} · index, ${hostOf(primary.index.source)}`, primary.index.as_of);
+	add(primary.fund_size_eur_bn.source, `${xetra} · velikost, ${hostOf(primary.fund_size_eur_bn.source)}`, primary.fund_size_eur_bn.as_of);
+}
+
+add(KID_SOURCE, `KID ${BANK_FUND_NAME}`, costs.bank_fund.kid_date);
+add(XTB_SOURCE, 'XTB · poplatky ETF', costs.brokers.xtb.as_of);
+add(PRIIPS_SOURCES[0], 'justETF · US ETF bez KID (PRIIPs)', costs.as_of);
+add(PRIIPS_SOURCES[1], 'finhacker.cz · PRIIPs', costs.as_of);
+add(TAX_TIME_TEST.source, 'zakonyprolidi.cz · § 4 ZDP (časový test)', costs.as_of);
+add(TAX_LIMIT_100K.source, 'zakonyprolidi.cz · § 4 ZDP (limit 100 000 Kč)', costs.as_of);
+
+const grossReturn = formatPct(costs.calc_assumptions.gross_return_pct, 0);
+---
+
+<section id="zdroje" class="sources">
+	<details>
+		<summary>Zdroje dat a metodika ({sources.length})</summary>
+		<div class="sources-body">
+			<p>
+				Data k {AS_OF_CZ}. Kalkulačka předpokládá zhodnocení {grossReturn} ročně před poplatky; poplatky bankovního
+				fondu podle KID {BANK_FUND_NAME} ({KID_DATE_CZ}).
+			</p>
+			<ul>
+				{
+					sources.map((s) => (
+						<li>
+							<a href={s.url} target="_blank" rel="noopener">
+								{s.label}
+							</a>{' '}
+							<span class="mono">{formatDateCz(s.asOf)}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</details>
+</section>

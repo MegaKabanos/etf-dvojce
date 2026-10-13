@@ -20,3 +20,4 @@ Cookieless PostHog EU capture (`src/lib/track.ts`). No cookies, no localStorage;
 - `scroll_depth`: 25 / 50 / 75 / 100, once each. Props: `depth`.
 - `faq_opened`: FAQ item opened. Props: `question_idx` (0-based).
 - `source_clicked`: outbound link with `target="_blank"`. Props: `domain`.
+- `sources_opened`: the collapsed "Zdroje dat a metodika" section is opened (fires on each open). No props.

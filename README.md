@@ -1,6 +1,6 @@
 # Dvojče — evropská dvojčata amerických ETF
 
-Američtí investoři mají VOO, SPY nebo VTI. Čeští drobní investoři je ale u běžného brokera nekoupí, protože jim chybí povinný dokument KID. Dvojče řeší jednu konkrétní otázku: který evropský fond (UCITS) sleduje stejný index, kolik stojí, a kolik korun vám za 20 let vezmou poplatky bankovního fondu oproti ETF. Odpovědi jsou se zdrojem u každého čísla. Plán na míru dostanete za jeden e-mail.
+Američtí investoři mají VOO, SPY nebo VTI. Čeští drobní investoři je ale u běžného brokera nekoupí, protože jim chybí povinný dokument KID. Dvojče řeší jednu konkrétní otázku: který evropský fond (UCITS) sleduje stejný index, kolik stojí, a kolik korun vám za 20 let vezmou poplatky bankovního fondu oproti ETF. Odpovědi jsou se zdrojem: všechny zdroje v rozbalovací sekci Zdroje dat na konci stránky. Plán na míru dostanete za jeden e-mail.
 
 - **Živá stránka:** `https://etf-dvojce.vercel.app` (doplní se po nasazení)
 - **Reklamní verze A a B:** viz [ads/README.md](ads/README.md) (texty, `utm_content`, obrázky)
@@ -20,7 +20,7 @@ Podpora z průzkumu AMF / BVA Xsight *Investment scams in France* (říjen 2024,
 
 **Výhrady.** Průzkum je z Francie, týká se atypických investic (ne ETF) a jde o self-report. Čísla bereme jako **směr, ne benchmark**. Neříkají nic o konverzi landing page.
 
-**Co z toho plyne pro design.** Stejná skupina je nejvíc ohrožená podvody: 68 % obětí je ve věku 18–34 let, a podvody stojí na „garanci", „rychlých ziscích" a „bez rizika". Dvojče proto dělá opak. Nedává žádný slib výnosu, zhodnocení v kalkulačce je jen označený předpoklad (7 %), u každého čísla je zdroj a jméno konkrétního fondu s KID. Důvěryhodnost je konverzní faktor i etická povinnost.
+**Co z toho plyne pro design.** Stejná skupina je nejvíc ohrožená podvody: 68 % obětí je ve věku 18–34 let, a podvody stojí na „garanci", „rychlých ziscích" a „bez rizika". Dvojče proto dělá opak. Nedává žádný slib výnosu, zhodnocení v kalkulačce je jen označený předpoklad (7 %), zdroje jsou v rozbalovací sekci Zdroje dat na konci stránky a jméno konkrétního fondu s KID. Důvěryhodnost je konverzní faktor i etická povinnost.
 
 ## Co návštěvník získá a kdy žádáme kontakt
 
@@ -36,14 +36,14 @@ Podpora z průzkumu AMF / BVA Xsight *Investment scams in France* (říjen 2024,
 
 Výchozí varianta (zákaz):
 
-1. **Hero + tabulka fondů** — reklama slibuje „VOO nekoupíte", stránka to pokračuje stejným nadpisem; akce je v první obrazovce a náhled výsledku je vidět ještě před ťuknutím.
+1. **Hero + tabulka fondů** — reklama slibuje „VOO nekoupíte", stránka to pokračuje stejným nadpisem. V první obrazovce je červené tlačítko „Pošlete mi plán zdarma" (zákaz): otevře řádek VOO a přesune návštěvníka na formulář výsledku s fokusem na e-mail. Náhled výsledku je vidět ještě před ťuknutím.
 2. **Panel výsledku s formulářem** — první „aha" (verdikt + dvojče) a první výzva ve chvíli, kdy má návštěvník hodnotu v ruce.
 3. **Kalkulačka poplatků** — druhý háček (peníze) a druhá výzva pro ty, kdo nejdřív nevyberou fond.
-4. **Tři fakta** — důvěra: proč to tak je, každé tvrzení se zdrojem.
+4. **Tři fakta** — důvěra: proč to tak je.
 5. **Srovnávací tabulka** — důkaz pro skeptiky, který si mohou prohlédnout detaily.
 6. **Náhled plánu** — co přesně dostanou za e-mail; závěrečná výzva.
 7. **FAQ** — námitky (zdarma? kdo za tím stojí? co s e-mailem?).
-8. **Patička a zdroje** — právní upozornění a odkaz na zpracování dat.
+8. **Zdroje dat** — jedna sbalená sekce (rozbalovací „Zdroje dat a metodika (N)"): věta o datu a předpokladu 7 % a seznam všech zdrojů jednou, s daty a odkazy. Pod ní patička s právním upozorněním a odkazem na zpracování dat.
 
 Lepicí CTA (mobil) se objeví až po přejetí tabulky a zmizí, když je některý formulář vidět — výzva je dostupná, ale nikdy nepřekrývá obsah.
 
@@ -60,7 +60,7 @@ Hero se přepíná podle `utm_content` (message match): reklama slíbí, co str�
 
 ## Data a zdroje
 
-Každá hodnota na stránce odkazuje na svůj zdroj. Výnosy se nikde nezobrazují jako data. Kalkulačka používá explicitní předpoklad 7 % ročně před poplatky.
+Landing page necituje zdroj u každého čísla. Všechny zdroje jsou v rozbalovací sekci Zdroje dat na konci stránky a jsou v ní vedle sebe s daty a odkazy. Plán, který se zobrazí po odeslání e-mailu, uvádí zdroje u jednotlivých hodnot. Výnosy se nikde nezobrazují jako data. Kalkulačka používá explicitní předpoklad 7 % ročně před poplatky.
 
 | Data | Zdroj | Datum |
 |---|---|---|

@@ -1,41 +1,13 @@
-import { Fragment } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { Icon } from './Icon';
 import { ResultPanel } from './ResultPanel';
 import { track } from '../lib/track';
 import { setState } from '../lib/store';
-import { formatDateCz } from '../lib/format';
 import { focusLeadForm } from '../lib/focus-form';
-import { formatTer, fundRows, hostOf, isFundTicker, peekLine, type FundRow } from '../lib/view';
+import { formatTer, fundRows, isFundTicker, peekLine, type FundRow } from '../lib/view';
 
 const ROWS: FundRow[] = fundRows();
 const PEEK = peekLine('VOO');
-
-/**
- * Sources are listed by ticker under the table (no per-cell markers). Each twin is listed once,
- * even when several US funds share it.
- */
-function sourceEntries(): Array<{ key: string; label: string; url: string }> {
-	const seen = new Set<string>();
-	const out: Array<{ key: string; label: string; url: string }> = [];
-	for (const row of ROWS) {
-		const us = row.twin.us.expense_ratio_pct;
-		out.push({ key: row.ticker, label: `${row.ticker}: ${hostOf(us.source)} · ${formatDateCz(us.as_of)}`, url: us.source });
-		const twin = row.twin.primary;
-		const xetra = twin.tickers.xetra;
-		if (!seen.has(xetra)) {
-			seen.add(xetra);
-			out.push({
-				key: xetra,
-				label: `${xetra}: ${hostOf(twin.ter_pct.source)} · ${formatDateCz(twin.ter_pct.as_of)}`,
-				url: twin.ter_pct.source,
-			});
-		}
-	}
-	return out;
-}
-
-const SOURCES = sourceEntries();
 
 /** The open result's lead form: `#vysledek-{ticker}` wraps the ResultPanel. */
 const resultFormSelector = (ticker: string) => `#vysledek-${ticker} form[data-lead-form]`;
@@ -175,17 +147,6 @@ export default function RateTable() {
 					{PEEK}
 				</button>
 			)}
-			<p class="notes">
-				<span>Zdroje: </span>
-				{SOURCES.map((s, i) => (
-					<Fragment key={s.key}>
-						{i > 0 ? '; ' : ''}
-						<a href={s.url} target="_blank" rel="noopener">
-							{s.label}
-						</a>
-					</Fragment>
-				))}
-			</p>
 		</div>
 	);
 }

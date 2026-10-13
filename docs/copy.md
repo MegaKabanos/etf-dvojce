@@ -12,7 +12,11 @@ VOO z Česka nekoupíte.
 Jeho dvojče ano.
 
 **Podnadpis:**
-Americké ETF jsou pro drobné investory v EU od roku 2018 nedostupné. Ťukněte na fond, který znáte, a hned uvidíte evropskou alternativu se stejným indexem.
+Ťukněte na svůj fond a hned uvidíte evropskou alternativu.
+
+**Tlačítko (jen varianta zákaz, plná šířka, červené, výška 52 px, za textem šipka):** Pošlete mi plán zdarma
+→ otevře řádek VOO (nebo ponechá otevřený řádek) a přesune se na formulář výsledku s fokusem na e-mail.
+**Mikrotext pod tlačítkem (13 px, šedě):** Zdarma · stačí e-mail · plán uvidíte hned
 
 **Výzva nad čipy:** Který fond jste chtěli koupit?
 **Čipy:** VOO · SPY · IVV · VTI · VT · SCHD · VWO
@@ -27,7 +31,7 @@ V korunách. Za 20 let.
 **Podnadpis:**
 Bankovní fond vs. ETF. Bez registrace.
 
-(Pod heroem rovnou kalkulačka, viz sekce 3.)
+(Pod heroem rovnou kalkulačka, viz sekce 3. Pod velkým rozdílem v Kč je červené tlačítko „Chci rozpis a nejlevnějšího brokera" se šipkou.)
 
 ---
 
@@ -76,19 +80,21 @@ Bankovní fond vs. ETF. Bez registrace.
 - ETF dvojče ({{etf.ter}} ročně + {{broker.fx}} za převod měny): **{{fees_etf}} Kč**
 - Velké číslo: **{{difference}} Kč** — tolik vám zůstane navíc.
 
-**Předpoklad (malým písmem, vždy viditelné):** Výpočet předpokládá zhodnocení 7 % ročně před poplatky. Je to předpoklad, ne slib — minulé výnosy nezaručují budoucí. Poplatky bankovního fondu podle KID fondu {{bank.name}} ({{bank.kid_date}}).
+**Předpoklad (malým písmem, vždy viditelné):** Předpoklad: zhodnocení 7 % ročně před poplatky. Není to slib výnosu.
 
-**CTA:** Chci rozpis po letech + nejlevnějšího brokera → (posune na formulář / otevře stejný formulář inline)
+**CTA nahoře (jen varianta poplatky, pod velkým číslem):** Chci rozpis a nejlevnějšího brokera → (otevře formulář kalkulačky a přesune se na e-mail)
+
+**CTA dole:** Chci rozpis po letech + nejlevnějšího brokera → (posune na formulář / otevře stejný formulář inline)
 
 ---
 
-## 4. Proč to tak je (3 fakta, každé se zdrojem)
+## 4. Proč to tak je (3 fakta)
 
 **Nadpis (H2):** Tři věci, které vám YouTube neřekne
 
-1. **Americké ETF tu nekoupíte.** Od roku 2018 musí mít každý fond pro drobné investory v EU dokument KID. Američtí správci ho nevydávají, takže VOO, SPY ani SCHD vám evropský broker neprodá. [zdroj]
-2. **Evropská dvojčata jsou plnohodnotná.** Fondy s irským sídlem sledují stejné indexy, mají srovnatelně nízké poplatky a většinou dividendy rovnou reinvestují (akumulují). [zdroj]
-3. **Po 3 letech neplatíte daň.** Prodáte-li ETF po více než 3 letech držení, je zisk osvobozený od daně (časový test). Osvobozený je i prodej do 100 000 Kč za rok. [§ 4 odst. 1 písm. t) a u) ZDP]
+1. **Americké ETF tu nekoupíte.** Od roku 2018 musí mít každý fond pro drobné investory v EU dokument KID. Američtí správci ho nevydávají, takže VOO, SPY ani SCHD vám evropský broker neprodá.
+2. **Evropská dvojčata jsou plnohodnotná.** Fondy s irským sídlem sledují stejné indexy, mají srovnatelně nízké poplatky a většinou dividendy rovnou reinvestují (akumulují).
+3. **Po 3 letech neplatíte daň.** Prodáte-li ETF po více než 3 letech držení, je zisk osvobozený od daně (časový test). Osvobozený je i prodej do 100 000 Kč za rok.
 
 ---
 
@@ -96,7 +102,7 @@ Bankovní fond vs. ETF. Bez registrace.
 
 **Nadpis (H2):** Všechna dvojčata na jednom místě
 **Sloupce (mobil = karty, desktop = tabulka):** Fond z NYSE · TER · Evropské dvojče · TER · Shoda
-**Pod tabulkou:** Zdroje: stránky správců a justETF, stav k {{data_as_of}}. Každé číslo je proklik na zdroj.
+Bez řádku pod tabulkou. Zdroje jsou v sekci Zdroje dat na konci stránky.
 
 ---
 
@@ -124,7 +130,15 @@ Bankovní fond vs. ETF. Bez registrace.
 
 ## 8. Patička
 
-Dvojče · Informace na této stránce nejsou investičním doporučením ani nabídkou. Investování je spojeno s rizikem, hodnota investice může klesat. Data k {{data_as_of}}, zdroje u každého údaje. [Zásady zpracování osobních údajů](/soukromi)
+Dvojče · Informace na této stránce nejsou investičním doporučením ani nabídkou. Investování je spojeno s rizikem, hodnota investice může klesat. Data k {{data_as_of}}, zdroje v sekci Zdroje dat. [Zásady zpracování osobních údajů](/soukromi)
+
+---
+
+## 8a. Zdroje dat a metodika (sbalená sekce nad patičkou)
+
+**Souhrn (sbalený):** Zdroje dat a metodika ({{počet unikátních URL}})
+**Věta nad seznamem:** Data k {{data_as_of}}. Kalkulačka předpokládá zhodnocení 7 % ročně před poplatky; poplatky bankovního fondu podle KID {{bank.name}} ({{bank.kid_date}}).
+**Seznam:** každý zdroj jednou (dedupe podle URL): popisek + datum, odkaz v nové záložce. Zdroje: TER a profil fondu US ETF a dvojčat, KID bankovního fondu, poplatky XTB, PRIIPs (justETF, finhacker.cz), zákon 586/1992 Sb. § 4 ZDP.
 
 ---
 

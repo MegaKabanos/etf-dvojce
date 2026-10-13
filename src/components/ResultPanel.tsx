@@ -1,18 +1,7 @@
 import { Icon } from './Icon';
 import { LeadForm } from './LeadForm';
-import { Notes } from './Notes';
-import { Src } from './Src';
 import { Tick } from './Tick';
-import {
-	distributionLabel,
-	Footnotes,
-	formatTer,
-	matchLabel,
-	PRIIPS_SOURCES,
-	sizeLabel,
-	type FundRow,
-} from '../lib/view';
-import { formatDateCz } from '../lib/format';
+import { distributionLabel, formatTer, matchLabel, sizeLabel, type FundRow } from '../lib/view';
 
 interface Props {
 	row: FundRow;
@@ -30,12 +19,6 @@ const LOCKED_ITEMS = [
 export function ResultPanel({ row, animate }: Props) {
 	const { ticker, twin } = row;
 	const { us, primary, alt, match, note_cs: note } = twin;
-	const fn = new Footnotes();
-	const dated = (name: string, asOf: string) => `${name}, ${formatDateCz(asOf)}`;
-
-	const kid = fn.ref({ url: PRIIPS_SOURCES[0], label: dated('justETF, PRIIPs', primary.as_of) });
-	const twinSrc = fn.ref({ url: primary.source, label: dated('justETF, profil fondu', primary.as_of) });
-	const usSrc = fn.ref({ url: us.expense_ratio_pct.source, label: dated(hostOf(us.expense_ratio_pct.source), us.expense_ratio_pct.as_of) });
 
 	const terTwin = `${formatTer(primary.ter_pct.value)} %`;
 	const terUs = `${formatTer(us.expense_ratio_pct.value)} %`;
@@ -47,7 +30,6 @@ export function ResultPanel({ row, animate }: Props) {
 			<p class="why">
 				{ticker} z Česka jako drobný investor nekoupíte. Fondy z USA nemají sdělení klíčových informací (KID), které evropská regulace PRIIPs vyžaduje. Brokeři jako XTB
 				nebo DEGIRO vám je proto neprodají.
-				<Src n={kid} url={PRIIPS_SOURCES[0]} label={dated('justETF, PRIIPs', primary.as_of)} />
 			</p>
 
 			<article class="twin" aria-label="Evropské dvojče">
@@ -60,10 +42,7 @@ export function ResultPanel({ row, animate }: Props) {
 					<tbody>
 						<tr>
 							<th scope="row">Index</th>
-							<td>
-								{primary.index.value}
-								<Src n={twinSrc} url={primary.index.source} label={dated('justETF, profil fondu', primary.as_of)} />
-							</td>
+							<td>{primary.index.value}</td>
 						</tr>
 						<tr>
 							<th scope="row">Shoda</th>
@@ -73,23 +52,17 @@ export function ResultPanel({ row, animate }: Props) {
 							<th scope="row">TER</th>
 							<td class="mono">
 								<Tick text={terTwin} animate={animate} />
-								<Src n={twinSrc} url={primary.ter_pct.source} label={dated('justETF, profil fondu', primary.as_of)} />
 								<span class="sub"> (originál: {terUs})</span>
-								<Src n={usSrc} url={us.expense_ratio_pct.source} label={dated(hostOf(us.expense_ratio_pct.source), us.expense_ratio_pct.as_of)} />
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">Dividendy</th>
-							<td>
-								{distributionLabel(primary.distribution)}
-								<Src n={twinSrc} url={primary.source} label={dated('justETF, profil fondu', primary.as_of)} />
-							</td>
+							<td>{distributionLabel(primary.distribution)}</td>
 						</tr>
 						<tr>
 							<th scope="row">Velikost fondu</th>
 							<td class="mono">
 								<Tick text={size} animate={animate} />
-								<Src n={twinSrc} url={primary.fund_size_eur_bn.source} label={dated('justETF, profil fondu', primary.as_of)} />
 							</td>
 						</tr>
 						<tr>
@@ -105,7 +78,6 @@ export function ResultPanel({ row, animate }: Props) {
 						Přesná kopie v Evropě neexistuje. Tohle je nejbližší rozumná alternativa — rozdíly máte v plánu.
 					</p>
 				)}
-				<Notes items={fn.list()} />
 			</article>
 
 			{alt && (
@@ -128,8 +100,4 @@ export function ResultPanel({ row, animate }: Props) {
 			</div>
 		</div>
 	);
-}
-
-function hostOf(url: string): string {
-	return new URL(url).hostname.replace(/^www\./, '');
 }

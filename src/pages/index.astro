@@ -9,6 +9,7 @@ import Facts from '../components/Facts.astro';
 import Comparison from '../components/Comparison.astro';
 import PlanPreview from '../components/PlanPreview.astro';
 import Faq from '../components/Faq.astro';
+import Sources from '../components/Sources.astro';
 import Footer from '../components/Footer.astro';
 import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 ---
@@ -55,6 +56,7 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 		<PlanPreview />
 		<Faq />
 	</main>
+	<Sources />
 	<Footer />
 	<StickyCta client:load />
 </Base>
@@ -101,6 +103,10 @@ import { AS_OF_CZ, FUND_TICKERS } from '../lib/view';
 		} catch {
 			// ignore malformed hrefs
 		}
+	});
+
+	document.querySelector<HTMLDetailsElement>('#zdroje details')?.addEventListener('toggle', (event) => {
+		if ((event.currentTarget as HTMLDetailsElement).open) track('sources_opened');
 	});
 
 	document.querySelectorAll<HTMLDetailsElement>('details[data-faq]').forEach((details) => {
