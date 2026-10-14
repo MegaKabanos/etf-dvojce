@@ -20,7 +20,13 @@ export function supabaseConfig(): { url: string; key: string } | null {
 	const url = import.meta.env.SUPABASE_URL;
 	const key = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
 	if (!url || !key) return null;
-	return { url: url.replace(/\/$/, ''), key };
+	// The Supabase dashboard shows the REST endpoint (https://xxx.supabase.co/rest/v1/),
+	// so normalise to the origin; the code appends /rest/v1/... itself.
+	try {
+		return { url: new URL(url.trim()).origin, key };
+	} catch {
+		return null;
+	}
 }
 
 /** New secret keys (sb_secret_...) are not JWTs, so Bearer auth is sent only for legacy eyJ... keys. */
