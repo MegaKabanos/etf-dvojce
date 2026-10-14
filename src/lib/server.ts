@@ -44,7 +44,10 @@ export async function insertLead(row: LeadRow): Promise<void> {
 		}),
 		body: JSON.stringify(row),
 	});
-	if (!res.ok) throw new Error(`supabase insert failed: HTTP ${res.status}`);
+	if (!res.ok) {
+		const body = (await res.text()).slice(0, 300);
+		throw new Error(`supabase insert failed: HTTP ${res.status} ${body}`);
+	}
 }
 
 /** Deletes every lead row for the given (already normalised) e-mail address. */
@@ -55,7 +58,10 @@ export async function deleteLeadsByEmail(email: string): Promise<void> {
 		method: 'DELETE',
 		headers: supabaseHeaders(cfg.key, { Prefer: 'return=minimal' }),
 	});
-	if (!res.ok) throw new Error(`supabase delete failed: HTTP ${res.status}`);
+	if (!res.ok) {
+		const body = (await res.text()).slice(0, 300);
+		throw new Error(`supabase delete failed: HTTP ${res.status} ${body}`);
+	}
 }
 
 export interface OutgoingEmail {

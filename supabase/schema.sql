@@ -18,6 +18,8 @@ create table if not exists public.leads (
 
 alter table public.leads enable row level security;
 revoke all on public.leads from anon, authenticated;
+-- New Supabase projects no longer auto-grant tables created in SQL; the server key needs explicit rights.
+grant select, insert, delete on public.leads to service_role;
 
 create index if not exists leads_created_at_idx on public.leads (created_at);
 create index if not exists leads_email_idx on public.leads (email);
