@@ -23,10 +23,11 @@ export function supabaseConfig(): { url: string; key: string } | null {
 	return { url: url.replace(/\/$/, ''), key };
 }
 
+/** New secret keys (sb_secret_...) are not JWTs, so Bearer auth is sent only for legacy eyJ... keys. */
 function supabaseHeaders(key: string, extra: Record<string, string> = {}): Record<string, string> {
 	return {
 		apikey: key,
-		Authorization: `Bearer ${key}`,
+		...(key.startsWith('eyJ') ? { Authorization: `Bearer ${key}` } : {}),
 		...extra,
 	};
 }
