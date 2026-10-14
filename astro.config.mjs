@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://etf-dvojce.vercel.app',
+  site: 'https://etf-dvojce-ashen.vercel.app',
   output: 'static',
   integrations: [preact()],
   adapter: vercel(),

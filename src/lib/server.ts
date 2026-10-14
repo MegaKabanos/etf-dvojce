@@ -97,5 +97,5 @@ export async function sendEmail(mail: OutgoingEmail): Promise<boolean> {
 }
 
 export function siteUrl(): string {
-	return (import.meta.env.PUBLIC_SITE_URL || 'https://etf-dvojce.vercel.app').replace(/\/$/, '');
+	return (import.meta.env.PUBLIC_SITE_URL || 'https://etf-dvojce-ashen.vercel.app').replace(/\/$/, '');
 }

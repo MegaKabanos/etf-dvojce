@@ -2,7 +2,8 @@
 
 Američtí investoři mají VOO, SPY nebo VTI. Čeští drobní investoři je ale u běžného brokera nekoupí, protože jim chybí povinný dokument KID. Dvojče řeší jednu konkrétní otázku: který evropský fond (UCITS) sleduje stejný index, kolik stojí, a kolik korun vám za 20 let vezmou poplatky bankovního fondu oproti ETF. Odpovědi jsou se zdrojem: všechny zdroje v rozbalovací sekci Zdroje dat na konci stránky. Plán na míru dostanete za jeden e-mail.
 
-- **Živá stránka:** `https://etf-dvojce.vercel.app` (doplní se po nasazení)
+- **Živá stránka:** https://etf-dvojce-ashen.vercel.app
+- **Repozitář:** https://github.com/MegaKabanos/etf-dvojce
 - **Reklamní verze A a B:** viz [ads/README.md](ads/README.md) (texty, `utm_content`, obrázky)
 - **Měření a trychtýř:** [docs/analytics.md](docs/analytics.md)
 

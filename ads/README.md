@@ -9,7 +9,7 @@ Každá verze má vlastní `utm_content`, podle kterého landing page přepne pr
 
 ## Verze A — „Zákaz" (zvědavost + strach z chyby)
 
-**URL:** `https://etf-dvojce.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_zakaz`
+**URL:** `https://etf-dvojce-ashen.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_zakaz`
 
 **Obrázky:** [4:5 (1080×1350)](ad-a-zakaz-4x5.png) · [9:16 (1080×1920)](ad-a-zakaz-9x16.png)
 
@@ -34,7 +34,7 @@ Každá verze má vlastní `utm_content`, podle kterého landing page přepne pr
 
 ## Verze B — „Poplatky" (peníze, konkrétní číslo)
 
-**URL:** `https://etf-dvojce.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_poplatky`
+**URL:** `https://etf-dvojce-ashen.vercel.app/?utm_source=meta&utm_medium=paid_social&utm_campaign=dvojce_launch&utm_content=ad_poplatky`
 
 **Obrázky:** [4:5 (1080×1350)](ad-b-poplatky-4x5.png) · [9:16 (1080×1920)](ad-b-poplatky-9x16.png)
 
