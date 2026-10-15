@@ -203,4 +203,5 @@ Složka `ai-log/` obsahuje přepisy práce s Claude Code: originální `/export`
 - **VEA:** vyřazeno, pro něj nebylo ověřené UCITS dvojče.
 - **QQQ:** vyloučeno, je na Nasdaqu, ne na NYSE.
 - **GDPR:** demo projekt. Správce je soukromá osoba. Data se automaticky mažou po 30 dnech (noční úloha pg_cron v `supabase/schema.sql`).
+- **Vlastní doména:** stránka běží na bezplatné doméně Vercelu, jak zadání připouští. Pro ostrý start by přišla vlastní doména (např. dvojce.cz): vyšší důvěra u finančního obsahu, odesílání e-mailů z adresy na vlastní doméně s nastaveným SPF/DKIM (lepší doručitelnost než Gmail) a ověření domény v Meta Business Manageru pro reklamu. V kódu stačí změnit `PUBLIC_SITE_URL` a `site` v `astro.config.mjs`.
 - **E-mailová sekvence:** implementován je e-mail č. 1 (plán). Navazující e-maily (připravený obsah, neodesílá se): č. 2 za 2 dny — jak nastavit investiční plán a ušetřit na konverzi měny; č. 3 za 5 dní — časový test v praxi (jak evidovat datum nákupu); č. 4 za 10 dní — rebalancování a co dělat při poklesu trhu.
