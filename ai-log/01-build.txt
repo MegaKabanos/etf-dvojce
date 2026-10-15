@@ -1,0 +1,1039 @@
+
+● Хук снова сработал на отклонённых эскизах из .impeccable/mocks/decision/: там
+  шрифты, которых нет в DESIGN.md. На сайт эти файлы не попадают и в git не
+  лежат, так что ничего не правлю. Чтобы хук перестал на них срабатывать, могу
+  добавить ignore-file ".impeccable/mocks/**". Добавить?
+
+> /compact
+  ⎿  Compacted
+  ⎿  Read ads\README.md (69 lines)
+  ⎿  Referenced file README.md
+  ⎿  Read docs\copy.md (150 lines)
+  ⎿  Read ..\..\..\.claude\projects\c--Users-wexle-OneDrive-----------etf-lendin
+     g\memory\delegate-to-haiku.md (18 lines)
+  ⎿  Read research\amf-2024-audience.md (32 lines)
+
+● Task "Build data layer, calc lib, lead API" completed in background
+  ⎿  Skills restored (impeccable, update-config)
+
+> <ide_opened_file>The user opened the file
+  c:\Users\wexle\OneDrive\Документы\etf_lending\.env in the IDE. This may or
+  may not be related to the current task.</ide_opened_file>
+
+> so lets talk about the page that you made. first thing is that imo there
+  should be call to action right away like on the first thing user sees cuz for
+  the page looks like a news article. secondly, i dont like the sources that
+  you put under those prices or sum. do you understand what we are making here?
+  its a landing convertion page that suppose to grab peoples atention, not
+  give them 10+ sources that they would never read and take like a third of the
+  screen
+
+● Согласен с обоими пунктами. Сначала посмотрю, как сейчас устроены первый экран
+  и подписи источников, чтобы точно поставить задачу Haiku.
+
+  Searched for 1 pattern, read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Хочу своими глазами увидеть первый экран на мобильном, прежде чем ставить
+  задачу.
+
+  Read 2 files, ran 2 shell commands (ctrl+o to expand)
+
+● Dev-сервер числится запущенным, но на запросы не отвечает. Перезапускаю.
+
+  Read 3 files, ran 3 shell commands (ctrl+o to expand)
+
+● Скриншоты подтвердили проблемы: на первом экране нет кнопок, а блоки
+  источников занимают слишком много места. Сейчас добавлю заметные CTA-кнопки
+  сразу под ключевыми цифрами в Ad A и Ad B, а источники сверну в единую
+  раскрываемую строку перед подвалом — и передам задачу Haiku.
+
+● Agent(Hero CTA + collapse sources) Haiku 5.5
+  ⎿  Done (89 tool uses · 175.5k tokens · 15m 11s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Both commits are on main and the working tree is clean. Commit 1 is 21844ae
+  "Add first-screen CTA for both ad variants" (A, B, analytics doc). Commit 2 is
+  c569ae4 "Move sources into one collapsed section" (C, D, E, docs).
+
+  Verification (run before each commit):
+  - npm test: 10 checks passed.
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files).
+  - npx tsc --noEmit: clean.
+  - Dev server (localhost:4321) returns 200. Rendered HTML contains both new
+  buttons and the new hero sentence. It has 0 `class="src"`, 0 `class="notes"`,
+  0 "Zdroje:" and 0 "Pod tabulkou". The sources summary reads "Zdroje dat a
+  metodika (17)".
+  - I did not click through the flows in a browser; no browser tool was loaded.
+  The focus behaviour is verified by code reading only.
+
+  Focus selectors:
+  - Zakaz hero: `#vysledek-VOO form[data-lead-form]`, which is the result
+  wrapper id `vysledek-{ticker}`. Input: `input[type="email"]` inside it.
+  Scrolled with block:'center' via requestAnimationFrame.
+  - Poplatky button: `form[data-lead-form][data-location="calculator"]`, same
+  input selector.
+  - Shared helper: src/lib/focus-form.ts (`focusLeadForm`).
+
+  Files changed:
+  - New: src/components/HeroCta.tsx, src/lib/focus-form.ts,
+  src/components/Sources.astro.
+  - Modified: src/pages/index.astro, src/components/RateTable.tsx (window
+  listener for `dvojce:open`), src/components/FeeCalculator.tsx,
+  src/components/ResultPanel.tsx, src/components/Facts.astro,
+  src/components/Comparison.astro, src/components/Footer.astro,
+  src/styles/global.css, docs/analytics.md, docs/copy.md, README.md.
+  - Unchanged, as asked: PlanView.tsx, src/lib/email.ts, Src.tsx, Notes.tsx
+  (PlanView still uses them, so `.src` and `.notes` CSS stays).
+
+  Decisions and things to check:
+  1. The poplatky button sits in a `<div class="only-poplatky calc-hero-cta">`
+  wrapper. I did not put the class on the button itself, because `.btn-primary {
+  display:block }` comes later in global.css and would override `.only-poplatky
+  { display:none }`. The variant is switched by CSS, not by JS.
+  2. `track()` lets the page-context variant override the props variant. For the
+  zakaz hero that is harmless. I passed `{variant:'zakaz'}` as specified.
+  3. `result_shown` now has a new source value, `hero_cta`. I documented it in
+  analytics.md.
+  4. Existing bug, not fixed: StickyCta.tsx uses `#vysledek
+  form[data-lead-form]`, but no element has id `vysledek`. The sticky bar
+  therefore never targets the result form and falls back to the plan form or the
+  calculator. One-line fix: `[id^="vysledek-"] form[data-lead-form]`. Say if
+  you want it.
+  5. Commit attribution: I used the "Co-Authored-By: Claude Opus 5.5" line from
+  your task. The attribution reminder in my context named Haiku 5.5. Tell me if
+  you want the commits amended.
+  6. The e-mail (src/lib/email.ts) has no source citations at all. I kept that
+  unchanged and worded the README so it only claims the on-page plan carries
+  per-value sources.
+  7. docs/build-spec.md and DESIGN.md still describe per-figure source tags and
+  "every figure has a footnote". I did not change them because they were not in
+  the brief. They are now stale for the landing page.
+  8. Sources list: 17 unique URLs, built from the same fields the components
+  used (US TER, UCITS profil/TER/index/fund-size, KID, XTB, both PRIIPs links,
+  both tax links). Deduplicated by URL; for shared URLs the first label wins.
+
+● Проверяю результат сам: скриншоты обоих вариантов и клик по кнопке.
+
+  Read 4 files, ran 1 shell command (ctrl+o to expand)
+
+● Обе кнопки работают как задумано. Остались три мелочи — ссылки на закон под
+  третьим фактом, липкая кнопка, целящаяся в несуществующий блок, и устаревшее
+  описание сносок в DESIGN.md — передаю их той же Haiku на исправление.
+  ⎿  Resuming agent a27d468
+
+● Я исправил оба замечания и проверил их на скриншотах мобильной версии (390
+  px). Оба изменения закоммичены, тесты и проверки типов проходят.
+
+  1. Кнопка теперь на первом экране
+  - Реклама A (VOO нельзя купить): под заголовком одна строка текста и сразу
+    большая красная кнопка «Pošlete mi plán zdarma». Под ней мелко: «Zdarma ·
+    stačí e-mail · plán uvidíte hned». По нажатию раскрывается VOO, страница
+    прокручивается к форме, и курсор уже стоит в поле e-mail. Это я проверил
+    кликом в браузере. Таблица фондов осталась сразу под кнопкой, её всё ещё
+    видно на первом экране.
+  - Реклама B (poplatky): красная кнопка «Chci rozpis a nejlevnějšího brokera»
+    стоит прямо под крупной суммой 686 934 Kč, ещё до ползунков. Её клик я сам
+    не прогонял.
+
+  2. Источники убраны со страницы
+  - Сноски с цифрами, блоки «Zdroje:» и подписи под таблицами убраны. Страница
+    на мобильном стала короче почти на четверть (с ~5 950 до ~4 400 px при
+    открытом VOO).
+  - Все 17 источников теперь в одной свёрнутой строке перед подвалом: «Zdroje
+    dat a metodika (17)». Они раскрываются только по клику, так что по заданию
+    источники есть, но экран не занимают.
+  - Осталась одна короткая строка про предположение 7 % годовых. Её убирать
+    нельзя: без неё расчёт выглядит как обещание доходности.
+  - В плане, который человек получает после ввода e-mail, источники у каждой
+    цифры остались. Там они работают на доверие.
+
+  Ещё в работе
+  Та же Haiku доделывает последнюю мелочь:
+  - убрать ссылки на закон под третьим фактом;
+  - исправить липкую кнопку внизу экрана: она искала несуществующий блок и
+    вместо формы под выбранным фондом прокручивала к нижней форме;
+  - обновить DESIGN.md: там ещё описано правило «у каждой цифры сноска».
+
+  Когда она закончит, я проверю результат и напишу.
+
+› Message from general-purpose
+  Follow-up batch is committed as 800453b "Fix sticky CTA target and drop
+  remaining citations". The working tree is clean.
+
+  Changes:
+  1. src/components/StickyCta.tsx: the target selector is now `[id^="vysledek-"]
+  form[data-lead-form]`, replacing `#vysledek form[data-lead-form]`, which
+  matched nothing.
+  2. src/components/Facts.astro: removed the law citation line under fact 3 and
+  the now-unused `TAX_*` import. Removed the unused `.facts .sub` rule from
+  src/styles/global.css. The other remaining small lines are fee descriptions in
+  FeeCalculator and the original TER note in ResultPanel. Those are not
+  citations, so I left them.
+  3. DESIGN.md: updated the footnote/source-tag wording in the overview, the
+  design notes, the Figure and Source Tag sections, and the Do rule. The landing
+  page has no inline citations, and the sources sit in the collapsed section.
+  Per-figure footnotes remain for the plan.
+  4. docs/build-spec.md: updated the source-tag rule, the result, facts and
+  comparison section lines, and a few other lines the same way. Per-value
+  sources remain only in PlanView.
+
+  Check output:
+  - npm test: 10 checks passed.
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files).
+  - npx tsc --noEmit: no output (clean).
+  - Dev server: the landing page returns HTTP 200 and no longer contains
+  "586/1992" or "odst.".
+
+  The sticky selector is verified by code reading only. I did not run the sticky
+  bar in a browser.
+
+● Проверю липкую кнопку в браузере сам.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Hero CTA + collapse sources" finished · 1m 42s
+
+● Последние три мелочи тоже готовы. Липкую кнопку внизу экрана я проверил в
+  браузере: она прокручивает к форме под открытым фондом и ставит курсор в поле
+  e-mail. Раньше вместо этого она уводила к нижней форме.
+
+  Кроме неё в этом коммите:
+  - Факты: под третьим фактом больше нет ссылок на закон. Сам закон есть в
+    свёрнутом списке источников внизу.
+  - Документы: в DESIGN.md и docs/build-spec.md убрано правило «у каждой цифры
+    сноска». Теперь там написано так: на лендинге источников в тексте нет, все
+    они в одном свёрнутом блоке, а у каждой цифры они остались только в плане,
+    который человек получает после ввода e-mail.
+
+  Всё сохранено тремя коммитами (21844ae, c569ae4, 800453b). Тесты и проверки
+  типов проходят. На GitHub пока ничего не отправлено, удалённого репозитория
+  ещё нет.
+
+  Если на странице ещё что-то режет глаз, пиши. Когда пришлёшь ссылку на
+  GitHub-репозиторий, сразу запушу.
+
+[Image #1]
+
+> page is pretty good now. what next? here is the link to the github repo for
+  this project: https://github.com/MegaKabanos/etf-dvojce. also here is the
+  image of what it says to me now. what do i do?
+● Перед пушем в публичный репозиторий проверяю, что ключи из .env не попадут в
+  git.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Всё чисто: .env в git не попадает, ключей в истории коммитов нет. Пушу — если
+  Windows откроет окно входа в GitHub, войди в нём.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Код теперь на GitHub: https://github.com/MegaKabanos/etf-dvojce. Все 23
+  коммита на месте, репозиторий публичный, открывается без входа. Перед пушем я
+  проверил историю: файл .env в git не попал, ключей нет ни в одном коммите.
+
+  Следующий шаг: выложить сайт на Vercel (≈3 минуты)
+
+  1. Зайди на https://vercel.com/new и войди через GitHub.
+  2. В списке репозиториев найди etf-dvojce и нажми Import. Если его там нет,
+     нажми «Adjust GitHub App Permissions» и дай Vercel доступ к этому
+     репозиторию.
+  3. Vercel сам поймёт, что это Astro. Настройки сборки не трогай.
+  4. Environment Variables пока пропусти и нажми Deploy.
+  5. Через минуту-две появится ссылка вида etf-dvojce.vercel.app. Пришли её мне.
+
+  Без ключей сайт работает полностью: таблица, калькулятор, форма и план после
+  отправки. Только заявки пока не сохраняются и письмо не уходит. Ключи добавим
+  позже в настройках Vercel, код менять не придётся.
+
+  Когда пришлёшь ссылку, я проверю живой сайт на телефоне и десктопе и прогоню
+  Lighthouse (оценка скорости и качества страницы). Потом впишу ссылку в README.
+
+  После этого нужно будет ещё
+
+  - Supabase: база для заявок, бесплатно.
+  - Brevo: отправка письма, бесплатно; нужен подтверждённый e-mail отправителя.
+  - PostHog EU: аналитика воронки, бесплатно.
+  - Имя и e-mail для страницы о персональных данных (сейчас там пустые места).
+  - /export: в конце сохранить транскрипты этого чата в папку ai-log/, это
+    требование задания.
+
+  Ключи вписывай только сам в .env и в Vercel, мне в чат их не присылай. По
+  каждому сервису дам пошаговую инструкцию, когда до него дойдём.
+
+> do i need to chose any "aplication presets" when importiong this project to
+  vercel? like react, astro, etc. and what do you need me to do ini supabase
+  for it to be coneected
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● 1. Vercel: какой пресет выбрать
+
+  В поле Framework Preset должно стоять Astro. Vercel обычно определяет его сам.
+  Если там «Other», выбери Astro вручную.
+
+  Остальное не трогай:
+  - Root Directory: ./
+  - Build Command и Output Directory: по умолчанию
+
+  Жми Deploy.
+
+  2. Supabase: что сделать (≈5 минут)
+
+  1. На https://supabase.com/dashboard нажми New project.
+     - Name: etf-dvojce.
+     - Database password: придумай и сохрани у себя. Мне он не нужен.
+     - Region: Central EU (Frankfurt). Данные остаются в ЕС, это важно для GDPR.
+     - Жди 1–2 минуты, пока проект создаётся.
+  2. Создай таблицу для заявок.
+     - Слева открой SQL Editor, затем New query.
+     - Вставь целиком содержимое файла supabase/schema.sql из проекта и нажми
+       Run. Должно появиться «Success».
+     - В Table Editor должна появиться таблица leads.
+  3. Возьми два значения.
+     - Project URL в Project Settings → Data API. Выглядит как
+       https://xxxx.supabase.co.
+     - Секретный ключ в Project Settings → API Keys. Подойдёт любой из двух:
+       - новый sb_secret_...;
+       - старый service_role на вкладке «Legacy API keys».
+  4. Впиши их в Vercel: Project → Settings → Environment Variables.
+     - SUPABASE_URL = Project URL;
+     - SUPABASE_SERVICE_ROLE_KEY = секретный ключ.
+     - Затем в Deployments нажми Redeploy, иначе Vercel не подхватит новые
+       переменные.
+
+  ⚠️ Секретный ключ даёт полный доступ к базе. Вписывай его только в Vercel и в
+  свой .env, никогда в чат и никуда в код. С этим ключом таблицу читает и пишет
+  только сервер сайта. Из браузера в неё не попасть: защита включена, разрешений
+  нет.
+
+  Пока ты этим занимаешься, Haiku внесёт в код одну правку. Сейчас код
+  отправляет ключ в двух заголовках запроса. Для старого ключа это правильно, а
+  новый sb_secret_ во втором заголовке, насколько я помню, Supabase может не
+  принять. Haiku сделает так, чтобы работали оба типа ключа.
+
+● Agent(Support new Supabase secret keys) Haiku 5.5
+  ⎿  Done (9 tool uses · 44.6k tokens · 1m 40s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Done. Committed 2fb733a59b61ae24bf47a948130717e8c2d82d44 ("Accept new Supabase
+  secret keys") on main and pushed to origin (800453b..2fb733a).
+
+  Diff (src/lib/server.ts only):
+  ```
+  +/** New secret keys (sb_secret_...) are not JWTs, so Bearer auth is sent only
+  for legacy eyJ... keys. */
+   function supabaseHeaders(key: string, extra: Record<string, string> = {}):
+  Record<string, string> {
+          return {
+                  apikey: key,
+  -               Authorization: `Bearer ${key}`,
+  +               ...(key.startsWith('eyJ') ? { Authorization: `Bearer ${key}` }
+  : {}),
+                  ...extra,
+          };
+   }
+  ```
+
+  .env.example: not changed. The file has no comment lines at all, so there was
+  no comment area to update, and I did not add one.
+
+  Checks:
+  - npm test: 10 checks passed.
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files).
+  - npx tsc --noEmit: no output (clean).
+  - npm run build was not run, as instructed.
+
+  Git showed a harmless CRLF warning for src/lib/server.ts. Only that one file
+  was staged and committed.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Правка внесена и уже лежит на GitHub. В ключе из Supabase не разбирайся, бери
+  любой: новый sb_secret_... или старый service_role из вкладки «Legacy API
+  keys». С сайтом будут работать оба. Пока я проверил это только чтением кода,
+  проверки и тесты проходят. По-настоящему проверю на живом сайте, когда ключ
+  будет в Vercel.
+
+  Если подключаешь Vercel только сейчас, он сразу возьмёт эту версию. Если сайт
+  уже задеплоен, Vercel пересоберёт его сам после пуша.
+
+  Когда закончишь, пришли мне:
+  1. Ссылку на сайт на Vercel.
+  2. Короткое «Supabase готов», если создал таблицу и вписал оба ключа в Vercel.
+     Сами ключи не присылай.
+
+  Дальше я отправлю тестовую заявку на живом сайте и проверю, что строка
+  появилась в таблице leads. Потом перейдём к Brevo, это отправка письма.
+
+> <ide_opened_file>The user opened the file
+  c:\Users\wexle\OneDrive\Документы\etf_lending\supabase\schema.sql in the IDE.
+  This may or may not be related to the current task.</ide_opened_file>
+
+> supabase is ready
+  vercel link: https://etf-dvojce-ashen.vercel.app (you neede the "domain"
+  link, right? just in case here is the deployment
+  link:etf-dvojce-2mupqqlhf-megakabanos-projects.vercel.app)
+  ⎿  1 skill available
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Да, нужен именно постоянный домен etf-dvojce-ashen.vercel.app, а не
+  хеш-ссылка, привязанная к конкретному деплою. Проверяю живой сайт — страницы и
+  тестовую заявку на выдуманный адрес.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Сайт работает, но заявка не сохранилась — Supabase-ключи, похоже, добавлены
+  после деплоя и ещё не подхватились, а в коде прописан чужой домен вместо
+  -ashen. Исправляю адрес сайта, пуш запустит новую сборку, которая заодно
+  подхватит ключи.
+
+● Agent(Replace site domain everywhere) Haiku 5.5
+  ⎿  Done (8 tool uses · 45.7k tokens · 13m 15s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Done. Domain switched to https://etf-dvojce-ashen.vercel.app and pushed to
+  origin/main.
+
+  Commit: 42e63836e6547040041341ba63904511dd7a8f86 (2fb733a..42e6383)
+  Message: "Point site URL to the live Vercel domain" with the Co-Authored-By:
+  Claude Opus 5.5 line from the task. Note that the attribution reminder in my
+  system context asked for Haiku 5.5 instead. I used the task's text as given.
+  Say if you want it amended to Haiku.
+
+  Files changed (4):
+  - README.md: the "Živá stránka" placeholder "(doplní se po nasazení)" now
+  reads https://etf-dvojce-ashen.vercel.app. Added the line "- **Repozitář:**
+  https://github.com/MegaKabanos/etf-dvojce" under it.
+  - ads/README.md: both UTM URLs (utm_content ad_zakaz and ad_poplatky) switched
+  to the new domain.
+  - astro.config.mjs: site value switched.
+  - src/lib/server.ts: siteUrl fallback switched.
+
+  Grep results after the edit:
+  - git grep "etf-dvojce.vercel.app": 0 matches
+  - git grep "ashen-ashen": 0 matches
+  - git grep "etf-dvojce-ashen.vercel.app": 4 lines (one per file above)
+
+  Verification:
+  - npm test: 10 checks passed, exit 0.
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files), exit 0.
+  - npx tsc --noEmit: exit 0.
+  - npm run build was not run, as instructed.
+
+  Note: npm test and astro check hung when chained in one foreground call. Run
+  separately, both finished fine.
+
+● Пуш прошёл. Проверяю, собрал ли Vercel новую версию, и повторяю тестовую
+  заявку.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Запись в Supabase падает — скорее всего из-за закрытых прав на таблицу или
+  опечатки в SUPABASE_URL; дал инструкции по проверке. Параллельно добавлю GRANT
+  в schema.sql и улучшу логирование ошибок Supabase в Vercel.
+
+● Agent(Supabase grant + better error log) Haiku 5.5
+  ⎿  Backgrounded agent (↓ to manage · ctrl+o to expand)
+
+● Пока не нужно ждать Haiku: её правка нужна только для будущих установок и для
+  более понятных логов. Когда выполнишь шаги выше, напиши «готово». Я сразу
+  отправлю повторную тестовую заявку и проверю, сохранилась ли она.
+
+› Message from general-purpose
+  Done. Committed and pushed to origin/main as
+  eea9629765b5975da0cbdd47aeff770c401c48b6 ("Grant service role on leads and log
+  Supabase errors", 2 files, +10/-2). Push went 42e6383..eea9629.
+
+  Diff:
+
+  supabase/schema.sql (after the revoke line):
+  +-- New Supabase projects no longer auto-grant tables created in SQL; the
+  server key needs explicit rights.
+  +grant select, insert, delete on public.leads to service_role;
+
+  src/lib/server.ts, insertLead and deleteLeadsByEmail: the `if (!res.ok)`
+  one-liner is now a block that reads `const body = (await res.text()).slice(0,
+  300);` and throws `supabase insert failed: HTTP ${res.status} ${body}` (and
+  the same with "delete" for the delete helper). No keys or e-mail are logged by
+  the code.
+
+  Checks, run separately: npm test passed (10 checks), npx astro check reported
+  0 errors / 0 warnings / 0 hints, npx tsc --noEmit produced no output. npm run
+  build was not run.
+
+  Notes:
+  - The commit trailer is `Co-Authored-By: Claude Opus 5.5`, as you specified in
+  the task. A harness attribution note asked for Haiku 5.5 instead; I followed
+  your explicit instruction.
+  - Supabase error bodies can echo request details (for example a
+  unique-violation message can include the email value). The 300-char truncation
+  limits this but does not remove it, so an e-mail address could still appear
+  in thrown errors if they are logged. Say if you want the body scrubbed or
+  dropped.
+  - Git warned about LF to CRLF conversion on both files. This is a line-ending
+  normalization notice only and did not block the commit.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "Supabase grant + better error log" finished · 1m 16s
+
+● Сайт уже пересобран: исправленный адрес и подробные логи ошибок работают.
+  Проверил, все правки на GitHub.
+
+  Тестовая заявка всё ещё падает. Так и должно быть, пока в Supabase не
+  выполнена строка с grant. Как только выполнишь её и проверишь SUPABASE_URL,
+  напиши «готово», и я сразу повторю тест.
+
+  Если после этого заявка всё равно не сохранится, понадобится строка из логов:
+  1. В Vercel открой проект, затем вкладку Logs.
+  2. Найди строку [lead] insert failed supabase insert failed: HTTP ....
+  3. Скопируй её мне. Ключей в ней нет, только код и текст ошибки Supabase. По
+     ней будет точно видно, в чём дело.
+
+> [lead] insert failed supabase insert failed: HTTP 404
+  {"code":"PGRST125","details":null,"hint":null,"message":"Invalid path
+  specified in request URL"}
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Нашёл причину: URL дублирует /rest/v1, потому что в SUPABASE_URL на Vercel уже
+  указан адрес с этим суффиксом, а код добавляет его повторно. Сейчас исправлю
+  код, чтобы он брал только домен из адреса — тебе ничего менять не нужно.
+● Agent(Normalize Supabase URL to origin) Haiku 5.5
+  ⎿  Done (5 tool uses · 41.4k tokens · 57s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Done. src/lib/server.ts is committed and pushed to origin/main as
+  881a644d79a8d193f19ace2c4ba07b0d09ae6081 (eea9629..881a644).
+
+  Diff (supabaseConfig only):
+  -       return { url: url.replace(/\/$/, ''), key };
+  +       // The Supabase dashboard shows the REST endpoint
+  (https://xxx.supabase.co/rest/v1/),
+  +       // so normalise to the origin; the code appends /rest/v1/... itself.
+  +       try {
+  +               return { url: new URL(url.trim()).origin, key };
+  +       } catch {
+  +               return null;
+  +       }
+
+  Verification (each run separately):
+  - npm test: 10 checks passed
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files)
+  - npx tsc --noEmit: no output, no errors
+  - npm run build was not run, as requested.
+
+  Commit message used your text verbatim, including "Co-Authored-By: Claude Opus
+  5.5". The environment's attribution reminder asked for Haiku 5.5; I followed
+  your explicit message.
+
+  Note: an invalid SUPABASE_URL now returns null, so the caller sees "not
+  configured" rather than a fetch error. Git warned that LF will be converted to
+  CRLF on this file. That is a line-ending warning only and did not block the
+  commit.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Заявки теперь сохраняются. Тестовая заявка на живом сайте ответила "stored":
+  true, ссылка на план ведёт на правильный адрес.
+
+  Убедиться можно и самому: в Supabase открой Table Editor → leads. Там будет
+  строка с test-dvojce@example.com и utm_source = claude-test. Это моя тестовая
+  заявка, перед сдачей её можно удалить.
+
+  Следующий шаг: Brevo (отправка письма)
+
+  1. Зарегистрируйся на https://www.brevo.com. Бесплатного тарифа хватит: 300
+     писем в день.
+  2. Подтверди адрес отправителя. Иди в Senders, Domains & Dedicated IPs →
+     Senders → Add a sender.
+     - Name: Dvojče.
+     - E-mail: свой ящик, например Gmail. Brevo пришлёт на него письмо со
+       ссылкой, по ней и подтверждаешь.
+     - Письма с Gmail-адреса через Brevo могут чаще попадать в «Промоакции» или
+       спам. Для демо это нормально.
+  3. Создай ключ: SMTP & API → API Keys → Generate a new API key.
+  4. В Vercel, Settings → Environment Variables, добавь:
+     - BREVO_API_KEY: этот ключ;
+     - BREVO_SENDER_EMAIL: подтверждённый адрес из шага 2;
+     - BREVO_SENDER_NAME: Dvojče;
+     - UNSUBSCRIBE_SECRET: любая длинная случайная строка, 30+ символов. Нужна
+       для ссылки «отписаться» в письме.
+  5. Нажми Redeploy и напиши мне «brevo готов».
+
+  Тест письма отправлю на твой адрес [e-mail], только если
+  подтвердишь, что так можно. Можешь вместо этого назвать другой ящик.
+
+  Ещё нужно будет:
+  - PostHog EU: аналитика воронки. Сделаем после Brevo.
+  - Имя и e-mail для страницы о персональных данных (/soukromi). Сейчас там
+    пустые места {{CONTROLLER_NAME}}. Можешь прислать прямо сейчас.
+
+> <ide_opened_file>The user opened the file
+  c:\Users\wexle\OneDrive\Документы\etf_lending\supabase\schema.sql in the IDE.
+  This may or may not be related to the current task.</ide_opened_file>
+
+> step 2 is done.
+  but i got only one api key at brevo by clicking the create api key button
+
+● Один ключ и нужен, это правильно. Других ключей Brevo не требуется.
+
+  Проверь только, что это именно API key, а не SMTP key: на этой странице Brevo
+  показывает оба. Нужный начинается с xkeysib-.... Ключ вида xsmtpsib-... не
+  подойдёт.
+
+  Ключ Brevo показывает один раз, так что сразу впиши его в Vercel, в Settings →
+  Environment Variables:
+
+  ┌────────────────────┬─────────────────────────────────────────────────────┐
+  │        Name        │                        Value                        │
+  ├────────────────────┼─────────────────────────────────────────────────────┤
+  │ BREVO_API_KEY      │ ключ xkeysib-...                                    │
+  ├────────────────────┼─────────────────────────────────────────────────────┤
+  │ BREVO_SENDER_EMAIL │ адрес, который ты подтвердил в шаге 2               │
+  ├────────────────────┼─────────────────────────────────────────────────────┤
+  │ BREVO_SENDER_NAME  │ Dvojče                                              │
+  ├────────────────────┼─────────────────────────────────────────────────────┤
+  │                    │ любая длинная случайная строка, 30+ символов.       │
+  │ UNSUBSCRIBE_SECRET │ Просто набей клавиатурой или сгенерируй в менеджере │
+  │                    │  паролей                                            │
+  └────────────────────┴─────────────────────────────────────────────────────┘
+
+  Потом Deployments → ⋯ → Redeploy и напиши «готово». Заодно скажи, на какой
+  адрес отправить тестовое письмо.
+
+> its done. the email is: wexler.8498@gmail.com
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Тестовая заявка на wexler.8498@gmail.com прошла: сервер ответил, что заявка
+  сохранена и письмо отправлено ("stored": true, "emailed": true). Проверь
+  почту. Если письма нет во «Входящих», посмотри «Промоакции» и «Спам».
+
+  Что проверить в письме:
+  1. Тема: «Váš ETF plán: VOO → SXR8».
+  2. Кнопка «Otevřít můj plán» должна открыть
+     etf-dvojce-ashen.vercel.app/plan?....
+  3. Ссылка «odhlásit» внизу: по клику должна открыться страница подтверждения,
+     а твоя строка исчезнет из таблицы leads в Supabase. Нажимай её последней.
+  4. Вид письма: красная полоса сверху, без скруглений.
+
+  Напиши, что дошло и куда, и что открылось по ссылкам. Если письмо попало в
+  «Спам», пришли скриншот. После этого подключим PostHog. Я всё ещё жду имя и
+  e-mail для страницы о персональных данных.
+
+> yeah i got the email and its just like you described it. only thing i ddindt
+  check is the recording in the supabase. and it did not go to the spam folder.
+  and also remind me how do i set up posthog
+
+● Письмо работает. Если по ссылке «odhlásit» ты ещё не нажимал, проверим её в
+  конце. Таблицу в Supabase можешь не смотреть: сервер ответил stored: true,
+  значит запись есть.
+
+  PostHog: аналитика воронки (≈5 минут)
+
+  1. Зарегистрируйся по ссылке https://eu.posthog.com/signup. Важно, чтобы был
+     именно EU-регион: данные остаются в ЕС, а код сайта отправляет события на
+     EU-сервер. Если при регистрации спросят регион, выбери EU Cloud.
+  2. Мастер настройки (wizard) предложит установить сниппет или SDK. Пропусти
+     этот шаг, код у нас уже есть. Нажми Skip или «I'll do it later».
+  3. Скопируй ключ проекта. Он лежит в Settings → Project → General → Project
+     API key и начинается с phc_....
+     - Этот ключ не секретный: он и так виден в коде страницы любому посетителю.
+       Его можно прислать и мне, но лучше просто впиши его сам.
+  4. В Vercel, в Settings → Environment Variables, добавь:
+
+  | Name                | Value                    |
+  |---------------------|--------------------------|
+  | PUBLIC_POSTHOG_KEY  | phc_...                  |
+  | PUBLIC_POSTHOG_HOST | https://eu.i.posthog.com |
+
+  5. Нажми Redeploy. Без пересборки ключ не попадёт на страницу. Потом напиши
+     «готово».
+
+  Дальше я сам пройду путь посетителя на живом сайте: заход, выбор фонда,
+  кнопка, форма. Ты в PostHog, в разделе Activity, проверишь, что события
+  landing_view, fund_selected, form_submitted и другие приходят. Потом создадим
+  воронку от захода до отправки формы. Я дам точные шаги, а скриншот воронки
+  пригодится для README.
+
+  Имя и e-mail для /soukromi (страница о персональных данных) всё ещё нужны,
+  пришли вместе с «готово».
+
+[Image #2]
+  ⎿  [Image #3]
+
+> what do i chose here? there is no "skip" option
+
+● Выбери «Understand how users behave». Это продуктовая аналитика и воронки,
+  ровно то, что нам нужно.
+
+  Если на втором экране попросят отметить продукты, оставь только Product
+  Analytics, можно ещё Web Analytics. Session Replay не включай:
+  - наш сайт отправляет в PostHog только события, без кук и без записи экрана,
+    так что запись сеансов всё равно работать не будет;
+  - для GDPR так проще.
+
+  Дальше PostHog покажет инструкции по установке (сниппет, npm и тому подобное).
+  Внизу обычно есть «Skip installation», «I'll do this later» или просто
+  Continue. Если ничего такого нет, просто листай до конца и жми Next или
+  Continue, пока не попадёшь в сам интерфейс. Ничего устанавливать не нужно.
+
+  Потом ключ: Settings → Project → General → Project API key (phc_...). Впиши
+  его в Vercel вместе с PUBLIC_POSTHOG_HOST = https://eu.i.posthog.com, нажми
+  Redeploy и напиши «готово».
+
+[Image #4]
+
+> here it is i guess
+
+● Переменные видны, проверяю, попал ли ключ на живой сайт. Ключ проекта PostHog
+  публичный, так что то, что он на скриншоте, не страшно.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Ключ подтверждён на живом сайте. Теперь пройду полный путь в браузере — от
+  клика по рекламной ссылке до отправки формы — чтобы отправить реальные
+  события.
+
+  Read 1 file, ran 3 shell commands (ctrl+o to expand)
+
+● Прогнал на живом сайте полный путь посетителя: зашёл по рекламной ссылке,
+  нажал красную кнопку, ввёл e-mail, отправил. Сайт показал «Hotovo», заявка
+  ушла. Так что на wexler.8498@gmail.com придёт ещё одно письмо, это от моего
+  теста.
+
+  Проверь, что события приходят в PostHog
+
+  Слева открой Activity (иногда называется «Events»). Через минуту-две там
+  должны появиться:
+  - landing_view;
+  - hero_cta_clicked;
+  - result_shown;
+  - email_focus;
+  - lead_submitted.
+
+  Создай воронку
+
+  1. Product analytics → New insight → Funnels.
+  2. Добавь шаги по порядку:
+     - landing_view;
+     - result_shown;
+     - email_focus;
+     - lead_submitted.
+  3. Справа в Breakdown выбери свойство события variant. Воронка разделится на
+     две рекламы: zakaz и poplatky. Это нужно для README и A/B-гипотез.
+  4. Нажми Save, назови «Dvojče: návštěva → lead».
+
+  Почему на графике будет всего 1–2 прохода: сайт не ставит куки (GDPR), поэтому
+  каждый заход считается отдельным посетителем. Воронка считает путь в пределах
+  одного захода, а на лендинге больше и не нужно.
+
+  Пришли скриншот воронки, когда события появятся. Положу его в README как
+  доказательство, что путь измеряется от захода до отправки формы.
+
+  Имя и e-mail для страницы /soukromi (там, кто обрабатывает данные) всё ещё
+  нужны. Это последнее, что осталось подключить.
+
+[Image #5]
+
+> ok so i did check the actiivty tab and yeah there is somthing there. however
+  when i tried to do new insight i cant add the email_focus step and i think
+  because its not present in the activity tab. also sending you screenshot
+  regarding the "breakdonw" thing on the left side of the screen instead of the
+  right like you said and there is only one option to follow your
+  instructuions and i dont know if its the right one - i pressed the " +
+  breakdown" button and typed variant as an option so there is that
+  ⎿  44 skills available
+
+● Breakdown ты настроил правильно: variant выбран, тип оставь «First
+  touchpoint». То, что панель слева, а не справа, неважно: в PostHog поменялся
+  интерфейс, я ошибся с расположением.
+
+  email_focus в списке нет, потому что такое событие ни разу не пришло.
+  Проверяю, что именно сайт отправляет.
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Локальный сервер завис, проверяю на живом сайте. Форму при этом не отправляю.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Background command "Check whether focus events fire in headless test"
+completed (exit code 0)
+
+● Background command "Restart local dev server" completed (exit code 0)
+
+  Ran 1 shell command (ctrl+o to expand)
+● Мешают зависшие копии тестового браузера: они держат порт. Закрываю только их,
+  обычный Edge не трогаю.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Нашёл причину: дело в моём тесте, на сайте ошибки нет. Тестовый браузер
+  работает без окна, а у страницы без окна нет фокуса. Курсор в поле e-mail
+  ставится, но браузер не отправляет сигнал фокуса, по которому сайт фиксирует
+  email_focus. Я это проверил: «страница в фокусе = false», событий фокуса 0.
+  Дальше по коду всё сходится. У живого человека страница в фокусе, так что
+  событие должно уйти. Это проверит твой тест с телефона ниже.
+
+  Сделай один реальный проход с телефона. Как раз проверишь, что всё работает у
+  живого человека.
+  1. Открой на телефоне
+     https://etf-dvojce-ashen.vercel.app/?utm_content=ad_zakaz.
+  2. Нажми красную кнопку, курсор встанет в поле e-mail.
+  3. Можешь отправить форму со своим адресом.
+  4. Через минуту email_focus появится в Activity, и его можно будет добавить в
+     воронку.
+
+  Если хочешь увидеть и вторую рекламу, повтори с ?utm_content=ad_poplatky. Там
+  нажми красную кнопку под суммой.
+
+  Шаги воронки поправлю. Я раньше советовал result_shown, но у второй рекламы
+  (poplatky) этого шага нет: там калькулятор, а не таблица. Такая воронка теряла
+  бы всех посетителей этой рекламы. Правильно так:
+  1. landing_view
+  2. email_focus
+  3. lead_submitted
+
+  Breakdown по variant, как ты уже сделал. Название: «Dvojče: návštěva → lead».
+  Потом пришли скриншот воронки.
+
+  И не забудь имя и e-mail для /soukromi.
+
+[Image #6]
+
+> i think i got it. and what abot the email for /soukromi? what is it for and
+  how do i do it
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Воронка готова и показывает весь путь: 5 заходов → 1 фокус на e-mail → 1
+  заявка, итого 20 % и 13 секунд до заявки. Сохрани её скриншот к себе, позже
+  положим его в README.
+
+  Что такое /soukromi и зачем там e-mail
+
+  Сайт собирает e-mail посетителей, а это персональные данные. По GDPR на
+  странице о данных нужно указать správce, то есть того, кто отвечает за эти
+  данные. Нужны две вещи:
+
+  1. Имя. Кто собирает данные. Это ты как частное лицо, проект ведь
+     демонстрационный.
+  2. E-mail для запросов. Посетитель может написать туда «что вы обо мне
+     храните?» или «удалите мои данные». Отвечать нужно до 30 дней.
+
+  Без этих двух строк страница сейчас показывает {{CONTROLLER_NAME}}.
+  Проверяющий это заметит, и критерий «можно запускать рекламу завтра» не
+  выполнится.
+
+  Что прислать:
+  - Имя: полное, только имя и первая буква фамилии (например «Artur W.») или
+    ник. Для демо достаточно имени. Полное имя надёжнее с точки зрения GDPR, но
+    оно будет видно публично, решай сам.
+  - E-mail: можно wexler.8498@gmail.com. Если не хочешь светить основной ящик,
+    заведи отдельный, например dvojce.kontakt@gmail.com, и пришли его.
+
+  Как только пришлёшь, Haiku вставит их на страницу, и это попадёт на сайт.
+
+  После этого останется немного:
+  - Lighthouse на живом сайте и последняя проверка на телефоне и десктопе (это
+    сделаю я);
+  - скриншот воронки в README и обновлённый раздел «Měření»;
+  - твой /export этого чата в папку ai-log/.
+
+> name: Daniil T.
+  email: you can use the wexler one its fine
+
+● Agent(Fill GDPR controller details) Haiku 5.5
+  ⎿  Done (13 tool uses · 46.4k tokens · 1m 35s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Done. Commit 75762a35e77f46798bea20543e7a7583ef04f85f is pushed to origin/main
+  (881a644..75762a3).
+
+  Commit message mismatch: I used the trailer "Co-Authored-By: Claude Haiku 5.5"
+  from the attribution reminder, not the "Claude Opus 5.5" line you specified.
+  Your instruction should have taken precedence. I did not amend or force-push,
+  since the commit is already on the remote. If you want the trailer changed,
+  that needs a rewrite of the pushed commit, which I can do if you ask.
+
+  Changes (2 files, 4 insertions, 3 deletions):
+
+  1. src/pages/soukromi.astro
+     - Line 6 was `const controller = '{{CONTROLLER_NAME}}, kontakt:
+  {{CONTROLLER_EMAIL}}';`. It is now two constants:
+       `const controllerName = 'Daniil T. (soukromá osoba)';`
+       `const controllerEmail = 'wexler.8498@gmail.com';`
+     - The render line was `<p>{controller}</p>` and is now
+  `<p>{controllerName}, kontakt: <a
+  href={`mailto:${controllerEmail}`}>{controllerEmail}</a></p>`, so the e-mail
+  is a mailto: link.
+
+  2. docs/build-spec.md (line 50, the /soukromi section)
+     - The placeholder text was replaced with the same name and e-mail.
+     - I also removed the stale note "(keep these literal placeholders — I will
+  fill them)", since the placeholders are now filled. Revert that if you want
+  the note kept.
+
+  Placeholder search: `git grep -n "CONTROLLER_"` found only these two locations
+  (the page and docs/build-spec.md). The README had none.
+
+  Verification, each run separately:
+  - npm test: 10 checks passed.
+  - npx astro check: 0 errors, 0 warnings, 0 hints (42 files).
+  - npx tsc --noEmit: no output, no errors.
+  - npm run build was not run.
+
+  Only the two files above were committed. The git warnings about LF/CRLF are
+  benign. The impeccable hook notes that DESIGN.md is newer than
+  .impeccable/design.json. I did not touch those files.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Страница /soukromi уже обновлена с нужными данными и без заглушек {{…}}.
+  Теперь запускаю Lighthouse на живом сайте в мобильной версии.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Lighthouse на мобильной версии сайта показал отличные результаты: 94 по
+  скорости, 100 по доступности, качеству кода и SEO, с быстрой загрузкой и
+  стабильной версткой. Добавляю эти цифры и скриншот воронки в README.
+
+● Agent(README: funnel screenshot + Lighthouse) Haiku 5.5
+  ⎿  Done (7 tool uses · 48.7k tokens · 36s)
+  (ctrl+o to expand)
+
+› Message from general-purpose
+  Hotovo. Commit d71ed77f0d9ee1d7f0f723190c200f373a75cc76 "Document live funnel
+  and Lighthouse results" (Co-Authored-By: Claude Opus 5.5) je na origin/main,
+  push prošel.
+
+  Změny (2 soubory, +12 řádků):
+  1. docs/posthog-funnel.png: nová binární kopie 6.png (ověřeno cmp, shodné).
+  2. README.md: v sekci "Měření" za odstavec o ukládání leadů do Supabase přidán
+  podsekce "### Ověření na živé stránce (15. 10. 2026)" obsahující:
+     - popis trychtýře v PostHog EU (landing_view → email_focus →
+  lead_submitted, dělení podle variant) a embed ![Trychtýř v
+  PostHogu](docs/posthog-funnel.png);
+     - větu, že jde jen o testovací provoz (5 návštěv od autora), takže 20 %
+  není odhad konverze, jen ověření měření celé cesty;
+     - end-to-end kontrolu na produkci (formulář → Supabase leads → Brevo e-mail
+  v Doručené poště, ne ve spamu → odkaz na plán funguje);
+     - Lighthouse (mobil, produkce, 15. 10. 2026): Performance 94, Accessibility
+  100, Best Practices 100, SEO 100; FCP 1,1 s, LCP 1,2 s, CLS 0,02, TBT 280 ms.
+
+  Kontrola stavů: `git grep -n "TODO\|doplní se" README.md` nevrátil žádný
+  výsledek (exit 1). Ani jinde v README jsem nenašel text typu "po nasazení",
+  "doplní se" nebo "pending" vztahující se k deployi, live testu nebo
+  Lighthouse, takže jsem nic dalšího neměnil. Jediná zmínka "měl by se doplnit"
+  (řádek ~187) se týká aktuálního KID bankovního fondu, ne
+  deployi/testu/Lighthouse, tak ji nechávám být.
+
+  Poznámka: git hlásí varování "LF will be replaced by CRLF" pro README.md (jen
+  line endings na Windows, commit prošel).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● В README одна опечатка: «Trychtýr» вместо «Trychtýř». Отправил Haiku
+  исправить.
+  ⎿  Resuming agent a7bdeba
+
+● Пока Haiku правит опечатку, вот что сейчас работает на живом сайте:
+  - Страница о данных /soukromi: указаны имя и e-mail. Подставленный текст я
+    проверил прямо на сайте.
+  - Lighthouse, мобильная версия: 94 / 100 / 100 / 100.
+  - README: добавлен раздел «Ověření na živé stránce». В нём скриншот воронки,
+    цифры Lighthouse и описание проверенной цепочки: форма → Supabase → письмо
+    из Brevo пришло во «Входящие» → ссылка на план открывается. Отдельно
+    написано, что 20 % на скриншоте получены на моём тестовом трафике и
+    прогнозом конверсии не являются.
+  - Всё отправлено на GitHub, Vercel пересобирает сайт сам.
+
+  Что осталось сделать тебе
+
+  1. Удали тестовые заявки перед сдачей: Supabase → Table Editor → leads. Это
+     строки с utm_source = claude-test и test-dvojce@example.com, плюс твои
+     тестовые заявки. Строки, которые ты сам отправлял с телефона, можно
+     оставить, если хочешь. Там только твой e-mail.
+  2. Сохрани транскрипты чата в ai-log/, это обязательное требование задания.
+     - В этом чате введи /export и сохрани файл в папку ai-log проекта, например
+       как ai-log/01-build.txt.
+     - Если были другие чаты по проекту, экспортируй и их.
+     - Напиши мне, когда файлы будут на месте. Я проверю, что в них нет ключей и
+       паролей (в этом чате ключей не было, но лучше убедиться), и Haiku
+       закоммитит их.
+  3. Ссылки для сдачи:
+     - репозиторий: https://github.com/MegaKabanos/etf-dvojce
+     - страница: https://etf-dvojce-ashen.vercel.app
+
+  После ai-log проект готов к сдаче, срок 16. 10. Как только Haiku закончит с
+  опечаткой, проверю и отпишусь одной строкой.
+
+› Message from general-purpose
+  Oprava překlepu hotova. Commit c54ec50997fbb6790a8b3216c38e6d3576a9dd86 "Fix
+  typo in README" (Co-Authored-By: Claude Opus 5.5) je pushnutý na origin/main.
+
+  Změna: 1 řádek v README.md, řádek 106: "Trychtýr v PostHog EU" → "Trychtýř v
+  PostHog EU" (diff 1 +/1 -).
+
+  Kontrola: `git grep -n "Trychtýr" -- README.md` jsem spustil před opravou a
+  našel jsem jediný výskyt (řádek 106, ten jsem přidal v předchozím commitu
+  d71ed77). Po opravě už žádný výskyt "Trychtýr" v README.md není (exit 1).
+  Ostatní obsah jsem nezměnil.
+
+  Poznámka: git hlásí jen varování o CRLF/LF u README.md, push prošel.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Agent "README: funnel screenshot + Lighthouse" finished · 23s
+
+● Опечатку в README исправили, правка уже на GitHub, я проверил. С моей стороны
+  всё готово. Осталось за тобой:
+  - удалить тестовые заявки в Supabase;
+  - сделать /export чата в папку ai-log/ и написать мне, когда файлы будут на
+    месте. Я проверю их на ключи и пароли и закоммичу.
+
+> ok how do i do those then?
+
+● 1. Удалить тестовые заявки (1 минута)
+
+  Все заявки в таблице сейчас тестовые: мои и твои. Проще удалить их одной
+  командой.
+
+  1. В Supabase открой SQL Editor, затем New query.
+  2. Вставь и нажми Run:
+  delete from public.leads;
+  3. Supabase спросит, точно ли выполнить потенциально опасную команду, потому
+     что у неё нет условия. Подтверди.
+  4. Проверка: в Table Editor → leads должно быть пусто.
+
+  Если хочешь оставить свои заявки, удали только мои:
+  delete from public.leads where utm_source = 'claude-test';
+
+  2. /export в ai-log/
+
+  Вариант A: прямо здесь, в VS Code
+  1. Набери в поле ввода этого чата /export.
+  2. Если появится выбор, выбери Save to file. Сохрани в папку проекта как
+     ai-log/01-build.txt. Если папки ai-log нет, создай её прямо в окне
+     сохранения.
+
+  Вариант B: если в VS Code команды /export нет
+  1. В VS Code открой терминал: Terminal → New Terminal. Он откроется в папке
+     проекта.
+  2. Набери claude --resume и выбери этот чат из списка. Он самый свежий, про
+     Dvojče.
+  3. Набери /export ai-log/01-build.txt.
+
+  Когда файл появится, напиши мне. Сначала проверю, что в экспорт попал весь
+  разговор. Этот чат дважды сжимался, и экспорт может содержать только часть
+  после последнего сжатия. Если так, достану полную историю из локального файла
+  сессии и тоже положу её в ai-log/. Потом проверю, что в файлах нет ключей и
+  паролей, и закоммичу.
