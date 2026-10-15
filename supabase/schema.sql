@@ -23,3 +23,11 @@ grant select, insert, delete on public.leads to service_role;
 
 create index if not exists leads_created_at_idx on public.leads (created_at);
 create index if not exists leads_email_idx on public.leads (email);
+
+-- Retention: delete leads older than 30 days, every night at 03:00 UTC (pg_cron).
+create extension if not exists pg_cron;
+select cron.schedule(
+  'delete-old-leads',
+  '0 3 * * *',
+  $$delete from public.leads where created_at < now() - interval '30 days'$$
+);

@@ -122,7 +122,7 @@ Jde jen o testovací provoz: 5 návštěv od autora během ověřování. Hodnot
 | Krok | Podíl | Na 1 000 návštěv |
 |---|---|---|
 | landing_view | 100 % | 1 000 |
-| první interakce (ťuknutí na fond nebo kalkulačku) | 45 % | 450 |
+| první interakce (tlačítko v první obrazovce, ťuknutí na fond nebo kalkulačka) | 45 % | 450 |
 | result_shown | 38 % | 380 |
 | email_focus | 12 % | 120 |
 | lead_submitted | **5 %** (rozsah 3–7 %) | **50** |
@@ -134,7 +134,8 @@ Jde jen o testovací provoz: 5 návštěv od autora během ověřování. Hodnot
 Velikost vzorku: baseline 5 %, síla 80 %, α = 0,05 (dvoustranně), dvouvýběrový test podílů, na jednu variantu. Pro metriky s jiným výchozím podílem je uvedeno zvlášť.
 
 **1. Vstup do stránky** (největší propad je v první obrazovce)
-- Hypotéza: Pokud místo tabulky tickerů dáme v první obrazovce jedno velké číslo v Kč a jedno CTA, pak víc lidí udělá první interakci, protože hned vidí hodnotu, kvůli které zůstali.
+- Hypotéza: Pokud v první obrazovce nahradíme tabulku tickerů jedním velkým číslem v Kč (rozdíl poplatků pro VOO) nad stávajícím CTA, pak víc lidí udělá první interakci, protože hodnotu uvidí bez čtení tabulky.
+- Kontrola: současný stav (nadpis, CTA „Pošlete mi plán zdarma", tabulka fondů).
 - Primární metrika: první interakce (`first interaction rate`).
 - Očekávaný efekt: +10 až +20 p. b. na první interakci (45 % → 55–65 %).
 - Vzorek pro primární metriku (45 % → 55 %): **n ≈ 391** na variantu; jako kontrolní (guardrail) metriku sledujeme lead rate — pro rozlišení 5 % → 7 % by bylo potřeba **n = 2 213** na variantu.
@@ -192,7 +193,7 @@ ai-log/         přepisy Claude Code sessions (/export)
 
 ## Práce s AI
 
-Složka `ai-log/` obsahuje přepisy Claude Code sessions (`/export`). Workflow: Opus 5.5 plánoval a ověřoval, Haiku 5.5 subagenti psali kód a sbírali data. **Klíčová čísla byla znovu ověřena přímo u zdroje** (justETF, KID fondu, text zákona, ČNB); u každé hodnoty je uveden zdroj a datum, sekundární zdroje jsou označené.
+Složka `ai-log/` obsahuje přepisy práce s Claude Code: originální `/export` a kompletní přepis celé session (viz `ai-log/README.md`). Workflow: Opus 5.5 plánoval a ověřoval, Haiku 5.5 subagenti psali kód a sbírali data. **Klíčová čísla byla znovu ověřena přímo u zdroje** (justETF, KID fondu, text zákona, ČNB); u každé hodnoty je uveden zdroj a datum, sekundární zdroje jsou označené.
 
 ## Omezení a co dál
 
@@ -201,5 +202,5 @@ Složka `ai-log/` obsahuje přepisy Claude Code sessions (`/export`). Workflow: 
 - **Fio:** ceník je z roku 2020.
 - **VEA:** vyřazeno, pro něj nebylo ověřené UCITS dvojče.
 - **QQQ:** vyloučeno, je na Nasdaqu, ne na NYSE.
-- **GDPR:** demo projekt. Správce je soukromá osoba. Data se mažou po 30 dnech.
+- **GDPR:** demo projekt. Správce je soukromá osoba. Data se automaticky mažou po 30 dnech (noční úloha pg_cron v `supabase/schema.sql`).
 - **E-mailová sekvence:** implementován je e-mail č. 1 (plán). Navazující e-maily (připravený obsah, neodesílá se): č. 2 za 2 dny — jak nastavit investiční plán a ušetřit na konverzi měny; č. 3 za 5 dní — časový test v praxi (jak evidovat datum nákupu); č. 4 za 10 dní — rebalancování a co dělat při poklesu trhu.
