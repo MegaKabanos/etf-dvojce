@@ -103,7 +103,7 @@ Leady se ukládají do Supabase (EU) s UTM parametry. Zdroj leadu je tedy atribu
 
 ### Ověření na živé stránce (15. 10. 2026)
 
-Trychtýr v PostHog EU „Dvojče: návštěva → lead“ (kroky `landing_view` → `email_focus` → `lead_submitted`, rozdělení podle `variant`):
+Trychtýř v PostHog EU „Dvojče: návštěva → lead“ (kroky `landing_view` → `email_focus` → `lead_submitted`, rozdělení podle `variant`):
 
 ![Trychtýř v PostHogu](docs/posthog-funnel.png)
 
