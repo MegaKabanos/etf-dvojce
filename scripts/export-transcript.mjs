@@ -1,5 +1,6 @@
 // Export a Claude Code session transcript (.jsonl) to readable Markdown.
-// Usage: node scripts/export-transcript.mjs <in.jsonl> <out.md>
+// Usage: REDACT_TERMS="a@b.cz,a" node scripts/export-transcript.mjs <in.jsonl> <out.md>
+// REDACT_TERMS is optional: comma-separated terms replaced with "[e-mail]".
 // Dependency-free (Node 18+). Read-only on the input file.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
@@ -13,11 +14,14 @@ if (!inPath || !outPath) {
 // Blocks removed from user text (and from assistant text / tool prompts, for safety).
 const STRIP_RE = /<(system-reminder|ide_opened_file|ide_selection|local-command-[\w-]+|command-[\w-]+)(\s[^>]*)?>[\s\S]*?<\/\1>/g;
 
-// Redaction rules applied to the whole output.
-const REDACT_LITERAL = [
-  ['ggwpshnik27@gmail.com', '[e-mail]'],
-  ['ggwpshnik', '[e-mail]'],
-];
+// Extra literal redaction terms from the environment, longest first.
+const REDACT_TERMS = (process.env.REDACT_TERMS || '')
+  .split(',')
+  .map((t) => t.trim())
+  .filter(Boolean)
+  .sort((a, b) => b.length - a.length);
+
+// Key-pattern redaction rules applied to the whole output.
 const REDACT_RE = [
   /xkeysib-[A-Za-z0-9-]{10,}/g,
   /xsmtpsib-[A-Za-z0-9-]{10,}/g,
@@ -184,7 +188,7 @@ for (const b of blocks) {
 }
 
 let text = out.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
-for (const [from, to] of REDACT_LITERAL) text = text.split(from).join(to);
+for (const term of REDACT_TERMS) text = text.split(term).join('[e-mail]');
 for (const re of REDACT_RE) text = text.replace(re, '[REDACTED]');
 
 mkdirSync(dirname(outPath), { recursive: true });
