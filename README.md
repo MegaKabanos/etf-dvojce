@@ -101,6 +101,18 @@ Všechny události nesou `variant`, `utm_source`, `utm_medium`, `utm_campaign` a
 
 Leady se ukládají do Supabase (EU) s UTM parametry. Zdroj leadu je tedy atribuovatelný i na serveru, nezávisle na analytice.
 
+### Ověření na živé stránce (15. 10. 2026)
+
+Trychtýr v PostHog EU „Dvojče: návštěva → lead“ (kroky `landing_view` → `email_focus` → `lead_submitted`, rozdělení podle `variant`):
+
+![Trychtýř v PostHogu](docs/posthog-funnel.png)
+
+Jde jen o testovací provoz: 5 návštěv od autora během ověřování. Hodnota 20 % proto **není odhad konverze**; ukazuje pouze, že celá cesta od příchodu po odeslání formuláře je změřená.
+
+**End-to-end kontrola na produkci:** formulář → řádek v Supabase (`leads`) → e-mail přes Brevo doručen do Doručené pošty (ne do spamu) → odkaz na plán se otevře.
+
+**Lighthouse** (mobil, produkce, 15. 10. 2026): Performance 94, Accessibility 100, Best Practices 100, SEO 100; FCP 1,1 s, LCP 1,2 s, CLS 0,02, TBT 280 ms.
+
 ## Očekávaná konverze
 
 **Benchmark (ověřeno).** Unbounce Conversion Benchmark Report 2020 (`https://unbounce.com/conversion-benchmark-report-2020/`) uvádí medián konverze **3,2 %** pro všechny analyzované landing pages a **25 %** pro top 25 %. „Konverze" je v něm libovolná žádaná akce (nákup, stažení, přihlášení). Medián pro finance a pojištění z této stránky ověřit nelze, je jen v grafech. Novější čísla z reportu 2024 jsme nenašli v ověřitelné podobě, proto je nepoužíváme.
